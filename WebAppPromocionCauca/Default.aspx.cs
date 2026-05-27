@@ -8,9 +8,20 @@ namespace WebAppPromocionCauca
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Añade los metadatos de redes sociales en el encabezado
+            var ogImage = new System.Web.UI.HtmlControls.HtmlMeta();
+            ogImage.Attributes.Add("property", "og:image");
+            ogImage.Content = "https://unsplash.com"; // Tu foto principal del Cauca
+            Page.Header.Controls.Add(ogImage);
+
             if (!IsPostBack)
             {
-                // Inicializaciones lógicas de la campaña promocional si son requeridas
+                // 🎯 SEO: Configuración de la Portada Principal
+                Page.Title = "Vive Cauca | Portal Oficial de Promoción Turística";
+
+                Page.MetaDescription = "Descubre el Departamento del Cauca: la arquitectura de Popayán, el Parque Natural Puracé, el mercado de Silvia y la riqueza cultural del Macizo Colombiano.";
+
+                Page.MetaKeywords = "turismo cauca, viajar a popayan, parque purace, silvia guambia, tierradentro, ecoturismo colombia, semana santa popayan, gastronomia unesco";
             }
         }
 

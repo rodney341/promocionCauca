@@ -1,72 +1,75 @@
 ﻿<%@ Page Title="Turismo Cauca" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebAppPromocionCauca._Default" %>
 
+<asp:Content ID="ContentStyles" ContentPlaceHolderID="Stylesheets" runat="server">
+<style>
+    /* ESTILOS ESPECÍFICOS DE LA INTERFAZ INMERSIVA */
+    .hero-section {
+        height: 70vh;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/Cerro_de_Manzanillo.jpg') no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+        margin-top: -20px; /* Ajuste para pegar al menú superior */
+        padding: 0 2rem;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .hero-section p {
+        font-size: 1.4rem;
+        max-width: 700px;
+        margin-bottom: 2rem;
+    }
+
+    .grilla-destinos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .tarjeta-destino {
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+    }
+
+    .tarjeta-destino:hover {
+        transform: translateY(-5px);
+    }
+
+    .tarjeta-img {
+        height: 240px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .tarjeta-cuerpo {
+        padding: 1.5rem;
+    }
+
+    .btn-enlace {
+        background: none;
+        border: none;
+        padding: 0;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+    }
+</style>
+</asp:Content>
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <style>
-        /* ESTILOS ESPECÍFICOS DE LA INTERFAZ INMERSIVA */
-        .hero-section {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://unsplash.com') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: -20px; /* Ajuste para pegar al menú superior */
-            padding: 0 2rem;
-        }
-
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-        }
-
-        .hero-section p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin-bottom: 2rem;
-        }
-
-        .grilla-destinos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .tarjeta-destino {
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .tarjeta-destino:hover {
-            transform: translateY(-5px);
-        }
-
-        .tarjeta-img {
-            height: 240px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .tarjeta-cuerpo {
-            padding: 1.5rem;
-        }
-
-        .btn-enlace {
-            background: none;
-            border: none;
-            padding: 0;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
-    </style>
 
     <!-- HERO SECTION INMERSIVO -->
     <header class="hero-section">
@@ -76,7 +79,7 @@
     </header>
 
     <!-- SECCIÓN DE DESTINOS IMPERDIBLES -->
-    <div class="container my-5">
+    <div class="container my-5" id="destinos">
         <div class="text-center">
             <h2 style="color: var(--verde-paramo); font-weight: 700;">Destinos Imperdibles</h2>
             <div style="width: 60px; height: 3px; background-color: var(--terracota); margin: 0.5rem auto 0;"></div>
@@ -85,7 +88,7 @@
         <div class="grilla-destinos">
             <!-- Popayán -->
             <article class="tarjeta-destino">
-                <div class="tarjeta-img" style="background-image: url('https://unsplash.com');"></div>
+                <div class="tarjeta-img" style="background-image: url('/images/Cerro_de_Manzanillo.jpg');"></div>
                 <div class="tarjeta-cuerpo">
                     <h3>Popayán Colonial</h3>
                     <p class="text-muted">Camina por las calles empedradas de la "Ciudad Blanca". Explora sus imponentes templos e iglesias y vive de cerca la tradición de su arquitectura.</p>
