@@ -53,8 +53,8 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
+<asp:ScriptManager runat="server" EnablePageMethods="true">
+    <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -81,25 +81,106 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Default.aspx">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Rutas.aspx">Rutas del Departamento</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Default.aspx">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Rutas.aspx">Rutas del Departamento</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Default.aspx#destinos">Destinos Destacados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Blog.aspx">Blog Turístico</a></li>
                     </ul>
 
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <!-- CONTENEDOR PRINCIPAL DE CONTENIDO -->
+        <div class="container body-content" style="min-height: 60vh; padding-bottom: 2rem;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
         </div>
+
+        <!-- 🏔️ PIE DE PÁGINA EXPANDIDO CON LA IDENTIDAD DEL CAUCA -->
+        <footer style="background-color: var(--verde-paramo); color: #FFFFFF; padding: 3rem 0; margin-top: 4rem;">
+            <div class="container">
+                <div class="row g-4 text-center text-md-start">
+                    <!-- Columna 1: Branding -->
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-uppercase" style="letter-spacing: 1px;">Vive Cauca</h5>
+                        <p class="small text-white-50 mt-2" style="max-width: 400px;">
+                            Portal oficial de promoción turística. Descubre la Ciudad Blanca, la majestuosidad del Macizo Colombiano y los saberes ancestrales de nuestro territorio.
+                        </p>
+                    </div>
+                    <!-- Columna 2: Enlaces Rápidos -->
+                    <div class="col-md-3">
+                        <h6 class="fw-bold text-uppercase text-white-50">Explorar</h6>
+                        <ul class="list-unstyled mt-2 lh-lg">
+                            <li><a href="/Default.aspx" class="text-white text-decoration-none small opacity-75">Inicio</a></li>
+                            <li><a href="/Rutas.aspx" class="text-white text-decoration-none small opacity-75">Rutas Oficiales</a></li>
+                            <li><a href="/Default.aspx#destinos" class="text-white text-decoration-none small opacity-75">Destinos Imperdibles</a></li>
+                        </ul>
+                    </div>
+                    <!-- Columna 3: Información Legal o Soporte -->
+                    <div class="col-md-3">
+                        <h6 class="fw-bold text-uppercase text-white-50">Contacto</h6>
+                        <p class="small text-white-50 mt-2 mb-0">Popayán, Cauca - Colombia</p>
+                        <p class="small text-white-50">Gobernación del Cauca</p>
+                    </div>
+                </div>
+                
+                <hr style="border-color: rgba(255,255,255,0.15); margin: 2rem 0;" />
+                
+                <!-- Créditos de cierre -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="mb-0 small text-white-50">
+                            &copy; <%: DateTime.Now.Year %> - Portal Turístico del Departamento del Cauca. Todos los derechos reservados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </form>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+    <script type="text/javascript">
+        // 🚀 FUNCIÓN UNIVERSAL DE DESPLAZAMIENTO NATIVO (Chrome & Firefox)
+        function desplazarHaciaDestino(selectorId) {
+            var target = document.querySelector(selectorId);
+            if (target) {
+                // Calculamos la posición exacta restando la altura del menú fijo (85px)
+                var posicionDestino = target.getBoundingClientRect().top + window.pageYOffset - 85;
+
+                // Ejecución nativa del motor del navegador libre de errores de jQuery
+                window.scrollTo({
+                    top: posicionDestino,
+                    behavior: 'smooth' // Transición suave nativa estándar
+                });
+            }
+        }
+
+        // 1. EVENTO PARA CLICS EN LA MISMA PÁGINA (Inicio -> Destinos)
+        document.addEventListener('DOMContentLoaded', function () {
+            var enlacesMenu = document.querySelectorAll('.navbar-nav a[href*="#"]');
+
+            enlacesMenu.forEach(function (enlace) {
+                enlace.addEventListener('click', function (e) {
+                    var urlCompleta = this.pathname || '/Default.aspx';
+                    var rutaActual = window.location.pathname;
+
+                    // Limpieza y normalización de rutas para el servidor local
+                    var normalizar = function (p) { return p.replace(/\/$/, "").replace("Default.aspx", ""); };
+
+                    if (normalizar(rutaActual) === normalizar(urlCompleta)) {
+                        e.preventDefault(); // Detiene el salto brusco de Firefox
+                        desplazarHaciaDestino(this.hash);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+
+
 </body>
 </html>
