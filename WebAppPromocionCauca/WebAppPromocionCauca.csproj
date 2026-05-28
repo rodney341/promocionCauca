@@ -160,8 +160,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Destinos\Popayan.aspx" />
+    <Content Include="DetalleSubregion.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="images\14-05-2026 Registro fotográfico revisión mapa turísitico-2.PNG" />
+    <Content Include="images\Cerro_de_Manzanillo.jpg" />
     <Content Include="Rutas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -192,6 +195,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="EliminarArticulo.ashx" />
+    <None Include="Properties\PublishProfiles\turismo-cauca - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -278,6 +282,13 @@
     <Compile Include="Destinos\Popayan.aspx.designer.cs">
       <DependentUpon>Popayan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetalleSubregion.aspx.cs">
+      <DependentUpon>DetalleSubregion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleSubregion.aspx.designer.cs">
+      <DependentUpon>DetalleSubregion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EliminarArticulo.ashx.cs">
       <DependentUpon>EliminarArticulo.ashx</DependentUpon>
     </Compile>
@@ -316,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
