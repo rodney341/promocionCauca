@@ -24,32 +24,47 @@
        HERO SECTION
     ==========================*/
 
+.hero-section{
+    position:relative;
+
+    height:85vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,0,0,0.55),
+        rgba(16,74,44,0.45)
+    ),
+    url('/images/Cerro_de_Manzanillo.jpg')
+    no-repeat center center/cover;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    color:#FFFFFF;
+
+    margin:20px;
+
+    padding:0 2rem;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+@media(max-width:768px){
+
     .hero-section{
-        position:relative;
-        height:85vh;
-
-        background:
-        linear-gradient(
-            135deg,
-            rgba(0,0,0,0.55),
-            rgba(16,74,44,0.45)
-        ),
-        url('../images/Cerro_de_Manzanillo.jpg')
-        no-repeat center center/cover;
-
-        background-attachment:fixed;
-
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-
-        text-align:center;
-        color:#FFFFFF;
-
-        margin-top:-20px;
-        padding:0 2rem;
+        background-attachment:scroll;
+        height:70vh;
+        border-radius:20px;
     }
+
+}
 
     .hero-section::before{
         content:'';
@@ -58,26 +73,26 @@
         background:rgba(0,0,0,0.15);
     }
 
-    .hero-content{
-        position:relative;
-        z-index:2;
-        animation:fadeHero 1.5s ease;
-    }
+.hero-content{
 
-    .hero-section h1{
-        font-size:4rem;
-        font-weight:800;
-        text-shadow:2px 2px 8px rgba(0,0,0,0.5);
-        margin-bottom:1rem;
-    }
+    z-index:2;
 
-    .hero-section p{
-        font-size:1.35rem;
-        max-width:750px;
-        margin:auto;
-        margin-bottom:2rem;
-        line-height:1.8;
-    }
+    max-width:800px;
+}
+
+.hero-content h1{
+
+    font-size:4rem;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+.hero-content p{
+
+    font-size:1.4rem;
+}
 
     @keyframes fadeHero{
         from{
@@ -90,7 +105,89 @@
             transform:translateY(0);
         }
     }
+    .hero-slider{
 
+    position:relative;
+
+    height:85vh;
+
+    margin:20px;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+    .slide{
+
+    position:absolute;
+
+    inset:0;
+
+    background-size:cover;
+
+    background-position:center;
+
+    opacity:0;
+
+    transition:opacity 1s ease-in-out;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:2rem;
+
+    color:white;
+}
+    .slide.active{
+    opacity:1;
+    z-index:1;
+}
+
+
+.indicadores{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:12px;
+
+    z-index:10;
+}
+.dot{
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.45);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.dot.active{
+
+    background:white;
+
+    transform:scale(1.2);
+}
     /* =========================
        BOTONES
     ==========================*/
@@ -129,26 +226,71 @@
        ESTADÍSTICAS
     ==========================*/
 
+.estadisticas{
+
+    position:absolute;
+
+    bottom:60px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    gap:20px;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:25px;
+
+    z-index:5;
+}
+
+.stat{
+    flex:1;
+}
+
+.stat h2{
+
+    font-size:2rem;
+
+    font-weight:bold;
+}
+
+.stat span{
+
+    font-size:1rem;
+
+    opacity:.9;
+}
+
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:2.5rem;
+    }
+
     .estadisticas{
-        background:#FFFFFF;
-        padding:4rem 0;
+
+        flex-direction:column;
+
+        width:95%;
     }
 
-    .estadistica-box{
-        text-align:center;
-        padding:1rem;
-    }
+    .hero-slider{
 
-    .estadistica-box h2{
-        font-size:3rem;
-        color:var(--verde-paramo);
-        font-weight:800;
+        height:100vh;
     }
-
-    .estadistica-box p{
-        color:#666666;
-        margin-top:0.5rem;
-    }
+}
 
     /* =========================
        SUBREGIONES
@@ -358,69 +500,103 @@
     runat="server">
 
     <!-- HERO -->
-    <header class="hero-section">
+<section class="hero-slider">
+
+    <div class="slide active"
+         style="background-image:
+         linear-gradient(
+         135deg,
+         rgba(0,0,0,0.55),
+         rgba(16,74,44,0.45)),
+         url('/images/Cerro_de_Manzanillo.jpg')">
 
         <div class="hero-content">
 
             <h1>Descubre la Magia del Cauca</h1>
 
             <p>
-                Un territorio de contrastes donde la historia colonial,
-                la biodiversidad andina y los saberes ancestrales
-                construyen experiencias inolvidables.
+                Cultura, naturaleza y tradición ancestral
             </p>
 
-            <asp:Button
-                ID="btnExplorar"
-                runat="server"
-                Text="Explorar Rutas"
-                CssClass="btn btn-lg btn-cauca-principal"
-                OnClick="btnExplorar_Click" />
+        </div>
+
+    </div>
+
+    <div class="slide"
+         style="background-image:
+         linear-gradient(
+         135deg,
+         rgba(0,0,0,0.55),
+         rgba(16,74,44,0.45)),
+         url('/images/purace.jpg')">
+
+        <div class="hero-content">
+
+            <h1>Volcán Puracé</h1>
+
+            <p>
+                Naturaleza, termales y paisajes andinos
+            </p>
 
         </div>
 
-    </header>
+    </div>
 
-    <!-- ESTADÍSTICAS -->
-    <section class="estadisticas">
+    <div class="slide"
+         style="background-image:
+         linear-gradient(
+         135deg,
+         rgba(0,0,0,0.55),
+         rgba(16,74,44,0.45)),
+         url('/images/silvia.jpg')">
 
-        <div class="container">
+        <div class="hero-content">
 
-            <div class="row">
+            <h1>Silvia y Cultura Misak</h1>
 
-                <div class="col-md-3">
-                    <div class="estadistica-box">
-                        <h2>42</h2>
-                        <p>Municipios Turísticos</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="estadistica-box">
-                        <h2>7</h2>
-                        <p>Subregiones</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="estadistica-box">
-                        <h2>120+</h2>
-                        <p>Experiencias</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="estadistica-box">
-                        <h2>365</h2>
-                        <p>Días de Aventura</p>
-                    </div>
-                </div>
-
-            </div>
+            <p>
+                Tradición indígena y mercados ancestrales
+            </p>
 
         </div>
 
-    </section>
+    </div>
+
+
+    <div class="estadisticas">
+
+        <div class="stat">
+            <h2>42</h2>
+            <span>Municipios</span>
+        </div>
+
+        <div class="stat">
+            <h2>150+</h2>
+            <span>Destinos</span>
+        </div>
+
+        <div class="stat">
+            <h2>25</h2>
+            <span>Rutas</span>
+        </div>
+
+        <div class="stat">
+            <h2>100%</h2>
+            <span>Cultura</span>
+        </div>
+
+    </div>
+    <div class="indicadores">
+
+    <span class="dot active"></span>
+
+    <span class="dot"></span>
+
+    <span class="dot"></span>
+
+</div>
+
+</section>
 
     <!-- SUBREGIONES -->
     <section class="container my-5">
@@ -804,6 +980,69 @@
         });
 
     });
+
+
+
+        const slides =
+        document.querySelectorAll('.slide');
+
+        const dots =
+        document.querySelectorAll('.dot');
+
+        let current = 0;
+
+        function mostrarSlide(index){
+
+            slides.forEach(slide =>
+                slide.classList.remove('active')
+            );
+
+    dots.forEach(dot =>
+        dot.classList.remove('active')
+        );
+
+        slides[index].classList.add('active');
+
+        dots[index].classList.add('active');
+
+        current = index;
+}
+
+        function siguiente(){
+
+            current++;
+
+    if(current >= slides.length){
+            current = 0;
+    }
+
+        mostrarSlide(current);
+}
+
+        function anterior(){
+
+            current--;
+
+        if(current < 0){
+            current = slides.length - 1;
+    }
+
+        mostrarSlide(current);
+}
+
+
+dots.forEach((dot, index)=>{
+
+            dot.addEventListener('click', () => {
+
+                mostrarSlide(index);
+
+            });
+
+});
+
+        setInterval(siguiente, 5000);
+
 
 </script>
 
