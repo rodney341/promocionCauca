@@ -163,8 +163,8 @@
     <Content Include="DetalleSubregion.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="images\14-05-2026 Registro fotográfico revisión mapa turísitico-2.PNG" />
     <Content Include="images\Cerro_de_Manzanillo.jpg" />
+    <Content Include="images\Patia.jpg" />
     <Content Include="Rutas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

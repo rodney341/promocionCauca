@@ -361,11 +361,11 @@
     .bloque-subregion-seccion{
         padding:6rem 0;
         border-bottom:1px solid rgba(0,0,0,0.05);
-        background:#FFFFFF;
+ background:transparent !important;
     }
 
     .bloque-subregion-seccion:nth-child(even){
-        background:var(--blanco-encalado);
+         background:transparent !important;
     }
 
     .subregion-contenedor-flex{
@@ -483,13 +483,110 @@
 
     .card-subregion{ position: relative; z-index: 10; }
 
-.tarjeta-click{
-    cursor:pointer;
+.oculta-region{
+    display:none;
+}
+
+.visible-region{
+    display:block;
+    animation:fadeRegion .5s ease;
+}
+
+@keyframes fadeRegion{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+=========================*/
+
+.contenedor-regiones-principal{
     position:relative;
+}
+
+/* =========================
+   BOTONES FLOTANTES (ABAJO IZQUIERDA)
+=========================*/
+
+.contenedor-botones-superior{
+
+    position:absolute;
+    bottom:80px;
+    left:10px;
+
+    display:flex;
+    gap:1rem;
+
     z-index:20;
 }
 
+/* =========================
+   BOTONES
+=========================*/
 
+.btn-subregion-nav{
+
+    width:auto;
+    min-width:140px;
+
+    height:48px;
+
+    padding:0 18px;
+
+    border-radius:50px;
+
+    border:none;
+
+    background:#ffffff;
+
+    color:var(--verde-paramo);
+
+    font-size:1rem;
+    font-weight:600;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+    transition:all .25s ease;
+
+    white-space:nowrap;
+}
+
+.btn-subregion-nav:hover{
+
+    background:var(--verde-paramo);
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================
+   TARJETA
+=========================*/
+
+#contenedor-subregiones-verticales{
+    padding-top:0rem;
+}
+.arrow{
+    font-size:1.2rem;
+    font-weight:700;
+}
 
 </style>
 
@@ -599,9 +696,11 @@
 </section>
 
     <!-- SUBREGIONES -->
-    <section class="container my-5">
 
-        <div class="text-center mb-5">
+
+            <!-- CONTENEDOR DINÁMICO -->
+<div class="contenedor-regiones-principal">
+            <div class="text-center mb-2">
 
             <h2
                 style="
@@ -627,152 +726,22 @@
             </div>
 
         </div>
+    <!-- BOTONES -->
+    <div class="contenedor-botones-superior">
 
-        <div class="row g-4 justify-content-center">
+<button type="button" id="btnAnterior" class="btn btn-subregion-nav">
+    <span class="arrow">←</span>
+    <span>Anterior</span>
+</button>
 
-            <!-- CENTRO -->
-
-<div class="col-6 col-md-4 col-lg-3">
-
-    <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Centro">
-
-        <div class="icon-subregion">🏛️</div>
-
-        <h5 class="fw-bold mt-3 mb-1">
-            Centro
-        </h5>
-
-        <span class="text-muted small">
-            Popayán, Silvia, Puracé
-        </span>
+<button type="button" id="btnSiguiente" class="btn btn-subregion-nav">
+    <span>Siguiente</span>
+    <span class="arrow">→</span>
+</button>
 
     </div>
 
-</div>
-
-
-
-            <!-- NORTE -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Norte">
-
-                    <div class="icon-subregion">🏭</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Norte
-                    </h5>
-
-                    <span class="text-muted small">
-                        Quilichao, Caloto
-                    </span>
-
-                </div>
-            </div>
-
-            <!-- SUR -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Sur">
-
-                    <div class="icon-subregion">🏔️</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Sur
-                    </h5>
-
-                    <span class="text-muted small">
-                        Patía, Bolívar
-                    </span>
-
-                </div>
-            </div>
-
-            <!-- ORIENTE -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Oriente">
-
-                    <div class="icon-subregion">🗿</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Oriente
-                    </h5>
-
-                    <span class="text-muted small">
-                        Tierradentro, Inzá
-                    </span>
-
-                </div>
-            </div>
-
-            <!-- PACIFICO -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Pacifico">
-
-                    <div class="icon-subregion">🌊</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Pacífico
-                    </h5>
-
-                    <span class="text-muted small">
-                        Guapi y Timbiquí
-                    </span>
-
-                </div>
-            </div>
-
-            <!-- MACIZO -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Macizo">
-
-                    <div class="icon-subregion">🦅</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Macizo
-                    </h5>
-
-                    <span class="text-muted small">
-                        Reserva Hídrica
-                    </span>
-
-                </div>
-            </div>
-
-            <!-- BOTA -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div
-        class="card card-subregion text-center p-4 animar tarjeta-click"
-        data-subregion="Bota">
-
-                    <div class="icon-subregion">🌳</div>
-
-                    <h5 class="fw-bold mt-3 mb-1">
-                        Bota Caucana
-                    </h5>
-
-                    <span class="text-muted small">
-                        Transición Amazónica
-                    </span>
-
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- CONTENEDOR DINÁMICO -->
+    <!-- REGIONES -->
     <div id="contenedor-subregiones-verticales">
 
         <div
@@ -791,6 +760,8 @@
         </div>
 
     </div>
+
+</div>
 
     <!-- JAVASCRIPT -->
 <script>
@@ -814,25 +785,25 @@
         const descripcionesSubregiones = {
 
             "Centro":
-                "El corazón histórico del departamento. Popayán y Puracé reúnen arquitectura colonial, gastronomía patrimonial y volcanes andinos.",
+                "El corazón histórico del departamdfgdfgdfg dgdgf dfgd gsdgf sdfg dfg dfg dfg dfg dsgf ento.",
 
             "Norte":
-                "Una región multicultural donde convergen tradiciones afrodescendientes y corredores agroindustriales.",
+                "Una región multicultural.",
 
             "Sur":
-                "Paisajes cafeteros y agrícolas acompañados por montañas y clima cálido.",
+                "Paisajes cafeteros y agrícolas.",
 
             "Oriente":
-                "Territorio arqueológico y espiritual donde Tierradentro revela hipogeos ancestrales.",
+                "Territorio arqueológico y espiritual.",
 
             "Pacifico":
-                "Selva húmeda tropical, marimbas ancestrales y conexión con Gorgona.",
+                "Selva húmeda tropical.",
 
             "Macizo":
-                "La estrella hídrica de Colombia y santuario natural de páramos.",
+                "La estrella hídrica de Colombia.",
 
             "Bota":
-                "Transición amazónica con biodiversidad extrema y naturaleza virgen."
+                "Transición amazónica."
 
         };
 
@@ -844,142 +815,163 @@
             "Oriente": "/images/Cerro_de_Manzanillo.jpg",
             "Pacifico": "/images/Cerro_de_Manzanillo.jpg",
             "Macizo": "/images/Cerro_de_Manzanillo.jpg",
-            "Bota": "/images/Cerro_de_Manzanillo.jpg"
+            "Bota": "/images/Patia.jpg"
 
         };
 
+        const listaSubregiones =
+            Object.keys(descripcionesSubregiones);
+
         /* =========================
-           CREAR BLOQUES
+           CREAR REGIONES
         ==========================*/
 
-        Object.keys(descripcionesSubregiones)
-            .forEach((subregion, index) => {
+        listaSubregiones.forEach(subregion => {
 
-                const bloque = `
+            const idSeguro =
+                subregion
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
 
-        <section
-            id="subregion-${subregion}"
-            class="bloque-subregion-seccion animar">
+            const bloque = `
 
-            <div class="container">
+<section
+    id="subregion-${idSeguro}"
+    class="bloque-subregion-seccion">
 
-                <div class="
-                    subregion-contenedor-flex
-                    ${index % 2 !== 0
-                        ? 'orden-invertido'
-                        : ''}">
+    <div class="container">
 
-                    <div class="subregion-col-texto">
+        <div class="subregion-contenedor-flex">
 
-                        <h2 class="subregion-titulo-h2">
-                            ${subregion}
-                        </h2>
+            <div class="subregion-col-texto">
 
-                        <div class="subregion-linea-decorativa"></div>
+                <h2 class="subregion-titulo-h2">
+                    ${subregion}
+                </h2>
 
-                        <p class="subregion-parrafo-cronica">
-                            ${descripcionesSubregiones[subregion]}
-                        </p>
+                <div class="subregion-linea-decorativa"></div>
 
-                        <a
-                            href="DetalleSubregion.aspx?region=${subregion}"
-                            class="btn btn-cauca-principal">
+                <p class="subregion-parrafo-cronica">
+                    ${descripcionesSubregiones[subregion]}
+                </p>
 
-                            Explorar Subregión
+                <a
+                    href="DetalleSubregion.aspx?region=${encodeURIComponent(subregion)}"
+                    class="btn btn-cauca-principal">
 
-                        </a>
+                    Explorar Subregión
 
-                    </div>
+                </a>
 
-                    <div class="subregion-col-multimedia">
+            </div>
 
-                        <div
-                            class="subregion-banner-foto"
+            <div class="subregion-col-multimedia">
 
-                            style="
-                            background-image:
-                            url('${imagenesSubregiones[subregion]}')">
-
-                        </div>
-
-                    </div>
+                <div
+                    class="subregion-banner-foto"
+                    style="
+                    background-image:
+                    url('${imagenesSubregiones[subregion]}')">
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-        `;
+    </div>
 
-                contenedorMaestro.insertAdjacentHTML(
-                    "beforeend",
-                    bloque
-                );
+</section>
 
-            });
+`;
 
-        spinner.style.display = "none";
+            contenedorMaestro.insertAdjacentHTML(
+                "beforeend",
+                bloque
+            );
 
-        /* =========================
-           ANIMACIONES
-        ==========================*/
-
-        const elementos =
-            document.querySelectorAll(".animar");
-
-        const observer =
-            new IntersectionObserver(entries => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                    }
-
-                });
-
-            });
-
-        elementos.forEach(el => {
-            observer.observe(el);
         });
 
+        if (spinner) {
+            spinner.style.display = "none";
+        }
+
         /* =========================
-           CLICK TARJETAS
+           CONTROL REGIONES
         ==========================*/
 
-        document.addEventListener("click", function (e) {
+        let regionActual = 0;
 
-            const tarjeta =
-                e.target.closest(".tarjeta-click");
+        const regiones =
+            document.querySelectorAll(
+                ".bloque-subregion-seccion"
+            );
 
-            if (!tarjeta) return;
+        function mostrarRegion(index) {
 
-            const subregion =
-                tarjeta.dataset.subregion;
+            regiones.forEach((region, i) => {
 
-            const destino =
-                document.getElementById(
-                    `subregion-${subregion}`
-                );
+                region.style.display =
+                    i === index
+                        ? "block"
+                        : "none";
 
-            if (destino) {
+            });
 
-                destino.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+        }
+
+        mostrarRegion(regionActual);
+
+        /* =========================
+           BOTONES
+        ==========================*/
+
+        const btnAnterior =
+            document.getElementById(
+                "btnAnterior"
+            );
+
+        const btnSiguiente =
+            document.getElementById(
+                "btnSiguiente"
+            );
+
+        btnSiguiente.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    regionActual <
+                    regiones.length - 1
+                ) {
+
+                    regionActual++;
+
+                    mostrarRegion(regionActual);
+
+                }
 
             }
+        );
 
-        });
+        btnAnterior.addEventListener(
+            "click",
+            function () {
+
+                if (regionActual > 0) {
+
+                    regionActual--;
+
+                    mostrarRegion(regionActual);
+
+                }
+
+            }
+        );
 
     });
+
+
 
 
 
