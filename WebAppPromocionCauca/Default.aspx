@@ -25,9 +25,12 @@
     ==========================*/
 
 .hero-section{
+
     position:relative;
 
-    height:85vh;
+   width:calc(100vw - 40px);
+
+    min-height:100vh;
 
     background:
     linear-gradient(
@@ -46,15 +49,14 @@
     text-align:center;
     color:#FFFFFF;
 
-    margin:20px;
+    margin:20px auto;
 
     padding:0 2rem;
-
-    border-radius:35px;
 
     overflow:hidden;
 
     box-shadow:0 10px 30px rgba(0,0,0,.25);
+    margin-bottom:5rem;
 }
 @media(max-width:768px){
 
@@ -281,15 +283,81 @@
 
     .estadisticas{
 
-        flex-direction:column;
+        position:relative;
 
-        width:95%;
+        bottom:auto;
+        left:auto;
+
+        transform:none;
+
+        width:100%;
+
+        margin-top:2rem;
+
+        padding:1rem;
+
+        flex-wrap:wrap;
+
+        gap:1rem;
+
+        justify-content:center;
+
+        border-radius:20px;
+
+    }
+        .stat{
+
+        flex:0 0 calc(50% - 1rem);
+
+        text-align:center;
+
+    }
+
+    .stat h2{
+
+        font-size:1.5rem;
+
+    }
+
+    .stat span{
+
+        font-size:.9rem;
+
     }
 
     .hero-slider{
 
         height:100vh;
     }
+}
+
+
+@media(max-width:480px){
+
+    .estadisticas{
+
+        padding:.8rem;
+
+    }
+
+    .stat{
+
+        flex:0 0 100%;
+
+    }
+
+    .stat h2{
+
+        font-size:1.3rem;
+
+    }
+
+    .stat span{
+
+        font-size:.85rem;
+
+    }
+
 }
 
     /* =========================
@@ -522,7 +590,7 @@
 
     position:absolute;
     bottom:80px;
-    left:10px;
+    left:70px;
 
     display:flex;
     gap:1rem;

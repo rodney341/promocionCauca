@@ -26,7 +26,21 @@
     body {
         background-color: var(--blanco-encalado) !important;
         color: var(--texto-oscuro);
+            margin:0;
+    padding:0;
+    overflow-x:hidden;
     }
+    .body-content{
+
+    width:100%;
+
+    padding:0;
+
+    margin:0;
+
+    max-width:100%;
+
+}
     html {
     scroll-behavior: smooth;
     }
@@ -82,16 +96,17 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" href="/Default.aspx">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Rutas.aspx">Rutas del Departamento</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Rutas.aspx">Rutas Turisticas</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Default.aspx#destinos">Destinos Destacados</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Blog.aspx">Blog Turístico</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Blog.aspx">Blog</a></li>
                     </ul>
 
                 </div>
             </div>
         </nav>
         <!-- CONTENEDOR PRINCIPAL DE CONTENIDO -->
-        <div class="container body-content" style="min-height: 60vh; padding-bottom: 2rem;">
+<div class="body-content"
+     style="min-height:60vh;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
