@@ -1,0 +1,230 @@
+﻿/* =========================
+   HERO SLIDER
+========================= */
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+
+}
+
+    .hero-slider::after {
+        content: "";
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: #F5F5F5;
+        border-radius: 50% 50% 0 0;
+        z-index: 4;
+    }
+
+/* =========================
+   SLIDES
+========================= */
+
+.slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+}
+
+    .slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+/* =========================
+   CONTENIDO HERO
+========================= */
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    color: white;
+    padding-left: 8%;
+    padding-right: 5%;
+    padding-top: 0;
+    transform: translateY(-40px);
+    z-index: 2;
+}
+
+    .hero-content h1 {
+        max-width: 700px;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 800;
+        margin-bottom: 20px;
+        text-shadow: 0 3px 12px rgba(0,0,0,.4);
+    }
+
+    .hero-content p {
+        max-width: 600px;
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        line-height: 1.7;
+        text-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
+
+.estadisticas {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(7px);
+    border-radius: 25px;
+    z-index: 5;
+}
+
+.stat {
+    flex: 1;
+    text-align: center;
+}
+
+.stat h2{
+
+    font-size:1.5rem;
+
+    font-weight:bold;
+}
+
+.stat span{
+
+    font-size:1rem;
+
+    opacity:.9;
+}
+
+
+
+/* =========================
+   INDICADORES
+========================= */
+
+.indicadores {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 20;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(45,90,39,.35);
+    border: 2px solid var(--verde-paramo);
+    cursor: pointer;
+    transition: .3s;
+}
+
+    .dot:hover {
+        background: rgba(255,255,255,.8);
+        transform: scale(1.1);
+    }
+
+    .dot.active {
+        background: var(--terracota);
+        border-color: var(--terracota);
+        transform: scale(1.2);
+        box-shadow: 0 0 12px rgba(201,107,59,.5);
+    }
+
+/* =========================
+   EFECTOS
+========================= */
+
+.slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( rgba(0,0,0,.15), rgba(0,0,0,.25) );
+    z-index: 1;
+}
+
+/* =========================
+   RESPONSIVE TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .hero-slider {
+        height: 75vh;
+    }
+
+    .estadisticas {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .stat {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+/* =========================
+   RESPONSIVE MÓVIL
+========================= */
+
+@media (max-width: 576px) {
+
+    .hero-slider {
+        height: 85vh;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    .estadisticas {
+        width: 95%;
+        bottom: 80px;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .stat {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}

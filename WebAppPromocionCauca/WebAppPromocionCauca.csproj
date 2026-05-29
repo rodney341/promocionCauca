@@ -161,6 +161,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Destinos\Popayan.aspx" />
     <Content Include="DetalleSubregion.aspx" />
+    <Content Include="estilos\StyleSheetHero.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\Cerro_de_Manzanillo.jpg" />

@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+<title><%: Page.Title %></title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -28,19 +28,24 @@
         color: var(--texto-oscuro);
             margin:0;
     padding:0;
+    width:100%;
     overflow-x:hidden;
     }
-    .body-content{
-
+.body-content{
     width:100%;
-
-    padding:0;
-
-    margin:0;
-
-    max-width:100%;
-
+    min-height:60vh;
+    margin:0 !important;
+    padding-top:70px;
 }
+.navbar{
+    min-height:70px;
+    padding:0.8rem 0;
+    background:rgba(20,40,30,.95)!important;
+    backdrop-filter:blur(8px);
+    z-index:9999;
+}
+
+
     html {
     scroll-behavior: smooth;
     }
@@ -86,7 +91,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" runat="server" href="~/">Cauca Turístico</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
@@ -105,8 +110,7 @@
             </div>
         </nav>
         <!-- CONTENEDOR PRINCIPAL DE CONTENIDO -->
-<div class="body-content"
-     style="min-height:60vh;">
+    <div class="body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
@@ -156,46 +160,6 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
-    <script type="text/javascript">
-        // 🚀 FUNCIÓN UNIVERSAL DE DESPLAZAMIENTO NATIVO (Chrome & Firefox)
-        function desplazarHaciaDestino(selectorId) {
-            var target = document.querySelector(selectorId);
-            if (target) {
-                // Calculamos la posición exacta restando la altura del menú fijo (85px)
-                var posicionDestino = target.getBoundingClientRect().top + window.pageYOffset - 85;
-
-                // Ejecución nativa del motor del navegador libre de errores de jQuery
-                window.scrollTo({
-                    top: posicionDestino,
-                    behavior: 'smooth' // Transición suave nativa estándar
-                });
-            }
-        }
-
-        // 1. EVENTO PARA CLICS EN LA MISMA PÁGINA (Inicio -> Destinos)
-        document.addEventListener('DOMContentLoaded', function () {
-            var enlacesMenu = document.querySelectorAll('.navbar-nav a[href*="#"]');
-
-            enlacesMenu.forEach(function (enlace) {
-                enlace.addEventListener('click', function (e) {
-                    var urlCompleta = this.pathname || '/Default.aspx';
-                    var rutaActual = window.location.pathname;
-
-                    // Limpieza y normalización de rutas para el servidor local
-                    var normalizar = function (p) { return p.replace(/\/$/, "").replace("Default.aspx", ""); };
-
-                    if (normalizar(rutaActual) === normalizar(urlCompleta)) {
-                        e.preventDefault(); // Detiene el salto brusco de Firefox
-                        desplazarHaciaDestino(this.hash);
-                    }
-                });
-            });
-        });
-
-    </script>
-
-
-
 
 </body>
 </html>
