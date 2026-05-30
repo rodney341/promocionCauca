@@ -35,7 +35,7 @@
     width:100%;
     min-height:60vh;
     margin:0 !important;
-    padding-top:70px;
+    padding-top:45px;
 }
 .navbar{
     min-height:70px;

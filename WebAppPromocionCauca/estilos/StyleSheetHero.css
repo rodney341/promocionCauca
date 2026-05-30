@@ -10,7 +10,7 @@
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     box-shadow: 0 20px 40px rgba(0,0,0,.15);
-
+    margin-top: 0 !important;
 }
 
     .hero-slider::after {
@@ -75,6 +75,7 @@
         font-weight: 800;
         margin-bottom: 20px;
         text-shadow: 0 3px 12px rgba(0,0,0,.4);
+        margin-top: 0;
     }
 
     .hero-content p {

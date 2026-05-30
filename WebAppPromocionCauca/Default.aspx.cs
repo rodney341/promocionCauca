@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using Google.Protobuf.Collections;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace WebAppPromocionCauca
@@ -53,7 +56,7 @@ namespace WebAppPromocionCauca
                     break;
             }
         }
-        private void CargarSubregiones()
+        private void CargarSubregionesx()
         {
             var subregiones = new List<dynamic>
             {
@@ -105,21 +108,67 @@ namespace WebAppPromocionCauca
                     Url = "/Subregion.aspx?id=sur"
                 }
             };
-        /*    var total = subregiones.Count;
-            rptSubregiones.ItemDataBound += (s, e) =>
-            {
-                if (e.Item.ItemType == ListItemType.Item ||
-                    e.Item.ItemType == ListItemType.AlternatingItem)
-                {
-                    if (e.Item.ItemIndex == total - 1 && total % 2 != 0)
-                    {
-                        var contenedor = (HtmlGenericControl)e.Item.FindControl("contenedor");
-                        contenedor.Attributes["class"] =
-                            "col-lg-6 col-md-8 mx-auto";
-                    }
-                }
-            };*/
+
             rptSubregiones.DataSource = subregiones;
+            rptSubregiones.DataBind();
+        }
+        private List<Subregion> ObtenerSubregiones()
+        {
+            string credentialPath =
+                Server.MapPath("~/App_Data/firebase-key.json");
+            if (!File.Exists(credentialPath))
+            {
+                throw new Exception("No existe el archivo JSON");
+            }
+
+            Environment.SetEnvironmentVariable(
+                "GOOGLE_APPLICATION_CREDENTIALS",
+                credentialPath);
+            Response.Write("Conectando a Firebase...");
+            Response.Flush();
+
+            FirestoreDb db =
+                FirestoreDb.Create("turismocauca-7a4ec");
+
+            Query query = db.Collection("subregiones")
+                            .WhereEqualTo("activo", true)
+                            .OrderBy("orden");
+            List<Subregion> lista =
+       new List<Subregion>();
+            try
+            {
+                QuerySnapshot snapshot =
+                    query.GetSnapshotAsync()
+                         .GetAwaiter()
+                         .GetResult();
+
+
+   
+
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                lista.Add(new Subregion
+                {
+                    nombre = doc.GetValue<string>("nombre"),
+                    descripcion = doc.GetValue<string>("descripcion"),
+                    imagen = doc.GetValue<string>("imagen"),
+                    url = doc.GetValue<string>("url"),
+                    orden = doc.GetValue<int>("orden"),
+                    activo = doc.GetValue<bool>("activo")
+                });
+            }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+            }
+
+            return lista;
+        }
+        private void CargarSubregiones()
+        {
+            rptSubregiones.DataSource = ObtenerSubregiones();
             rptSubregiones.DataBind();
         }
     }
