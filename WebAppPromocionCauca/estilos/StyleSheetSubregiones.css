@@ -1,0 +1,39 @@
+﻿.subregion-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: .3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    height: 100%;
+}
+
+    .subregion-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.15);
+    }
+
+    .subregion-card img {
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .subregion-card .card-title {
+        color: var(--verde-paramo);
+        font-weight: 700;
+    }
+
+    .subregion-card .card-text {
+        color: #666;
+        min-height: 80px;
+    }
+    .subregion-card .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .subregion-card .btn {
+        margin-top: auto;
+    }
+#subregiones {
+    scroll-margin-top: 100px;
+}

@@ -21,6 +21,7 @@
     }
 </style>
 <link href="/estilos/StyleSheetHero.css" rel="stylesheet" />
+<link href="/estilos/StyleSheetSubregiones.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="BodyContent"
@@ -123,6 +124,61 @@
 
     </section>
 
+    <section id="subregiones" class="container py-5">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold" style="color:var(--verde-paramo);">
+            Subregiones Turísticas del Cauca
+        </h2>
+
+        <p class="text-muted">
+            Descubre la diversidad cultural, natural y patrimonial de cada territorio.
+        </p>
+    </div>
+
+<div class="row g-4 justify-content-center">
+
+        <asp:Repeater ID="rptSubregiones" runat="server">
+
+            <ItemTemplate>
+
+<div 
+     class="col-xl-3 col-lg-3 col-md-4" >
+
+                    <div class="card subregion-card h-100">
+
+                        <img src='<%# Eval("Imagen") %>'
+                             alt='<%# Eval("Nombre") %>'
+                             class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h4 class="card-title">
+                                <%# Eval("Nombre") %>
+                            </h4>
+
+                            <p class="card-text">
+                                <%# Eval("Descripcion") %>
+                            </p>
+
+                            <a href='<%# Eval("Url") %>'
+                               class="btn btn-cauca-principal">
+                                Explorar
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </ItemTemplate>
+
+        </asp:Repeater>
+
+    </div>
+
+</section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -160,8 +160,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Destinos\Popayan.aspx" />
-    <Content Include="DetalleSubregion.aspx" />
+    <Content Include="Subregion.aspx" />
     <Content Include="estilos\StyleSheetHero.css" />
+    <Content Include="estilos\StyleSheetSubregiones.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\Cerro_de_Manzanillo.jpg" />
@@ -283,12 +284,12 @@
     <Compile Include="Destinos\Popayan.aspx.designer.cs">
       <DependentUpon>Popayan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetalleSubregion.aspx.cs">
-      <DependentUpon>DetalleSubregion.aspx</DependentUpon>
+    <Compile Include="Subregion.aspx.cs">
+      <DependentUpon>Subregion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DetalleSubregion.aspx.designer.cs">
-      <DependentUpon>DetalleSubregion.aspx</DependentUpon>
+    <Compile Include="Subregion.aspx.designer.cs">
+      <DependentUpon>Subregion.aspx</DependentUpon>
     </Compile>
     <Compile Include="EliminarArticulo.ashx.cs">
       <DependentUpon>EliminarArticulo.ashx</DependentUpon>

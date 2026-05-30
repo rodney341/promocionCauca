@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Subregión del Cauca" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetalleSubregion.aspx.cs" Inherits="WebAppPromocionCauca.DetalleSubregion" %>
+﻿<%@ Page Title="Subregión del Cauca" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Subregion.aspx.cs" Inherits="WebAppPromocionCauca.DetalleSubregion" %>
 
 <%-- 1. CONTENEDOR DE ESTILOS INYECTADOS AL HEAD --%>
 <asp:Content ID="ContentStylesSubregion" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -56,7 +56,11 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-bold m-0" style="color: var(--verde-paramo);">Bitácoras y Experiencias de la Zona</h3>
-            <a href="Default.aspx" class="text-cauca-terracota fw-bold text-decoration-none">← Volver al Mapa</a>
+<a runat="server"
+   href="~/Default.aspx#subregiones"
+   class="btn btn-cauca-principal rounded-pill px-4">
+    ← Volver a Subregiones
+</a>
         </div>
         <hr />
 
