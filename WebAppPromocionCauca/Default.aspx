@@ -36,14 +36,14 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/Cerro_de_Manzanillo.jpg')">
+         url('/images/Macizo-AdrianaCollazos.jpg')">
 
             <div class="hero-content">
 
-                <h1>Descubre la Magia del Cauca</h1>
+                <h1>Descubre el Cauca</h1>
 
                 <p>
-                    Cultura, naturaleza y tradición ancestral
+                    Un destino diverso y sostenible
                 </p>
 
             </div>
@@ -55,14 +55,14 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/purace.jpg')">
+         url('/images/EL_ORIGEN_PERVIVENCIA_NASA.jpg')">
 
             <div class="hero-content">
 
-                <h1>Volcán Puracé</h1>
+                <h1>Un refugio de paz </h1>
 
                 <p>
-                    Naturaleza, termales y paisajes andinos
+                    Crece entre montañas majestuosas y ríos de vida
                 </p>
 
             </div>
@@ -74,14 +74,14 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/silvia.jpg')">
+         url('/images/Colibri-AdrianaCollazos.jpg')">
 
             <div class="hero-content">
 
-                <h1>Silvia y Cultura Misak</h1>
+                <h1>Donde las aves cantan  </h1>
 
                 <p>
-                    Tradición indígena y mercados ancestrales
+                    Se pinta el cielo de colores y florece la paz
                 </p>
 
             </div>

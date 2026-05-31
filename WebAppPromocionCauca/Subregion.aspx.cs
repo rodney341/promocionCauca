@@ -69,8 +69,18 @@ namespace WebAppPromocionCauca
             lblDescripcion.Text =
                 doc.GetValue<string>("descripcion");
 
-            litContenido.Text =
+            string contenido =
                 doc.GetValue<string>("contenido");
+
+            string[] parrafos =
+                contenido.Split(
+                    new[] { "\r\n\r\n", "\n\n" },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            litContenido.Text =
+                string.Join("",
+                    parrafos.Select(p =>
+                        $"<p>{Server.HtmlEncode(p.Trim())}</p>"));
 
             string imagen =
                 doc.GetValue<string>("imagen");
@@ -85,6 +95,68 @@ namespace WebAppPromocionCauca
                 rptGaleria.DataSource = galeria;
                 rptGaleria.DataBind();
             }
+
+            int orden = doc.GetValue<int>("orden");
+
+            CargarNavegacion(orden);
+
         }
+
+        private void CargarNavegacion(int ordenActual)
+        {
+            FirestoreDb db = ObtenerDb();
+
+            var lista = db.Collection("subregiones")
+                .WhereEqualTo("activo", true)
+                .GetSnapshotAsync()
+                .GetAwaiter()
+                .GetResult()
+                .Documents
+                .Select(d => new
+                {
+                    Nombre = d.GetValue<string>("nombre"),
+                    Slug = d.GetValue<string>("slug"),
+                    Orden = d.GetValue<int>("orden")
+                })
+                .OrderBy(x => x.Orden)
+                .ToList();
+
+            int indice =
+                lista.FindIndex(x => x.Orden == ordenActual);
+
+            if (indice == -1)
+                return;
+
+            // ANTERIOR
+            int indiceAnterior =
+                (indice == 0)
+                ? lista.Count - 1
+                : indice - 1;
+
+            lnkAnterior.Text =
+                "← " + lista[indiceAnterior].Nombre;
+
+            lnkAnterior.NavigateUrl =
+                "/Subregion.aspx?id=" +
+                lista[indiceAnterior].Slug;
+
+            lnkAnterior.Visible = true;
+
+            // SIGUIENTE
+            int indiceSiguiente =
+                (indice == lista.Count - 1)
+                ? 0
+                : indice + 1;
+
+            lnkSiguiente.Text =
+                lista[indiceSiguiente].Nombre + " →";
+
+            lnkSiguiente.NavigateUrl =
+                "/Subregion.aspx?id=" +
+                lista[indiceSiguiente].Slug;
+
+            lnkSiguiente.Visible = true;
+        }
+
     }
 }

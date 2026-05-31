@@ -72,22 +72,26 @@ namespace WebAppPromocionCauca
                     Directory.CreateDirectory(carpeta);
                 }
 
-                string nombreLimpio =
+                string nombreArchivo =
                     GenerarNombreSeguro(
                         fuImagen.FileName);
 
-                string nombreFinal =
-                    ObtenerNombreDisponible(
-                        carpeta,
-                        nombreLimpio);
-
                 string rutaFisica =
-                    Path.Combine(carpeta, nombreFinal);
+                    Path.Combine(
+                        carpeta,
+                        nombreArchivo);
 
-                fuImagen.SaveAs(rutaFisica);
+                string rutaWeb =
+                    "/images/subregiones/" +
+                    nombreArchivo;
 
-                rutaImagen =
-                    "/images/subregiones/" + nombreFinal;
+                // Solo guardar si no existe
+                if (!System.IO.File.Exists(rutaFisica))
+                {
+                    fuImagen.SaveAs(rutaFisica);
+                }
+
+                rutaImagen = rutaWeb;
             }
 
 
@@ -96,20 +100,40 @@ namespace WebAppPromocionCauca
                 string carpeta =
                     Server.MapPath("~/images/subregiones/");
 
+                if (!Directory.Exists(carpeta))
+                {
+                    Directory.CreateDirectory(carpeta);
+                }
+
                 foreach (HttpPostedFile archivo in fuGaleria.PostedFiles)
                 {
                     string nombreArchivo =
-                        Guid.NewGuid() +
-                        Path.GetExtension(archivo.FileName);
+                        GenerarNombreSeguro(
+                            Path.GetFileName(
+                                archivo.FileName));
 
                     string rutaFisica =
-                        Path.Combine(carpeta, nombreArchivo);
+                        Path.Combine(
+                            carpeta,
+                            nombreArchivo);
 
-                    archivo.SaveAs(rutaFisica);
-
-                    galeria.Add(
+                    string rutaWeb =
                         "/images/subregiones/" +
-                        nombreArchivo);
+                        nombreArchivo;
+
+                    // Solo guardar si no existe
+                    if (!System.IO.File.Exists(rutaFisica))
+                    {
+                        archivo.SaveAs(rutaFisica);
+                    }
+
+                    // Evitar duplicados en Firestore
+                    if (!galeria.Contains(
+                            rutaWeb,
+                            StringComparer.OrdinalIgnoreCase))
+                    {
+                        galeria.Add(rutaWeb);
+                    }
                 }
             }
 
@@ -302,55 +326,15 @@ namespace WebAppPromocionCauca
                 doc.GetValue<bool>("activo");
 
             string imagen =
-                doc.GetValue<string>("imagen");
+                doc.ContainsField("imagen")
+                ? doc.GetValue<string>("imagen")
+                : "";
 
             hfImagenActual.Value = imagen;
 
             imgPreview.ImageUrl = imagen;
-            string rutaImagen = hfImagenActual.Value;
+            imgPreview.Visible = !string.IsNullOrEmpty(imagen);
 
-            if (fuImagen.HasFile)
-            {
-                // Eliminar imagen anterior
-                if (!string.IsNullOrEmpty(hfImagenActual.Value))
-                {
-                    string anterior =
-                        Server.MapPath(hfImagenActual.Value);
-
-                    if (System.IO.File.Exists(anterior))
-                    {
-                        System.IO.File.Delete(anterior);
-                    }
-                }
-
-                string carpeta =
-                    Server.MapPath("~/images/subregiones/");
-
-                if (!System.IO.Directory.Exists(carpeta))
-                {
-                    System.IO.Directory.CreateDirectory(carpeta);
-                }
-
-                string nombreArchivo =
-                    GenerarNombreSeguro(
-                        fuImagen.FileName);
-
-                nombreArchivo =
-                    ObtenerNombreDisponible(
-                        carpeta,
-                        nombreArchivo);
-
-                string rutaFisica =
-                    System.IO.Path.Combine(
-                        carpeta,
-                        nombreArchivo);
-
-                fuImagen.SaveAs(rutaFisica);
-
-                rutaImagen =
-                    "/images/subregiones/" +
-                    nombreArchivo;
-            }
             if (doc.ContainsField("galeria"))
             {
                 List<string> galeria =
@@ -365,6 +349,9 @@ namespace WebAppPromocionCauca
             else
             {
                 hfGaleria.Value = "[]";
+
+                rptGaleriaActual.DataSource = null;
+                rptGaleriaActual.DataBind();
             }
         }
 

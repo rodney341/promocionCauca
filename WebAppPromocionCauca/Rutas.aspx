@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card border-0 shadow-sm overflow-hidden mb-4" style="background-color: #FFFFFF;">
                     <div class="row g-0">
-                        <div class="col-md-4" style="background: url('https://unsplash.com') center/cover; min-height: 200px;"></div>
+                        <div class="col-md-4" style="background: url('images/rutas/Patrimonio-MiguelVarona.jpg') center/cover; min-height: 200px;"></div>
                         <div class="col-md-8 p-4 d-flex flex-column justify-content-center">
                             <span class="text-uppercase fw-bold text-cauca-terracota small mb-1">Duración: 2 Días / 1 Noche</span>
                             <h3 class="fw-bold" style="color: var(--verde-paramo);">1. Ruta de la "Ciudad Blanca" y los Saberes Gastronómicos</h3>
@@ -35,7 +35,7 @@
             <div class="col-12">
                 <div class="card border-0 shadow-sm overflow-hidden mb-4" style="background-color: #FFFFFF;">
                     <div class="row g-0">
-                        <div class="col-md-4 order-md-last" style="background: url('https://unsplash.com') center/cover; min-height: 200px;"></div>
+                        <div class="col-md-4 order-md-last" style="background: url('images/rutas/guardianes_de_puracé_AR.jpg') center/cover; min-height: 200px;"></div>
                         <div class="col-md-8 p-4 d-flex flex-column justify-content-center">
                             <span class="text-uppercase fw-bold text-cauca-terracota small mb-1">Duración: 3 Días / 2 Noches</span>
                             <h3 class="fw-bold" style="color: var(--verde-paramo);">2. Travesía del Cóndor: El Sendero Volcánico</h3>
@@ -54,7 +54,7 @@
             <div class="col-12">
                 <div class="card border-0 shadow-sm overflow-hidden mb-4" style="background-color: #FFFFFF;">
                     <div class="row g-0">
-                        <div class="col-md-4" style="background: url('https://unsplash.com') center/cover; min-height: 200px;"></div>
+                        <div class="col-md-4" style="background: url('images/rutas/tierradentro-FotoMiguelVarona-3.jpg') center/cover; min-height: 200px;"></div>
                         <div class="col-md-8 p-4 d-flex flex-column justify-content-center">
                             <span class="text-uppercase fw-bold text-cauca-terracota small mb-1">Duración: 4 Días / 3 Noches</span>
                             <h3 class="fw-bold" style="color: var(--verde-paramo);">3. Circuito Intercultural de los Andes y Tierradentro</h3>

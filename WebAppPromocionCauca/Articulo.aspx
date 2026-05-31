@@ -3,7 +3,7 @@
 <%-- 1. CONTENEDOR DE ESTILOS (Apunta a la cabecera) --%>
 <asp:Content ID="ContentStylesArticulo" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
-        .articulo-contenedor { max-width: 800px; margin: 4rem auto; background-color: #FFFFFF; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; }
+        .articulo-contenedor { max-width: 800px; margin: 4rem auto; margin-top:-4px; background-color: #FFFFFF; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; }
         .articulo-banner { height: 400px; background-size: cover; background-position: center; }
         .articulo-cuerpo { padding: 3rem; line-height: 1.8; font-size: 1.15rem; color: #444444; }
         .btn-regresar { color: var(--terracota); text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }

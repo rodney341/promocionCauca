@@ -42,6 +42,24 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.Label lblDescripcion;
 
         /// <summary>
+        /// lnkAnterior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAnterior;
+
+        /// <summary>
+        /// lnkSiguiente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkSiguiente;
+
+        /// <summary>
         /// litContenido control.
         /// </summary>
         /// <remarks>

@@ -23,6 +23,7 @@
             color: #FFFFFF;
             position: relative;
             margin-top: -20px;
+
         }
         .subregion-hero::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -56,7 +57,58 @@
     .subregion-hero p{
         margin:auto;
     }
+        .navegacion-subregion .col-md-4{
+        text-align:center !important;
+        margin-bottom:12px;
+    }
+
+    .navegacion-subregion .btn{
+        width:100%;
+    }
 }
+
+/*contenido subregion*/
+.contenido-subregion{
+    max-width:900px;
+    margin:-18px auto;
+    line-height:1.9;
+    font-size:1.1rem;
+    color:#444;
+}
+
+.contenido-subregion h2{
+    color:var(--verde-paramo);
+    font-weight:700;
+    margin-top:2rem;
+    margin-bottom:1rem;
+}
+
+.contenido-subregion h3{
+    color:var(--terracota);
+    margin-top:1.5rem;
+}
+
+.contenido-subregion p{
+    margin-bottom: 2rem;
+    line-height: 2;
+    text-align: justify;
+}
+
+.contenido-subregion img{
+    width:100%;
+    border-radius:16px;
+    margin:2rem 0;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.contenido-subregion ul{
+    padding-left:1.5rem;
+}
+
+.contenido-subregion li{
+    margin-bottom:.5rem;
+}
+
 
 /* =========================
    GALERÍA
@@ -120,6 +172,26 @@
 
     cursor:pointer;
 }
+
+/*navegacion*/
+.navegacion-subregion{
+    margin-top:1rem;
+    padding-top:1rem;
+    border-top:1px solid #e9ecef;
+}
+
+.navegacion-subregion .contenido-subregion{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.navegacion-subregion .btn{
+    border-radius:12px;
+    padding:10px 18px;
+    font-weight:600;
+}
+
+
     </style>
 </asp:Content>
 
@@ -157,14 +229,51 @@
 
     </div>
 
+  
+
+   <section class="navegacion-subregion">
+
+<div class="contenido-subregion">
+
+    <div class="d-flex justify-content-end gap-2">
+
+        <asp:HyperLink
+            ID="lnkAnterior"
+            runat="server"
+            CssClass="btn btn-outline-success"
+            Visible="false" />
+
+        <asp:HyperLink
+            ID="lnkSiguiente"
+            runat="server"
+            CssClass="btn btn-cauca-principal"
+            Visible="false" />
+
+    </div>
+
+</div>
+
+</section>
+
+
+
     <!-- CONTENIDO -->
-    <section class="container py-5">
+<section class="container py-5">
+
+    <div class="contenido-subregion">
 
         <asp:Literal
             ID="litContenido"
             runat="server" />
 
-    </section>
+    </div>
+
+</section>
+
+
+
+
+
 
     <!-- GALERÍA -->
     <section class="container pb-5">
@@ -187,14 +296,14 @@
 
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center" >
 
             <asp:Repeater
                 ID="rptGaleria"
                 runat="server">
 
                 <ItemTemplate>
-
+    
                     <div class="col-lg-4 col-md-6">
 
                         <img src='<%# Container.DataItem %>'
@@ -222,6 +331,7 @@
         </a>
 
     </div>
+
 
     <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox">
