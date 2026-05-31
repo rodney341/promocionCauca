@@ -124,8 +124,8 @@ namespace WebAppPromocionCauca
             Environment.SetEnvironmentVariable(
                 "GOOGLE_APPLICATION_CREDENTIALS",
                 credentialPath);
-            Response.Write("Conectando a Firebase...");
-            Response.Flush();
+    //        Response.Write("Conectando a Firebase...");
+    //        Response.Flush();
 
             FirestoreDb db =
                 FirestoreDb.Create("turismocauca-7a4ec");

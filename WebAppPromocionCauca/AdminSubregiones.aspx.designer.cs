@@ -15,13 +15,22 @@ namespace WebAppPromocionCauca
     {
 
         /// <summary>
-        /// hfDocumentoId control.
+        /// hfId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfDocumentoId;
+        protected global::System.Web.UI.WebControls.HiddenField hfId;
+
+        /// <summary>
+        /// hfImagenActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfImagenActual;
 
         /// <summary>
         /// txtNombre control.
@@ -33,15 +42,6 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// txtOrden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrden;
-
-        /// <summary>
         /// txtDescripcion control.
         /// </summary>
         /// <remarks>
@@ -51,13 +51,22 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
-        /// txtImagen control.
+        /// fuImagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImagen;
+        protected global::System.Web.UI.WebControls.FileUpload fuImagen;
+
+        /// <summary>
+        /// imgPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPreview;
 
         /// <summary>
         /// txtUrl control.
@@ -67,6 +76,15 @@ namespace WebAppPromocionCauca
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUrl;
+
+        /// <summary>
+        /// txtOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrden;
 
         /// <summary>
         /// chkActivo control.

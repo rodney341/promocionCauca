@@ -87,7 +87,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             // 1. Extraer el nombre de la subregión de la URL (ej: ?region=Pacifico)
             const urlParams = new URLSearchParams(window.location.search);
-            const subregionSeleccionada = urlParams.get('region') || "Centro";
+            const subregionSeleccionada = urlParams.get('id') || "Centro";
 
             // Base de datos estática para la cabecera multimedia de las 7 subregiones
             const infoSubregiones = {
