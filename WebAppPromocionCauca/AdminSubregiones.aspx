@@ -17,6 +17,7 @@ runat="server">
 
     <asp:HiddenField ID="hfId" runat="server" />
     <asp:HiddenField ID="hfImagenActual" runat="server" />
+    <asp:HiddenField ID="hfGaleria" runat="server" />
 
     <div class="card shadow-sm mb-4">
 
@@ -111,6 +112,43 @@ runat="server">
     </small>
 
 </div>
+
+
+
+
+<h5 class="mt-4">Galería actual</h5>
+
+<asp:Repeater ID="rptGaleriaActual" runat="server">
+
+    <ItemTemplate>
+
+        <div class="d-inline-block m-2 text-center">
+
+            <img src='<%# Container.DataItem %>'
+                 style="width:150px;height:100px;object-fit:cover;border-radius:10px;" />
+
+            <br />
+
+            <asp:LinkButton
+                runat="server"
+                CssClass="btn btn-danger btn-sm mt-2"
+                CommandName="EliminarImagen"
+                CommandArgument='<%# Container.DataItem %>'
+                OnCommand="EliminarImagen_Command">
+
+                Eliminar
+
+            </asp:LinkButton>
+
+        </div>
+
+    </ItemTemplate>
+
+</asp:Repeater>
+
+
+
+
 
             <div class="form-check mt-3">
 

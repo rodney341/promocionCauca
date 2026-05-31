@@ -33,6 +33,15 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.HiddenField hfImagenActual;
 
         /// <summary>
+        /// hfGaleria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfGaleria;
+
+        /// <summary>
         /// txtNombre control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace WebAppPromocionCauca
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuGaleria;
+
+        /// <summary>
+        /// rptGaleriaActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptGaleriaActual;
 
         /// <summary>
         /// chkActivo control.

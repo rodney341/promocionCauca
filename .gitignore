@@ -399,6 +399,16 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# Imágenes administradas desde la aplicación
+images/*
+!images/.gitkeep
+
+# Claves de Firebase
+App_Data/firebase-key.json
+
+# Archivos temporales
+bin/
+obj/
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 

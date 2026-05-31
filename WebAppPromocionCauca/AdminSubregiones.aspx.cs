@@ -53,8 +53,9 @@ namespace WebAppPromocionCauca
         {
             FirestoreDb db = ObtenerDb();
 
-            List<string> galeria =
-                    new List<string>();
+           // List<string> galeria = new List<string>();
+            List<string> galeria = Newtonsoft.Json.JsonConvert
+.DeserializeObject<List<string>>(hfGaleria.Value);
 
             string rutaImagen = hfImagenActual.Value;
             if (fuImagen.HasFile)
@@ -88,6 +89,7 @@ namespace WebAppPromocionCauca
                 rutaImagen =
                     "/images/subregiones/" + nombreFinal;
             }
+
 
             if (fuGaleria.HasFiles)
             {
@@ -198,9 +200,10 @@ namespace WebAppPromocionCauca
             object sender,
             GridViewCommandEventArgs e)
         {
+            string id = e.CommandArgument.ToString();
             if (e.CommandName == "Eliminar")
             {
-                string id = e.CommandArgument.ToString();
+
 
                 FirestoreDb db = ObtenerDb();
 
@@ -258,6 +261,10 @@ namespace WebAppPromocionCauca
 
                 CargarSubregiones();
             }
+            if (e.CommandName == "Editar")
+            {
+                EditarRegistro(id);
+            }
         }
 
         private void EditarRegistro(string id)
@@ -282,6 +289,11 @@ namespace WebAppPromocionCauca
             txtDescripcion.Text =
                 doc.GetValue<string>("descripcion");
 
+            txtContenido.Text =
+                doc.ContainsField("contenido")
+                ? doc.GetValue<string>("contenido")
+                : "";
+
             txtOrden.Text =
                 doc.GetValue<int>("orden")
                    .ToString();
@@ -295,6 +307,65 @@ namespace WebAppPromocionCauca
             hfImagenActual.Value = imagen;
 
             imgPreview.ImageUrl = imagen;
+            string rutaImagen = hfImagenActual.Value;
+
+            if (fuImagen.HasFile)
+            {
+                // Eliminar imagen anterior
+                if (!string.IsNullOrEmpty(hfImagenActual.Value))
+                {
+                    string anterior =
+                        Server.MapPath(hfImagenActual.Value);
+
+                    if (System.IO.File.Exists(anterior))
+                    {
+                        System.IO.File.Delete(anterior);
+                    }
+                }
+
+                string carpeta =
+                    Server.MapPath("~/images/subregiones/");
+
+                if (!System.IO.Directory.Exists(carpeta))
+                {
+                    System.IO.Directory.CreateDirectory(carpeta);
+                }
+
+                string nombreArchivo =
+                    GenerarNombreSeguro(
+                        fuImagen.FileName);
+
+                nombreArchivo =
+                    ObtenerNombreDisponible(
+                        carpeta,
+                        nombreArchivo);
+
+                string rutaFisica =
+                    System.IO.Path.Combine(
+                        carpeta,
+                        nombreArchivo);
+
+                fuImagen.SaveAs(rutaFisica);
+
+                rutaImagen =
+                    "/images/subregiones/" +
+                    nombreArchivo;
+            }
+            if (doc.ContainsField("galeria"))
+            {
+                List<string> galeria =
+                    doc.GetValue<List<string>>("galeria");
+
+                hfGaleria.Value =
+                    Newtonsoft.Json.JsonConvert.SerializeObject(galeria);
+
+                rptGaleriaActual.DataSource = galeria;
+                rptGaleriaActual.DataBind();
+            }
+            else
+            {
+                hfGaleria.Value = "[]";
+            }
         }
 
         private void EliminarRegistro(string id)
@@ -325,10 +396,20 @@ namespace WebAppPromocionCauca
             txtNombre.Text = "";
             txtDescripcion.Text = "";
             txtOrden.Text = "";
+            txtContenido.Text = "";
 
             chkActivo.Checked = true;
-
+            hfImagenActual.Value = "";
             imgPreview.ImageUrl = "";
+            imgPreview.Visible = false;
+            // Galería
+            hfGaleria.Value = "[]";
+
+            rptGaleriaActual.DataSource = null;
+            rptGaleriaActual.DataBind();
+
+            // Opcional: devolver foco al primer campo
+            txtNombre.Focus();
         }
 
 
@@ -390,8 +471,35 @@ namespace WebAppPromocionCauca
 
                     return nombreFinal;
                 }
+        protected void EliminarImagen_Command(
+    object sender,
+    CommandEventArgs e)
+        {
+            string imagen =
+                e.CommandArgument.ToString();
 
-}
+            List<string> galeria =
+                Newtonsoft.Json.JsonConvert
+                    .DeserializeObject<List<string>>(hfGaleria.Value);
+
+            galeria.Remove(imagen);
+
+            string rutaFisica =
+                Server.MapPath(imagen);
+
+            if (System.IO.File.Exists(rutaFisica))
+            {
+                System.IO.File.Delete(rutaFisica);
+            }
+
+            hfGaleria.Value =
+                Newtonsoft.Json.JsonConvert.SerializeObject(galeria);
+
+            rptGaleriaActual.DataSource = galeria;
+            rptGaleriaActual.DataBind();
+        }
+
+    }
 
         
 
