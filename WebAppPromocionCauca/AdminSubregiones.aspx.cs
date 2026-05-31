@@ -2,9 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.WebControls;
 using WebAppPromocionCauca.Models;
+using System.Globalization;
 
 namespace WebAppPromocionCauca
 {
@@ -53,33 +57,38 @@ namespace WebAppPromocionCauca
                     new List<string>();
 
             string rutaImagen = hfImagenActual.Value;
-
             if (fuImagen.HasFile)
             {
-                if (fuImagen.PostedFile.ContentLength > 50 * 1024*1024)
+                if (fuImagen.PostedFile.ContentLength > 50 * 1024 * 1024)
                 {
                     throw new Exception(
                         "La imagen supera los 5 MB permitidos.");
                 }
                 string carpeta =
                     Server.MapPath("~/images/subregiones/");
-
                 if (!Directory.Exists(carpeta))
                 {
                     Directory.CreateDirectory(carpeta);
                 }
 
-                string nombreArchivo =
-                    Guid.NewGuid() +
-                    Path.GetExtension(fuImagen.FileName);
+                string nombreLimpio =
+                    GenerarNombreSeguro(
+                        fuImagen.FileName);
 
-                fuImagen.SaveAs(
-                    Path.Combine(carpeta, nombreArchivo));
+                string nombreFinal =
+                    ObtenerNombreDisponible(
+                        carpeta,
+                        nombreLimpio);
+
+                string rutaFisica =
+                    Path.Combine(carpeta, nombreFinal);
+
+                fuImagen.SaveAs(rutaFisica);
 
                 rutaImagen =
-                    "/images/subregiones/" +
-                    nombreArchivo;
+                    "/images/subregiones/" + nombreFinal;
             }
+
             if (fuGaleria.HasFiles)
             {
                 string carpeta =
@@ -321,6 +330,69 @@ namespace WebAppPromocionCauca
 
             imgPreview.ImageUrl = "";
         }
-    }
+
+
+
+        private string GenerarNombreSeguro(
+            string nombreArchivo)
+            {
+                string nombre =
+                    Path.GetFileNameWithoutExtension(nombreArchivo);
+
+                string extension =
+                    Path.GetExtension(nombreArchivo);
+
+                nombre = nombre.ToLower();
+
+                nombre = nombre.Normalize(
+                    NormalizationForm.FormD);
+
+                nombre = new string(
+                    nombre.Where(
+                        c => CharUnicodeInfo.GetUnicodeCategory(c)
+                            != UnicodeCategory.NonSpacingMark)
+                    .ToArray());
+
+                nombre = Regex.Replace(
+                    nombre,
+                    @"[^a-z0-9]+",
+                    "-");
+
+                nombre = nombre.Trim('-');
+
+                return nombre + extension.ToLower();
+            }
+
+
+            private string ObtenerNombreDisponible(
+                string carpeta,
+                string nombreArchivo)
+                {
+                    string nombre =
+                        Path.GetFileNameWithoutExtension(nombreArchivo);
+
+                    string extension =
+                        Path.GetExtension(nombreArchivo);
+
+                    string nombreFinal =
+                        nombreArchivo;
+
+                    int contador = 1;
+
+                    while (File.Exists(
+                        Path.Combine(carpeta, nombreFinal)))
+                    {
+                        nombreFinal =
+                            $"{nombre}-{contador}{extension}";
+
+                        contador++;
+                    }
+
+                    return nombreFinal;
+                }
+
+}
+
+        
 
 }

@@ -72,11 +72,11 @@ namespace WebAppPromocionCauca
             litContenido.Text =
                 doc.GetValue<string>("contenido");
 
-            imgHero.ImageUrl =
+            string imagen =
                 doc.GetValue<string>("imagen");
 
-            Page.Title =
-                doc.GetValue<string>("nombre");
+            subHeroBg.Attributes["style"] =
+                $"background-image:url('{imagen}')";
             if (doc.ContainsField("galeria"))
             {
                 List<string> galeria =
