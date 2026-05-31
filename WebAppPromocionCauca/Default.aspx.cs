@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebAppPromocionCauca.Models;
 
 namespace WebAppPromocionCauca
 {
@@ -112,7 +113,7 @@ namespace WebAppPromocionCauca
             rptSubregiones.DataSource = subregiones;
             rptSubregiones.DataBind();
         }
-        private List<Subregion> ObtenerSubregiones()
+        private List<SubregionModel> ObtenerSubregiones()
         {
             string credentialPath =
                 Server.MapPath("~/App_Data/firebase-key.json");
@@ -133,8 +134,8 @@ namespace WebAppPromocionCauca
             Query query = db.Collection("subregiones")
                             .WhereEqualTo("activo", true)
                             .OrderBy("orden");
-            List<Subregion> lista =
-       new List<Subregion>();
+            List<SubregionModel> lista =
+       new List<SubregionModel>();
             try
             {
                 QuerySnapshot snapshot =
@@ -147,12 +148,13 @@ namespace WebAppPromocionCauca
 
             foreach (DocumentSnapshot doc in snapshot.Documents)
             {
-                lista.Add(new Subregion
+                lista.Add(new SubregionModel
                 {
                     nombre = doc.GetValue<string>("nombre"),
                     descripcion = doc.GetValue<string>("descripcion"),
+                    contenido = doc.GetValue<string>("contenido"),
                     imagen = doc.GetValue<string>("imagen"),
-                    url = doc.GetValue<string>("url"),
+                    slug = doc.GetValue<string>("slug"),
                     orden = doc.GetValue<int>("orden"),
                     activo = doc.GetValue<bool>("activo")
                 });

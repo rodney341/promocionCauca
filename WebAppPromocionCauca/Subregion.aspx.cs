@@ -1,17 +1,81 @@
-﻿using System;
-using System.Web.UI;
+﻿using Google.Cloud.Firestore;
+using System;
+using System.Linq;
 
 namespace WebAppPromocionCauca
 {
-    public partial class DetalleSubregion : Page
+    public partial class Subregion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // El título dinámico se actualizará en la pestaña
-                Page.Title = "Explorando Subregión | Territorio Cauca";
+                CargarSubregion();
             }
+        }
+
+        private FirestoreDb ObtenerDb()
+        {
+            string credentialPath =
+                Server.MapPath("~/App_Data/firebase-key.json");
+
+            if (!System.IO.File.Exists(credentialPath))
+            {
+                throw new Exception(
+                    "No existe firebase-key.json en App_Data");
+            }
+
+            Environment.SetEnvironmentVariable(
+                "GOOGLE_APPLICATION_CREDENTIALS",
+                credentialPath);
+
+            return FirestoreDb.Create("turismocauca-7a4ec");
+        }
+
+        private void CargarSubregion()
+        {
+            string slug =
+                Request.QueryString["id"];
+
+            if (string.IsNullOrEmpty(slug))
+            {
+                Response.Redirect("~/Default.aspx");
+                return;
+            }
+
+            FirestoreDb db = ObtenerDb();
+
+            Query query =
+                db.Collection("subregiones")
+                  .WhereEqualTo("slug", slug);
+
+            var snapshot =
+                query.GetSnapshotAsync()
+                .GetAwaiter()
+                .GetResult();
+
+            if (snapshot.Documents.Count == 0)
+            {
+                Response.Redirect("~/Default.aspx");
+                return;
+            }
+
+            var doc = snapshot.Documents.First();
+
+            lblNombre.Text =
+                doc.GetValue<string>("nombre");
+
+            lblDescripcion.Text =
+                doc.GetValue<string>("descripcion");
+
+            litContenido.Text =
+                doc.GetValue<string>("contenido");
+
+            imgHero.ImageUrl =
+                doc.GetValue<string>("imagen");
+
+            Page.Title =
+                doc.GetValue<string>("nombre");
         }
     }
 }

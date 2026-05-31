@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.UI.WebControls;
+using WebAppPromocionCauca.Models;
 
 namespace WebAppPromocionCauca
 {
@@ -14,6 +15,21 @@ namespace WebAppPromocionCauca
             {
                 CargarSubregiones();
             }
+        }
+        private string GenerarSlug(string texto)
+        {
+            texto = texto.ToLower();
+
+            texto = texto.Replace("á", "a");
+            texto = texto.Replace("é", "e");
+            texto = texto.Replace("í", "i");
+            texto = texto.Replace("ó", "o");
+            texto = texto.Replace("ú", "u");
+            texto = texto.Replace("ñ", "n");
+
+            texto = texto.Replace(" ", "-");
+
+            return texto;
         }
 
         private FirestoreDb ObtenerDb()
@@ -30,72 +46,69 @@ namespace WebAppPromocionCauca
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            FirestoreDb db = ObtenerDb();
+
+            string rutaImagen = hfImagenActual.Value;
+
+            if (fuImagen.HasFile)
             {
-                FirestoreDb db = ObtenerDb();
-
-                string rutaImagen = hfImagenActual.Value;
-
-                if (fuImagen.HasFile)
+                if (fuImagen.PostedFile.ContentLength > 5 * 1024*1024)
                 {
-                    string carpeta =
-                        Server.MapPath("~/images/subregiones/");
+                    throw new Exception(
+                        "La imagen supera los 5 MB permitidos.");
+                }
+                string carpeta =
+                    Server.MapPath("~/images/subregiones/");
 
-                    if (!Directory.Exists(carpeta))
-                    {
-                        Directory.CreateDirectory(carpeta);
-                    }
-
-                    string nombreArchivo =
-                        Guid.NewGuid().ToString() +
-                        Path.GetExtension(fuImagen.FileName);
-
-                    string rutaFisica =
-                        Path.Combine(carpeta, nombreArchivo);
-
-                    fuImagen.SaveAs(rutaFisica);
-
-                    rutaImagen =
-                        "/images/subregiones/" + nombreArchivo;
+                if (!Directory.Exists(carpeta))
+                {
+                    Directory.CreateDirectory(carpeta);
                 }
 
-                var datos = new
-                {
-                    nombre = txtNombre.Text.Trim(),
-                    descripcion = txtDescripcion.Text.Trim(),
-                    imagen = rutaImagen,
-                    url = txtUrl.Text.Trim(),
-                    orden = Convert.ToInt32(txtOrden.Text),
-                    activo = chkActivo.Checked
-                };
+                string nombreArchivo =
+                    Guid.NewGuid() +
+                    Path.GetExtension(fuImagen.FileName);
 
-                if (string.IsNullOrEmpty(hfId.Value))
-                {
-                    db.Collection("subregiones")
-                      .Document()
-                      .SetAsync(datos)
-                      .GetAwaiter()
-                      .GetResult();
-                }
-                else
-                {
-                    db.Collection("subregiones")
-                      .Document(hfId.Value)
-                      .SetAsync(datos)
-                      .GetAwaiter()
-                      .GetResult();
-                }
+                fuImagen.SaveAs(
+                    Path.Combine(carpeta, nombreArchivo));
 
-                LimpiarFormulario();
-                CargarSubregiones();
+                rutaImagen =
+                    "/images/subregiones/" +
+                    nombreArchivo;
             }
-            catch (Exception ex)
+
+            string slug =
+                GenerarSlug(txtNombre.Text);
+
+            var datos = new
             {
-                Response.Write(
-                    "<script>alert('" +
-                    ex.Message.Replace("'", "") +
-                    "');</script>");
+                nombre = txtNombre.Text,
+                slug = slug,
+                descripcion = txtDescripcion.Text,
+                contenido = txtContenido.Text,
+                imagen = rutaImagen,
+                orden = Convert.ToInt32(txtOrden.Text),
+                activo = chkActivo.Checked
+            };
+
+            if (string.IsNullOrEmpty(hfId.Value))
+            {
+                db.Collection("subregiones")
+                  .Document()
+                  .SetAsync(datos)
+                  .GetAwaiter()
+                  .GetResult();
             }
+            else
+            {
+                db.Collection("subregiones")
+                  .Document(hfId.Value)
+                  .SetAsync(datos)
+                  .GetAwaiter()
+                  .GetResult();
+            }
+
+            CargarSubregiones();
         }
 
         private void CargarSubregiones()
@@ -111,12 +124,12 @@ namespace WebAppPromocionCauca
                      .GetAwaiter()
                      .GetResult();
 
-            List<Subregion> lista =
-                new List<Subregion>();
+            List<SubregionModel> lista =
+                new List<SubregionModel>();
 
             foreach (DocumentSnapshot doc in snapshot.Documents)
             {
-                lista.Add(new Subregion
+                lista.Add(new SubregionModel
                 {
                     id = doc.Id,
                     nombre = doc.ContainsField("nombre")
@@ -126,13 +139,11 @@ namespace WebAppPromocionCauca
                     descripcion = doc.ContainsField("descripcion")
                         ? doc.GetValue<string>("descripcion")
                         : "",
-
+                    contenido = doc.ContainsField("contenido")
+                        ? doc.GetValue<string>("contenido")
+                        : "",
                     imagen = doc.ContainsField("imagen")
                         ? doc.GetValue<string>("imagen")
-                        : "",
-
-                    url = doc.ContainsField("url")
-                        ? doc.GetValue<string>("url")
                         : "",
 
                     orden = doc.ContainsField("orden")
@@ -152,16 +163,48 @@ namespace WebAppPromocionCauca
             object sender,
             GridViewCommandEventArgs e)
         {
-            string id = e.CommandArgument.ToString();
-
-            if (e.CommandName == "Editar")
-            {
-                EditarRegistro(id);
-            }
-
             if (e.CommandName == "Eliminar")
             {
-                EliminarRegistro(id);
+                string id = e.CommandArgument.ToString();
+
+                FirestoreDb db = ObtenerDb();
+
+                DocumentReference docRef =
+                    db.Collection("subregiones")
+                      .Document(id);
+
+                DocumentSnapshot doc =
+                    docRef.GetSnapshotAsync()
+                          .GetAwaiter()
+                          .GetResult();
+
+                if (doc.Exists)
+                {
+                    string imagen = "";
+
+                    if (doc.ContainsField("imagen"))
+                    {
+                        imagen =
+                            doc.GetValue<string>("imagen");
+                    }
+
+                    if (!string.IsNullOrEmpty(imagen))
+                    {
+                        string rutaFisica =
+                            Server.MapPath(imagen);
+
+                        if (System.IO.File.Exists(rutaFisica))
+                        {
+                            System.IO.File.Delete(rutaFisica);
+                        }
+                    }
+
+                    docRef.DeleteAsync()
+                          .GetAwaiter()
+                          .GetResult();
+                }
+
+                CargarSubregiones();
             }
         }
 
@@ -186,9 +229,6 @@ namespace WebAppPromocionCauca
 
             txtDescripcion.Text =
                 doc.GetValue<string>("descripcion");
-
-            txtUrl.Text =
-                doc.GetValue<string>("url");
 
             txtOrden.Text =
                 doc.GetValue<int>("orden")
@@ -232,7 +272,6 @@ namespace WebAppPromocionCauca
 
             txtNombre.Text = "";
             txtDescripcion.Text = "";
-            txtUrl.Text = "";
             txtOrden.Text = "";
 
             chkActivo.Checked = true;

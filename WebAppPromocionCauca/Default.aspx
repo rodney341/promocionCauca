@@ -124,7 +124,7 @@
 
     </section>
 
-    <section id="subregiones" class="container py-5">
+  <section id="subregiones" class="container py-5">
 
     <div class="text-center mb-5">
         <h2 class="fw-bold" style="color:var(--verde-paramo);">
@@ -136,34 +136,35 @@
         </p>
     </div>
 
-<div class="row g-4 justify-content-center">
+    <div class="row g-4 justify-content-center">
 
         <asp:Repeater ID="rptSubregiones" runat="server">
 
             <ItemTemplate>
 
-<div 
-     class="col-xl-3 col-lg-3 col-md-4" >
+                <div class="col-xl-3 col-lg-3 col-md-4" >
 
                     <div class="card subregion-card h-100">
 
-                        <img src='<%# Eval("Imagen") %>'
-                             alt='<%# Eval("Nombre") %>'
-                             class="card-img-top">
+                        <img src='<%# Eval("imagen") %>'
+                             alt='<%# Eval("nombre") %>'
+                             class="card-img-top" />
 
                         <div class="card-body">
 
                             <h4 class="card-title">
-                                <%# Eval("Nombre") %>
+                                <%# Eval("nombre") %>
                             </h4>
 
                             <p class="card-text">
-                                <%# Eval("Descripcion") %>
+                                <%# Eval("descripcion") %>
                             </p>
 
-                            <a href='<%# Eval("Url") %>'
+                            <a href='/Subregion.aspx?id=<%# Eval("slug") %>'
                                class="btn btn-cauca-principal">
+
                                 Explorar
+
                             </a>
 
                         </div>

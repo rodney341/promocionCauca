@@ -1,240 +1,182 @@
 ﻿<%@ Page Title="Administrar Subregiones"
-    Language="C#"
-    MasterPageFile="~/Site.Master"
-    AutoEventWireup="true"
-    CodeBehind="AdminSubregiones.aspx.cs"
-    Inherits="WebAppPromocionCauca.AdminSubregiones" %>
+Language="C#"
+MasterPageFile="~/Site.Master"
+AutoEventWireup="true"
+CodeBehind="AdminSubregiones.aspx.cs"
+Inherits="WebAppPromocionCauca.AdminSubregiones" %>
 
-<asp:Content ID="ContentAdmin"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
+<asp:Content ID="Content1"
+ContentPlaceHolderID="MainContent"
+runat="server">
 
-    <div class="container py-5">
+<div class="container py-5">
 
-        <div class="row">
+    <h1 class="mb-4">
+        Administración de Subregiones
+    </h1>
 
-            <div class="col-lg-4">
+    <asp:HiddenField ID="hfId" runat="server" />
+    <asp:HiddenField ID="hfImagenActual" runat="server" />
 
-                <div class="card shadow-sm border-0">
+    <div class="card shadow-sm mb-4">
 
-                    <div class="card-header bg-success text-white">
-                        <h4 class="mb-0">
-                            Subregión
-                        </h4>
-                    </div>
+        <div class="card-body">
 
-                    <div class="card-body">
+            <div class="row">
 
-                        <asp:HiddenField
-                            ID="hfId"
-                            runat="server" />
+                <div class="col-md-6">
 
-                        <asp:HiddenField
-                            ID="hfImagenActual"
-                            runat="server" />
+                    <label>Nombre</label>
 
-                        <div class="mb-3">
+                    <asp:TextBox
+                        ID="txtNombre"
+                        runat="server"
+                        CssClass="form-control" />
 
-                            <label class="form-label">
-                                Nombre
-                            </label>
+                </div>
 
-                            <asp:TextBox
-                                ID="txtNombre"
-                                runat="server"
-                                CssClass="form-control" />
+                <div class="col-md-6">
 
-                        </div>
+                    <label>Orden</label>
 
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                Descripción
-                            </label>
-
-                            <asp:TextBox
-                                ID="txtDescripcion"
-                                runat="server"
-                                CssClass="form-control"
-                                TextMode="MultiLine"
-                                Rows="4" />
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                Imagen
-                            </label>
-
-                            <asp:FileUpload
-                                ID="fuImagen"
-                                runat="server"
-                                CssClass="form-control" />
-
-                        </div>
-
-                        <div class="mb-3 text-center">
-
-                            <asp:Image
-                                ID="imgPreview"
-                                runat="server"
-                                Width="220"
-                                CssClass="img-fluid rounded border" />
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                URL
-                            </label>
-
-                            <asp:TextBox
-                                ID="txtUrl"
-                                runat="server"
-                                CssClass="form-control" />
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                Orden
-                            </label>
-
-                            <asp:TextBox
-                                ID="txtOrden"
-                                runat="server"
-                                CssClass="form-control"
-                                TextMode="Number" />
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <asp:CheckBox
-                                ID="chkActivo"
-                                runat="server"
-                                Text=" Subregión activa"
-                                Checked="true" />
-
-                        </div>
-
-                        <div class="d-grid gap-2">
-
-                            <asp:Button
-                                ID="btnGuardar"
-                                runat="server"
-                                Text="Guardar"
-                                CssClass="btn btn-success"
-                                OnClick="btnGuardar_Click" />
-
-                            <asp:Button
-                                ID="btnNuevo"
-                                runat="server"
-                                Text="Nuevo"
-                                CssClass="btn btn-outline-secondary"
-                                OnClick="btnNuevo_Click" />
-
-                        </div>
-
-                    </div>
+                    <asp:TextBox
+                        ID="txtOrden"
+                        runat="server"
+                        CssClass="form-control" />
 
                 </div>
 
             </div>
 
-            <div class="col-lg-8">
+            <div class="mt-3">
 
-                <div class="card shadow-sm border-0">
+                <label>Descripción</label>
 
-                    <div class="card-header bg-dark text-white">
-                        <h4 class="mb-0">
-                            Listado de Subregiones
-                        </h4>
-                    </div>
+                <asp:TextBox
+                    ID="txtDescripcion"
+                    runat="server"
+                    TextMode="MultiLine"
+                    Rows="3"
+                    CssClass="form-control" />
 
-                    <div class="card-body">
+            </div>
 
-                        <asp:GridView
-                            ID="gvSubregiones"
-                            runat="server"
-                            CssClass="table table-striped table-hover"
-                            AutoGenerateColumns="False"
-                            GridLines="None"
-                            OnRowCommand="gvSubregiones_RowCommand">
+            <div class="mt-3">
 
-                            <Columns>
+                <label>Contenido</label>
 
-                                <asp:TemplateField HeaderText="Imagen">
+                <asp:TextBox
+                    ID="txtContenido"
+                    runat="server"
+                    TextMode="MultiLine"
+                    Rows="8"
+                    CssClass="form-control" />
 
-                                    <ItemTemplate>
+            </div>
 
-                                        <img src='<%# Eval("imagen") %>'
-                                            style="width:100px;height:70px;object-fit:cover;border-radius:8px;" />
+            <div class="mt-3">
 
-                                    </ItemTemplate>
+                <label>Imagen principal</label>
 
-                                </asp:TemplateField>
+                <asp:FileUpload
+                    ID="fuImagen"
+                    runat="server"
+                    CssClass="form-control" />
 
-                                <asp:BoundField
-                                    DataField="nombre"
-                                    HeaderText="Nombre" />
+            </div>
 
-                                <asp:BoundField
-                                    DataField="orden"
-                                    HeaderText="Orden" />
+            <div class="mt-3">
 
-                                <asp:TemplateField HeaderText="Estado">
+                <asp:Image
+                    ID="imgPreview"
+                    runat="server"
+                    Width="250"
+                    CssClass="img-thumbnail" />
 
-                                    <ItemTemplate>
+            </div>
 
-                                        <span class='<%# (bool)Eval("activo") ? "badge bg-success" : "badge bg-danger" %>'>
-                                            <%# (bool)Eval("activo") ? "Activo" : "Inactivo" %>
-                                        </span>
+            <div class="form-check mt-3">
 
-                                    </ItemTemplate>
+                <asp:CheckBox
+                    ID="chkActivo"
+                    runat="server"
+                    Checked="true" />
 
-                                </asp:TemplateField>
+                <label class="form-check-label">
+                    Activo
+                </label>
 
-                                <asp:TemplateField HeaderText="Acciones">
+            </div>
 
-                                    <ItemTemplate>
+            <div class="mt-4">
 
-                                        <asp:LinkButton
-                                            ID="btnEditar"
-                                            runat="server"
-                                            CssClass="btn btn-sm btn-primary me-1"
-                                            Text="Editar"
-                                            CommandName="Editar"
-                                            CommandArgument='<%# Eval("id") %>' />
+                <asp:Button
+                    ID="btnGuardar"
+                    runat="server"
+                    Text="Guardar"
+                    CssClass="btn btn-success"
+                    OnClick="btnGuardar_Click" />
 
-                                        <asp:LinkButton
-                                            ID="btnEliminar"
-                                            runat="server"
-                                            CssClass="btn btn-sm btn-danger"
-                                            Text="Eliminar"
-                                            CommandName="Eliminar"
-                                            CommandArgument='<%# Eval("id") %>'
-                                            OnClientClick="return confirm('¿Desea eliminar esta subregión?');" />
-
-                                    </ItemTemplate>
-
-                                </asp:TemplateField>
-
-                            </Columns>
-
-                        </asp:GridView>
-
-                    </div>
-
-                </div>
+                <asp:Button
+                    ID="btnNuevo"
+                    runat="server"
+                    Text="Nuevo"
+                    CssClass="btn btn-secondary ms-2"
+                    OnClick="btnNuevo_Click" />
 
             </div>
 
         </div>
 
     </div>
+
+    <asp:GridView
+        ID="gvSubregiones"
+        runat="server"
+        AutoGenerateColumns="False"
+        CssClass="table table-striped"
+        OnRowCommand="gvSubregiones_RowCommand">
+
+        <Columns>
+
+            <asp:BoundField
+                DataField="nombre"
+                HeaderText="Nombre" />
+
+            <asp:BoundField
+                DataField="slug"
+                HeaderText="Slug" />
+
+            <asp:BoundField
+                DataField="orden"
+                HeaderText="Orden" />
+
+            <asp:TemplateField>
+
+                <ItemTemplate>
+
+                    <asp:LinkButton
+                        runat="server"
+                        Text="Editar"
+                        CssClass="btn btn-primary btn-sm"
+                        CommandName="Editar"
+                        CommandArgument='<%# Eval("id") %>' />
+
+                    <asp:LinkButton
+                        runat="server"
+                        Text="Eliminar"
+                        CssClass="btn btn-danger btn-sm"
+                        CommandName="Eliminar"
+                        CommandArgument='<%# Eval("id") %>' />
+
+                </ItemTemplate>
+
+            </asp:TemplateField>
+
+        </Columns>
+
+    </asp:GridView>
+
+</div>
 
 </asp:Content>
