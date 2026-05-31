@@ -94,6 +94,23 @@ runat="server">
                     CssClass="img-thumbnail" />
 
             </div>
+            <div class="mt-3">
+
+    <label class="form-label">
+        Galería de imágenes
+    </label>
+
+    <asp:FileUpload
+        ID="fuGaleria"
+        runat="server"
+        CssClass="form-control"
+        AllowMultiple="true" />
+
+    <small class="text-muted">
+        Puede seleccionar varias imágenes.
+    </small>
+
+</div>
 
             <div class="form-check mt-3">
 

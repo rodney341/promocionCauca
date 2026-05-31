@@ -1,6 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WebAppPromocionCauca
 {
@@ -76,6 +77,14 @@ namespace WebAppPromocionCauca
 
             Page.Title =
                 doc.GetValue<string>("nombre");
+            if (doc.ContainsField("galeria"))
+            {
+                List<string> galeria =
+                    doc.GetValue<List<string>>("galeria");
+
+                rptGaleria.DataSource = galeria;
+                rptGaleria.DataBind();
+            }
         }
     }
 }

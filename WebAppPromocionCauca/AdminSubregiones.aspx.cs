@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 using System.Web.UI.WebControls;
 using WebAppPromocionCauca.Models;
 
@@ -48,11 +49,14 @@ namespace WebAppPromocionCauca
         {
             FirestoreDb db = ObtenerDb();
 
+            List<string> galeria =
+                    new List<string>();
+
             string rutaImagen = hfImagenActual.Value;
 
             if (fuImagen.HasFile)
             {
-                if (fuImagen.PostedFile.ContentLength > 5 * 1024*1024)
+                if (fuImagen.PostedFile.ContentLength > 50 * 1024*1024)
                 {
                     throw new Exception(
                         "La imagen supera los 5 MB permitidos.");
@@ -76,6 +80,27 @@ namespace WebAppPromocionCauca
                     "/images/subregiones/" +
                     nombreArchivo;
             }
+            if (fuGaleria.HasFiles)
+            {
+                string carpeta =
+                    Server.MapPath("~/images/subregiones/");
+
+                foreach (HttpPostedFile archivo in fuGaleria.PostedFiles)
+                {
+                    string nombreArchivo =
+                        Guid.NewGuid() +
+                        Path.GetExtension(archivo.FileName);
+
+                    string rutaFisica =
+                        Path.Combine(carpeta, nombreArchivo);
+
+                    archivo.SaveAs(rutaFisica);
+
+                    galeria.Add(
+                        "/images/subregiones/" +
+                        nombreArchivo);
+                }
+            }
 
             string slug =
                 GenerarSlug(txtNombre.Text);
@@ -88,7 +113,8 @@ namespace WebAppPromocionCauca
                 contenido = txtContenido.Text,
                 imagen = rutaImagen,
                 orden = Convert.ToInt32(txtOrden.Text),
-                activo = chkActivo.Checked
+                activo = chkActivo.Checked,
+                galeria = galeria
             };
 
             if (string.IsNullOrEmpty(hfId.Value))
@@ -202,6 +228,23 @@ namespace WebAppPromocionCauca
                     docRef.DeleteAsync()
                           .GetAwaiter()
                           .GetResult();
+                }
+
+                if (doc.ContainsField("galeria"))
+                {
+                    var galeria =
+                        doc.GetValue<List<string>>("galeria");
+
+                    foreach (string img in galeria)
+                    {
+                        string ruta =
+                            Server.MapPath(img);
+
+                        if (System.IO.File.Exists(ruta))
+                        {
+                            System.IO.File.Delete(ruta);
+                        }
+                    }
                 }
 
                 CargarSubregiones();
