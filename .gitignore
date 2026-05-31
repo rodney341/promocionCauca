@@ -400,11 +400,11 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Imágenes administradas desde la aplicación
-images/*
-!images/.gitkeep
+WebAppPromocionCauca/images/*
+!WebAppPromocionCauca/images/.gitkeep
 
 # Claves de Firebase
-App_Data/firebase-key.json
+WebAppPromocionCauca/App_Data/firebase-key.json
 
 # Archivos temporales
 bin/
