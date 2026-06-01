@@ -229,6 +229,7 @@
     <Content Include="About.aspx" />
     <Content Include="AdminBlog.aspx" />
     <Content Include="AdminSubregiones.aspx" />
+    <Content Include="App_Data\firebase-key.json" />
     <Content Include="Articulo.aspx" />
     <Content Include="Blog.aspx" />
     <Content Include="Contact.aspx" />
@@ -251,13 +252,54 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Destinos\Popayan.aspx" />
+    <Content Include="images\blog\Ceviche-MiguelVarona.jpg" />
+    <Content Include="images\blog\Desamargados-MiguelVarona.jpg" />
+    <Content Include="images\blog\EMPANADITAS-DE-PIPIAN-Empanaditas-de-Pipian.jpg" />
+    <Content Include="images\blog\Frutosdemar-MiguelVarona.jpg" />
+    <Content Include="images\blog\Sazon pacifica-Miguel Varona.jpg" />
+    <Content Include="images\Colibri-AdrianaCollazos.jpg" />
+    <Content Include="images\cronica_639158377671981284.jpg" />
+    <Content Include="images\cronica_639158377671991276.jpg" />
+    <Content Include="images\EL_ORIGEN_PERVIVENCIA_NASA.jpg" />
+    <Content Include="images\Macizo-AdrianaCollazos.jpg" />
+    <Content Include="images\rutas\guardianes_de_puracé_AR.jpg" />
+    <Content Include="images\rutas\Patrimonio-MiguelVarona.jpg" />
+    <Content Include="images\rutas\tierradentro-FotoMiguelVarona-3.jpg" />
+    <Content Include="images\subregiones\151f1443-d6ea-4311-a067-a83112f6a047.jpg" />
+    <Content Include="images\subregiones\25aee304-9c70-4273-9e8f-d63dc7f481f9.jpg" />
+    <Content Include="images\subregiones\5439da3f-8619-4f73-8b11-77b6c2a6d8ef.jpg" />
+    <Content Include="images\subregiones\5f57ecbe-d014-43be-a693-386e2ebd327c.jpg" />
+    <Content Include="images\subregiones\6796a003-2258-4a9c-9eec-953c76440541.jpg" />
+    <Content Include="images\subregiones\693b69a7-9dd2-4da6-ae06-8d60f3a5feed.jpg" />
+    <Content Include="images\subregiones\6dc851af-5307-4fd3-9630-a6ce810224e7.jpg" />
+    <Content Include="images\subregiones\ballenas-en-gorgona-alvaro-andres-velasquez.jpg" />
+    <Content Include="images\subregiones\bdb32d8a-5f02-4e3e-8d85-70a454eb0bb2.jpg" />
+    <Content Include="images\subregiones\c7a73c92-bbae-4f93-b246-73fde5c7ab38.jpg" />
+    <Content Include="images\subregiones\c805cfab-28bf-4782-a985-50e5cb8862e5.jpg" />
+    <Content Include="images\subregiones\canon-del-magdalena-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\capilla-doctrinera-foto-miguel-varona.jpg" />
+    <Content Include="images\subregiones\colibri-adriana-collazos-2.jpg" />
+    <Content Include="images\subregiones\colibri-adriana-collazos-4.jpg" />
+    <Content Include="images\subregiones\colibri-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\deportes-extremos-eliana-aguilar.jpg" />
+    <Content Include="images\subregiones\eb579f2a-0072-49f3-8384-4e77eef9bd74.jpg" />
+    <Content Include="images\subregiones\el-mensajero-del-sol-copia.jpg" />
+    <Content Include="images\subregiones\euphonia-cyanocephala-adriana-collazos-1.jpg" />
+    <Content Include="images\subregiones\euphonia-cyanocephala-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\f46ab663-3ac2-4a07-b26f-7f7d9f9dc25a.jpg" />
+    <Content Include="images\subregiones\fa08790d-11ad-4862-b361-29f0c69757cd.jpg" />
+    <Content Include="images\subregiones\laguna-de-la-magdalena-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\laguna-de-santiago-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\macizo-adriana-collazos.jpg" />
+    <Content Include="images\subregiones\parapente-en-salvajina-eliana-aguilar-2.jpg" />
+    <Content Include="images\subregiones\salvajina-gustavo-pisso.jpg" />
+    <Content Include="images\subregiones\selva-de-mandiyaco-adriana-collazos.jpg" />
     <Content Include="Subregion.aspx" />
     <Content Include="estilos\StyleSheetHero.css" />
     <Content Include="estilos\StyleSheetSubregiones.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\Cerro_de_Manzanillo.jpg" />
-    <Content Include="images\Patia.jpg" />
     <Content Include="Rutas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -288,7 +330,9 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="EliminarArticulo.ashx" />
-    <Content Include="App_Data\firebase-key.json" />
+    <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\promocionCauca - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\turismo-cauca - Web Deploy.pubxml" />
     <Content Include="protos\google\type\timeofday.proto" />
     <Content Include="protos\google\type\quaternion.proto" />
@@ -346,6 +390,7 @@
     <Content Include="protos\google\api\backend.proto" />
     <Content Include="protos\google\api\auth.proto" />
     <Content Include="protos\google\api\annotations.proto" />
+    <None Include="Properties\PublishProfiles\turismo-cauca - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -483,9 +528,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\subregiones\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />

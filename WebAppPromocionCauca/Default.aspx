@@ -145,15 +145,18 @@
                 <div class="col-xl-3 col-lg-3 col-md-4" >
 
                     <div class="card subregion-card h-100">
-
+                        <a href='/Subregion.aspx?id=<%# Eval("slug") %>'>
                         <img src='<%# Eval("imagen") %>'
                              alt='<%# Eval("nombre") %>'
                              class="card-img-top" />
-
+                               </a>
                         <div class="card-body">
 
                             <h4 class="card-title">
+                            <a href='/Subregion.aspx?id=<%# Eval("slug") %>'
+                               class="titulo-subregion">
                                 <%# Eval("nombre") %>
+                             </a>
                             </h4>
 
                             <p class="card-text">

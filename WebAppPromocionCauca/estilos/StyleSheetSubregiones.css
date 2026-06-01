@@ -5,6 +5,7 @@
     transition: .3s ease;
     box-shadow: 0 10px 25px rgba(0,0,0,.08);
     height: 100%;
+    transition: transform .3s ease, box-shadow .3s ease;
 }
 
     .subregion-card:hover {
@@ -15,11 +16,14 @@
     .subregion-card img {
         height: 240px;
         object-fit: cover;
+        cursor: pointer;
     }
 
     .subregion-card .card-title {
         color: var(--verde-paramo);
         font-weight: 700;
+        transition: all .3s ease;
+        cursor: pointer;
     }
 
     .subregion-card .card-text {
@@ -34,6 +38,32 @@
     .subregion-card .btn {
         margin-top: auto;
     }
+    .subregion-card:hover .card-title {
+        color: var(--terracota);
+        letter-spacing: .5px;
+    }
+    .subregion-card a {
+        text-decoration: none;
+    }
 #subregiones {
     scroll-margin-top: 100px;
+}
+
+
+.titulo-subregion {
+    color: var(--verde-paramo);
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+    .titulo-subregion:hover {
+        color: var(--terracota);
+    }
+
+.card-img-top {
+    transition: transform .4s ease;
+}
+
+.subregion-card:hover .card-img-top {
+    transform: scale(1.05);
 }
