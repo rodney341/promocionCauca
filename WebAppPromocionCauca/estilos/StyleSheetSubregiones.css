@@ -20,10 +20,7 @@
     }
 
     .subregion-card .card-title {
-        color: var(--verde-paramo);
         font-weight: 700;
-        transition: all .3s ease;
-        cursor: pointer;
     }
 
     .subregion-card .card-text {
@@ -38,10 +35,7 @@
     .subregion-card .btn {
         margin-top: auto;
     }
-    .subregion-card:hover .card-title {
-        color: var(--terracota);
-        letter-spacing: .5px;
-    }
+
     .subregion-card a {
         text-decoration: none;
     }
@@ -53,11 +47,13 @@
 .titulo-subregion {
     color: var(--verde-paramo);
     text-decoration: none;
-    transition: color .3s ease;
+    transition: color .3s ease, letter-spacing .3s ease;
+    cursor: pointer;
 }
 
     .titulo-subregion:hover {
         color: var(--terracota);
+        letter-spacing: .5px;
     }
 
 .card-img-top {
