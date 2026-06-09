@@ -1,0 +1,54 @@
+﻿using Google.Cloud.Firestore;
+using System;
+using System.Collections.Generic;
+using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Models;
+
+namespace WebAppPromocionCauca.Repository
+{
+    public class SubregionFirestoreRepository : ISubregionRepository
+    {
+        public List<SubregionModel> ObtenerSubregiones()
+        {
+            FirestoreDb db = FirebaseHelper.ObtenerDb();
+
+            Query query = db.Collection("subregiones")
+                            .WhereEqualTo("activo", true)
+                            .OrderBy("orden");
+            List<SubregionModel> lista =
+             new List<SubregionModel>();
+            try
+            {
+                QuerySnapshot snapshot =
+                    query.GetSnapshotAsync()
+                         .GetAwaiter()
+                         .GetResult();
+
+                foreach (DocumentSnapshot doc in snapshot.Documents)
+                {
+                    lista.Add(new SubregionModel
+                    {
+                        nombre = doc.GetValue<string>("nombre"),
+                        descripcion = doc.GetValue<string>("descripcion"),
+                        contenido = doc.GetValue<string>("contenido"),
+                        imagen = doc.GetValue<string>("imagen"),
+                        slug = doc.GetValue<string>("slug"),
+                        orden = doc.GetValue<int>("orden"),
+                        activo = doc.GetValue<bool>("activo"),
+                        galeria = doc.ContainsField("galeria")
+                           ? doc.GetValue<List<string>>("galeria")
+                        : new List<string>()
+                    });
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                "Error obteniendo subregiones desde Firestore",
+                ex);
+            }
+
+        }
+    }
+}

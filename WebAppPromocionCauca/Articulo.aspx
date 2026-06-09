@@ -3,7 +3,7 @@
 <%-- 1. CONTENEDOR DE ESTILOS (Apunta a la cabecera) --%>
 <asp:Content ID="ContentStylesArticulo" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
-        .hero-articulo{
+.hero-articulo{
     position:relative;
     height:60vh;
     background-size:cover;

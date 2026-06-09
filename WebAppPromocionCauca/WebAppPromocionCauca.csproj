@@ -484,7 +484,15 @@
     <Compile Include="Destinos\Popayan.aspx.designer.cs">
       <DependentUpon>Popayan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\IBlogRepository.cs" />
+    <Compile Include="Interfaz\ISubregionRepository.cs" />
     <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Repository\BlogFirestoreRepository.cs" />
+    <Compile Include="Repository\BlogSheetsRepository.cs" />
+    <Compile Include="Repository\FirebaseHelper.cs" />
+    <Compile Include="Repository\RepositoryFactory.cs" />
+    <Compile Include="Repository\SubregionFirestoreRepository.cs" />
+    <Compile Include="Repository\SubregionSheetsRepository.cs" />
     <Compile Include="Subregion.aspx.cs">
       <DependentUpon>Subregion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

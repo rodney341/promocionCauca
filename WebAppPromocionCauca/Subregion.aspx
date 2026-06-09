@@ -11,27 +11,27 @@
    HERO SUBREGIÓN
 ========================= */
 
-        .subregion-hero {
-            height: 50vh;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #FFFFFF;
-            position: relative;
-            margin-top: -20px;
+.subregion-hero {
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+    margin-top: -20px;
 
-        }
-        .subregion-hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)); z-index: 1;
-        }
-        .subregion-hero-contenido {
-            position: relative; z-index: 2; max-width: 750px; padding: 0 1.5rem;
-        }
+}
+.subregion-hero::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)); z-index: 1;
+}
+.subregion-hero-contenido {
+    position: relative; z-index: 2; max-width: 750px; padding: 0 1.5rem;
+}
 
 .subregion-hero h1{
     text-shadow:
@@ -192,7 +192,7 @@
 }
 
 
-    </style>
+</style>
 </asp:Content>
 
 
@@ -269,10 +269,6 @@
     </div>
 
 </section>
-
-
-
-
 
 
     <!-- GALERÍA -->
