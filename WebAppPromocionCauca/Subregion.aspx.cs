@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
-using WebAppPromocionCauca.Repository;
+using WebAppPromocionCauca.Repositories;
 
 namespace WebAppPromocionCauca
 {

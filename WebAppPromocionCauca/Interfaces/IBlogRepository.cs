@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppPromocionCauca.Models;
 
-namespace WebAppPromocionCauca.Interfaz
+namespace WebAppPromocionCauca.Interfaces
 {
     public interface IBlogRepository
     {

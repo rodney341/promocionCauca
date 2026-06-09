@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public class BlogSheetsRepository : IBlogRepository
     {

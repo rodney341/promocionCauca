@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public static class FirebaseHelper
     {

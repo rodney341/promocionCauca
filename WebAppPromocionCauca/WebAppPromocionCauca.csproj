@@ -419,6 +419,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SubregionPacifico.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -484,15 +485,15 @@
     <Compile Include="Destinos\Popayan.aspx.designer.cs">
       <DependentUpon>Popayan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaz\IBlogRepository.cs" />
-    <Compile Include="Interfaz\ISubregionRepository.cs" />
+    <Compile Include="Interfaces\IBlogRepository.cs" />
+    <Compile Include="Interfaces\ISubregionRepository.cs" />
     <Compile Include="Models\BlogModel.cs" />
-    <Compile Include="Repository\BlogFirestoreRepository.cs" />
-    <Compile Include="Repository\BlogSheetsRepository.cs" />
-    <Compile Include="Repository\FirebaseHelper.cs" />
-    <Compile Include="Repository\RepositoryFactory.cs" />
-    <Compile Include="Repository\SubregionFirestoreRepository.cs" />
-    <Compile Include="Repository\SubregionSheetsRepository.cs" />
+    <Compile Include="Repositories\BlogFirestoreRepository.cs" />
+    <Compile Include="Repositories\BlogSheetsRepository.cs" />
+    <Compile Include="Repositories\FirebaseHelper.cs" />
+    <Compile Include="Repositories\RepositoryFactory.cs" />
+    <Compile Include="Repositories\SubregionFirestoreRepository.cs" />
+    <Compile Include="Repositories\SubregionSheetsRepository.cs" />
     <Compile Include="Subregion.aspx.cs">
       <DependentUpon>Subregion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -529,6 +530,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Models\SubregionModel.cs" />
+    <Compile Include="SubregionPacifico.aspx.cs">
+      <DependentUpon>SubregionPacifico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubregionPacifico.aspx.designer.cs">
+      <DependentUpon>SubregionPacifico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

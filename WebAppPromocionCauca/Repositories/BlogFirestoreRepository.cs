@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public class BlogFirestoreRepository : IBlogRepository
     {

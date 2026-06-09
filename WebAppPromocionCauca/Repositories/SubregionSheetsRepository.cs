@@ -5,10 +5,10 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Web;
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public class SubregionSheetsRepository : ISubregionRepository
     {
@@ -26,7 +26,7 @@ namespace WebAppPromocionCauca.Repository
 
                 return JsonConvert
                     .DeserializeObject<List<SubregionModel>>(json).OrderByDescending(x => x.orden)
-                        .ToList(); ;
+                        .ToList();
             }
         }
     }

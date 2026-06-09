@@ -1,9 +1,9 @@
 ﻿using System.Configuration;
 
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public static class RepositoryFactory
     {

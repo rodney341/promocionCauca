@@ -1,10 +1,10 @@
 ﻿using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using WebAppPromocionCauca.Interfaz;
+using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 
-namespace WebAppPromocionCauca.Repository
+namespace WebAppPromocionCauca.Repositories
 {
     public class SubregionFirestoreRepository : ISubregionRepository
     {

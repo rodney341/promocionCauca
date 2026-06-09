@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.UI;
-using WebAppPromocionCauca.Interfaz;
-using WebAppPromocionCauca.Repository;
+using WebAppPromocionCauca.Interfaces;
+using WebAppPromocionCauca.Repositories;
 
 
 namespace WebAppPromocionCauca
