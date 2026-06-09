@@ -1,7 +1,10 @@
 ﻿using Google.Cloud.Firestore;
+using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using WebAppPromocionCauca.Models;
 
 namespace WebAppPromocionCauca
 {
@@ -33,6 +36,33 @@ namespace WebAppPromocionCauca
             return FirestoreDb.Create("turismocauca-7a4ec");
         }
 
+        private List<SubregionModel> ObtenerSubregiones()
+        {
+            try
+            {
+                string url =
+                    "https://script.google.com/macros/s/AKfycbxTIHwRRIVeUln3Z1sfEiAHLsCZPVDjd8KFGMlMTlvna1yVWQYbCobAxBER-wtn6ofiJQ/exec?tipo=subregiones";
+
+                using (WebClient client = new WebClient())
+                {
+                    client.Encoding =
+                        System.Text.Encoding.UTF8;
+
+                    string json =
+                        client.DownloadString(url);
+
+                    return JsonConvert
+                        .DeserializeObject<List<SubregionModel>>(json)
+                        .ToList();
+                }
+            }
+            catch
+            {
+                return new List<SubregionModel>();
+            }
+        }
+
+
         private void CargarSubregion()
         {
             string slug =
@@ -44,59 +74,37 @@ namespace WebAppPromocionCauca
                 return;
             }
 
-            FirestoreDb db = ObtenerDb();
+            SubregionModel subregion = ObtenerSubregiones()
+    .FirstOrDefault(x => x.slug == slug);
 
-            Query query =
-                db.Collection("subregiones")
-                  .WhereEqualTo("slug", slug);
 
-            var snapshot =
-                query.GetSnapshotAsync()
-                .GetAwaiter()
-                .GetResult();
-
-            if (snapshot.Documents.Count == 0)
+            if (subregion == null)
             {
                 Response.Redirect("~/Default.aspx");
                 return;
             }
 
-            var doc = snapshot.Documents.First();
 
-            lblNombre.Text =
-                doc.GetValue<string>("nombre");
 
-            lblDescripcion.Text =
-                doc.GetValue<string>("descripcion");
+            lblNombre.Text = subregion.nombre;
 
-            string contenido =
-                doc.GetValue<string>("contenido");
+            lblDescripcion.Text = subregion.descripcion;
+                
+            litContenido.Text = subregion.contenido;
 
-            string[] parrafos =
-                contenido.Split(
-                    new[] { "\r\n\r\n", "\n\n" },
-                    StringSplitOptions.RemoveEmptyEntries);
-
-            litContenido.Text =
-                string.Join("",
-                    parrafos.Select(p =>
-                        $"<p>{Server.HtmlEncode(p.Trim())}</p>"));
-
-            string imagen =
-                doc.GetValue<string>("imagen");
-
+            string imagen = subregion.imagen;
+                
             subHeroBg.Attributes["style"] =
                 $"background-image:url('{imagen}')";
-            if (doc.ContainsField("galeria"))
+            if (subregion.galeria != null &&
+                subregion.galeria.Count > 0)
             {
-                List<string> galeria =
-                    doc.GetValue<List<string>>("galeria");
-
+                List<string> galeria =subregion.galeria;
                 rptGaleria.DataSource = galeria;
                 rptGaleria.DataBind();
             }
 
-            int orden = doc.GetValue<int>("orden");
+            int orden = subregion.orden;
 
             CargarNavegacion(orden);
 

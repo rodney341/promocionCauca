@@ -1,12 +1,16 @@
 ﻿using Google.Cloud.Firestore;
 using Google.Protobuf.Collections;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebAppPromocionCauca.Models;
+using System.Linq;
+
 
 namespace WebAppPromocionCauca
 {
@@ -113,7 +117,33 @@ namespace WebAppPromocionCauca
             rptSubregiones.DataSource = subregiones;
             rptSubregiones.DataBind();
         }
+
         private List<SubregionModel> ObtenerSubregiones()
+        {
+            try
+            {
+                string url =
+                    "https://script.google.com/macros/s/AKfycbxTIHwRRIVeUln3Z1sfEiAHLsCZPVDjd8KFGMlMTlvna1yVWQYbCobAxBER-wtn6ofiJQ/exec?tipo=subregiones";
+
+                using (WebClient client = new WebClient())
+                {
+                    client.Encoding =
+                        System.Text.Encoding.UTF8;
+
+                    string json =
+                        client.DownloadString(url);
+
+                    return JsonConvert
+                        .DeserializeObject<List<SubregionModel>>(json)
+                        .ToList();
+                }
+            }
+            catch
+            {
+                return new List<SubregionModel>();
+            }
+        }
+        private List<SubregionModel> ObtenerSubregiones2()
         {
             string credentialPath =
                 Server.MapPath("~/App_Data/firebase-key.json");

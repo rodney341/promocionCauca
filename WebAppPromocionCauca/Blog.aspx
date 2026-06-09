@@ -9,25 +9,6 @@
             color: #FFFFFF; 
             border-radius: 8px;
         }
-        .tarjeta-entrada {
-            background-color: #FFFFFF; 
-            border-radius: 8px; 
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%; 
-            display: flex; 
-            flex-direction: column;
-        }
-        .tarjeta-entrada:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
-        }
-        .img-entrada { 
-            height: 200px; 
-            background-size: cover; 
-            background-position: center; 
-        }
         .categoria-badge {
             background-color: var(--terracota); 
             color: #FFFFFF; 
@@ -38,22 +19,46 @@
             display: inline-block; 
             margin-bottom: 0.8rem;
         }
-        .page-link {
-            color: var(--verde-paramo) !important;
-            border-color: #dee2e6 !important;
-            background-color: #FFFFFF !important;
+
+        .blog-card{
+            border-radius:20px;
+            transition:.3s ease;
         }
-        .page-link:hover {
-            background-color: #e9ecef !important;
-            color: var(--terracota) !important;
+
+        .blog-card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 15px 35px rgba(0,0,0,.15) !important;
         }
-        /* Color de fondo Verde Páramo para la página activa */
-        .active-cauca .page-link {
-            background-color: var(--verde-paramo) !important;
-            border-color: var(--verde-paramo) !important;
-            color: #FFFFFF !important;
-            font-weight: bold;
+
+        .blog-card img{
+            transition:.4s ease;
         }
+
+        .blog-card:hover img{
+            transform:scale(1.05);
+        }
+
+        .blog-card .badge{
+            background:var(--verde-paramo);
+        }
+
+        /*paginacion*/
+        .pagination .page-link {
+            color: var(--verde-paramo);
+            border: none;
+            margin: 0 3px;
+            border-radius: 10px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background: var(--verde-paramo);
+            color: white;
+        }
+
+        .pagination .page-link:hover {
+            background: #f1f1f1;
+        }
+
         .animate-fade {
             animation: fadeIn 0.4s ease-in-out;
         }
@@ -102,169 +107,126 @@
             <p class="mb-0 text-muted fs-5">🍂 No encontramos crónicas que coincidan con los filtros aplicados. Intenta con otra combinación.</p>
         </div>
 
-        <!-- GRILLA DINÁMICA DE TARJETAS -->
-        <div class="row g-4" id="contenedor-blog">
-            <div class="text-center text-muted py-5" id="cargador-spinner">
-                <div class="spinner-border text-success" role="status"></div>
-                <p class="mt-2">Conectando con la base de datos en la nube...</p>
+<!-- GRILLA DE ARTÍCULOS -->
+<div class="row g-4">
+
+    <asp:Repeater ID="rptBlog" runat="server">
+        <ItemTemplate>
+
+            <div class="col-lg-4 col-md-6 col-12 articulo-blog"
+                 data-categoria='<%# Eval("categoria") %>'
+                 data-titulo='<%# Eval("titulo") %>'>
+
+                <div class="card h-100 shadow-sm border-0 overflow-hidden blog-card">
+
+                    <img src='<%# Eval("urlImagen") %>'
+                         alt='<%# Eval("titulo") %>'
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;" />
+
+                    <div class="card-body d-flex flex-column">
+
+                        <span class="badge bg-success mb-2 align-self-start">
+                            <%# Eval("categoria") %>
+                        </span>
+
+                        <h5 class="card-title fw-bold">
+                            <%# Eval("titulo") %>
+                        </h5>
+
+                        <p class="card-text text-muted flex-grow-1">
+                            <%# Eval("resumen") %>
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+
+                            <small class="text-muted">
+                                <%# Convert.ToDateTime(Eval("fecha")).ToString("dd/MM/yyyy") %>
+                            </small>
+
+                            <a href='Articulo.aspx?slug=<%# Eval("slug") %>'
+                               class="btn btn-outline-success btn-sm">
+                                Leer más
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
+
+        </ItemTemplate>
+    </asp:Repeater>
+
+</div>
 
         <!-- BARRA NUMÉRICA DE PAGINACIÓN -->
         <div class="d-flex justify-content-center mt-5">
             <nav aria-label="Navegación del blog">
-                <ul class="pagination shadow-sm" id="control-paginas">
-                    <!-- Los botones se inyectan aquí dinámicamente -->
-                </ul>
+<ul class="pagination shadow-sm" id="control-paginas">
+    <%= HtmlPaginacion %>
+</ul>
             </nav>
         </div>
 
     </div>
 
     <!-- ⚡ MOTOR FRONTEND: CONSUMO REST, LOGICA MATRICIAL Y PAGINADO -->
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlFirebase = "https://turismocauca-7a4ec-default-rtdb.firebaseio.com/blog.json";
-            const contenedor = document.getElementById("contenedor-blog");
-            const spinner = document.getElementById("cargador-spinner");
-            const txtBuscar = document.getElementById("txtBuscarTitulo");
-            const ddlCategoria = document.getElementById("ddlFiltrarCategoria");
-            const alertaNoResultados = document.getElementById("alerta-no-resultados");
-            const contenedorPaginacion = document.getElementById("control-paginas");
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-            // Configuración del Paginador
-            const articulosPorPagina = 3;
-            let paginaActual = 1;
-            let listadoCompletoArticulos = [];
+        const txtBuscar =
+            document.getElementById("txtBuscarTitulo");
 
-            // Petición inicial a Firebase
-            fetch(urlFirebase)
-                .then(response => response.json())
-                .then(data => {
-                    spinner.style.display = "none";
+        const ddlCategoria =
+            document.getElementById("ddlFiltrarCategoria");
 
-                    if (!data || data === "null") {
-                        contenedor.innerHTML = '<div class="col-12 text-center text-muted"><p>No se encontraron artículos publicados.</p></div>';
-                        return;
-                    }
+        function filtrar() {
 
-                    // Convertimos el JSON estructurado en un Array plano analizando el subnodo 'articulo_1'
-                    listadoCompletoArticulos = Object.keys(data).map(key => {
-                        const art = data[key].articulo_1 || data[key];
-                        return {
-                            id: key,
-                            titulo: art.Titulo || "Artículo sin título",
-                            resumen: art.Resumen || "Sin descripción disponible.",
-                            categoria: art.Categoria || "General",
-                            autor: art.Autor || "Redacción",
-                            fechaRaw: art.Fecha || new Date(),
-                            urlImagen: art.UrlImagen && art.UrlImagen !== "https://unsplash.com" ? art.UrlImagen : "https://unsplash.com"
-                        };
-                    });
+            const texto =
+                txtBuscar.value.toLowerCase();
 
-                    // Renderizado inicial
-                    renderizarGrillaConPaginacion();
+            const categoria =
+                ddlCategoria.value;
 
-                    // Escuchadores de eventos para recalcular los índices al escribir o cambiar filtros
-                    txtBuscar.addEventListener("input", function () { paginaActual = 1; renderizarGrillaConPaginacion(); });
-                    ddlCategoria.addEventListener("change", function () { paginaActual = 1; renderizarGrillaConPaginacion(); });
-                })
-                .catch(error => {
-                    console.error("Error Firebase:", error);
-                    spinner.innerHTML = '<p class="text-danger">⚠️ Error al mapear la base de datos.</p>';
-                });
+            const tarjetas =
+                document.querySelectorAll(".articulo-blog");
 
-            // Función combinada de Filtrado y Segmentación
-            function renderizarGrillaConPaginacion() {
-                const textoBusqueda = txtBuscar.value.toLowerCase().trim();
-                const categoriaSeleccionada = ddlCategoria.value;
+            let visibles = 0;
 
-                // 1. Filtrado
-                const articulosFiltrados = listadoCompletoArticulos.filter(articulo => {
-                    const coincideTexto = articulo.titulo.toLowerCase().includes(textoBusqueda);
-                    const coincideCategoria = (categoriaSeleccionada === "TODAS" || articulo.categoria === categoriaSeleccionada);
-                    return coincideTexto && coincideCategoria;
-                });
+            tarjetas.forEach(card => {
 
-                // 2. Control si no hay resultados
-                if (articulosFiltrados.length === 0) {
-                    contenedor.innerHTML = "";
-                    contenedorPaginacion.innerHTML = "";
-                    alertaNoResultados.style.display = "block";
-                    return;
+                const titulo =
+                    card.dataset.titulo.toLowerCase();
+
+                const cat =
+                    card.dataset.categoria;
+
+                const coincideTitulo =
+                    titulo.includes(texto);
+
+                const coincideCategoria =
+                    categoria === "TODAS" ||
+                    categoria === cat;
+
+                if (coincideTitulo && coincideCategoria) {
+                    card.style.display = "";
+                    visibles++;
                 }
-                alertaNoResultados.style.display = "none";
-
-                // 3. Cálculos de Paginación
-                const totalPaginas = Math.ceil(articulosFiltrados.length / articulosPorPagina);
-                if (paginaActual > totalPaginas) paginaActual = totalPaginas;
-                if (paginaActual < 1) paginaActual = 1;
-
-                const indiceInicial = (paginaActual - 1) * articulosPorPagina;
-                const indiceFinal = indiceInicial + articulosPorPagina;
-                const articulosDeLaPagina = articulosFiltrados.slice(indiceInicial, indiceFinal);
-
-                // 4. Construcción de Tarjetas de la Página Activa
-                let htmlCards = "";
-                articulosDeLaPagina.forEach(articulo => {
-                    const fechaFormateada = new Date(articulo.fechaRaw).toLocaleDateString('es-ES', {
-                        day: '2-digit', month: 'short', year: 'numeric'
-                    });
-                    // ⚡ CORRECCIÓN: Se envuelve el bloque HTML completo entre comillas invertidas para habilitar las variables ${}
-                    htmlCards += `
-    <div class="col-md-6 col-lg-4 animate-fade">
-        <article class="tarjeta-entrada">
-            <div class="img-entrada" style="background-image: url('${articulo.urlImagen}');"></div>
-            <div class="p-4 d-flex flex-column flex-grow-1">
-                <div>
-                    <span class="categoria-badge">${articulo.categoria}</span>
-                    <h4 class="fw-bold mb-2" style="color: var(--texto-oscuro);">${articulo.titulo}</h4>
-                    <p class="text-muted small mb-3">📅 ${fechaFormateada} | Por: ${articulo.autor}</p>
-                    <p class="text-secondary small" style="line-height: 1.6;">${articulo.resumen}</p>
-                </div>
-                <div class="mt-auto pt-3">
-                    <a href="Articulo.aspx?id=${articulo.id}" class="text-cauca-terracota fw-bold text-decoration-none">Leer artículo completo →</a>
-                </div>
-            </div>
-        </article>
-    </div>
-`;
-                });
-                contenedor.innerHTML = htmlCards;
-                // 5. Renderizar Botones Numéricos
-                construirBotonesNavegacion(totalPaginas);
-            }
-            // Dibuja los componentes numéricos abajo
-            function construirBotonesNavegacion(totalPaginas) {
-                if (totalPaginas <= 1) {
-                    contenedorPaginacion.innerHTML = "";
-                    return;
+                else {
+                    card.style.display = "none";
                 }
-                let htmlPaginador = "";
-                for (let i = 1; i <= totalPaginas; i++) {
-                    const claseActiva = (i === paginaActual) ? 'active-cauca' : '';
-                    // ⚡ CORRECCIÓN: Se añaden las comillas invertidas al inicio y al final de la cadena HTML
-                    htmlPaginador += `
-    <li class="page-item ${claseActiva}">
-        <button class="page-link btn-paginacion" data-pagina="${i}">${i}</button>
-    </li>
-`;
-                }
-                contenedorPaginacion.innerHTML = htmlPaginador;
-                // Asignar clics asíncronos a la botonera
-                document.querySelectorAll(".btn-paginacion").forEach(boton => {
-                    boton.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        paginaActual = parseInt(this.getAttribute("data-pagina"));
-                        renderizarGrillaConPaginacion();
-                        // Scroll suave de retorno al buscador
-                        window.scrollTo({
-                            top: document.getElementById("txtBuscarTitulo").getBoundingClientRect().top + window.pageYOffset - 120,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-            }
-        });
+            });
+
+            document.getElementById("alerta-no-resultados")
+                .style.display =
+                visibles === 0 ? "block" : "none";
+        }
+
+        txtBuscar.addEventListener("keyup", filtrar);
+        ddlCategoria.addEventListener("change", filtrar);
+    });
 </script>
 </asp:Content>

@@ -22,5 +22,6 @@ namespace WebAppPromocionCauca.Models
         public int orden { get; set; }
 
         public bool activo { get; set; }
+        public List<string> galeria { get; set; }
     }
 }

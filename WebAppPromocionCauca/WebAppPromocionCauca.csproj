@@ -484,6 +484,7 @@
     <Compile Include="Destinos\Popayan.aspx.designer.cs">
       <DependentUpon>Popayan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Subregion.aspx.cs">
       <DependentUpon>Subregion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -519,7 +520,7 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Subregion.cs" />
+    <Compile Include="Models\SubregionModel.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
