@@ -52,7 +52,8 @@ namespace WebAppPromocionCauca
 
             heroArticulo.Attributes["style"] =
                 $"background-image:url('{articulo.urlImagen}')";
-            imgSecundaria.ImageUrl = articulo.urlImagen2;
+            imgSecundaria.ImageUrl = ResolveUrl(articulo.urlImagen2);
+            //imgSecundaria.ImageUrl = articulo.urlImagen2;
             if (articulo.galeria != null &&
                   articulo.galeria.Count > 0)
             {

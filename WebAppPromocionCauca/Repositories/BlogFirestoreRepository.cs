@@ -43,6 +43,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     autor =
                         doc.GetValue<string>("autor"),
+                    urlImagen =
+                        doc.GetValue<string>("urlImagen"),
+                    urlImagen2 =
+                        doc.GetValue<string>("urlImagen2"),
                     galeria = doc.ContainsField("galeria")
                         ? doc.GetValue<List<string>>("galeria")
                         : new List<string>()

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 using WebAppPromocionCauca.Repositories;
+
 
 namespace WebAppPromocionCauca
 {
@@ -125,6 +128,23 @@ namespace WebAppPromocionCauca
                 lista[indiceSiguiente].slug;
 
             lnkSiguiente.Visible = true;
+        }
+
+        protected void rptGaleria_ItemDataBound(
+    object sender,
+    RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item ||
+                e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HtmlGenericControl divItem =
+                    (HtmlGenericControl)e.Item.FindControl("divItem");
+
+                divItem.Attributes["class"] =
+                    e.Item.ItemIndex == 0
+                    ? "carousel-item active"
+                    : "carousel-item";
+            }
         }
 
     }

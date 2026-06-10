@@ -152,5 +152,16 @@
         </div>
 
     </div>
+        <!-- VOLVER -->
+    <div class="container text-center pb-5">
+
+        <a href="/Blog.aspx"
+           class="btn btn-outline-secondary">
+
+            ← Volver a los Blogs
+
+        </a>
+
+    </div>
 
 </asp:Content>

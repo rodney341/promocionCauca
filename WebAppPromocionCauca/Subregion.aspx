@@ -12,8 +12,6 @@
 .navegacion-subregion{
     margin-top:3rem;
     margin-bottom:1rem;
-    margin-right: -3rem;
-
 }
 
 .navegacion-subregion .contenido-subregion{
@@ -42,7 +40,8 @@
     display: grid;
     grid-template-columns: 80px 1.2fr 0.9fr;
     gap: 40px;
-    align-items: start;
+
+    align-items: stretch; /* importante */
 }
 
 /* ======================
@@ -53,8 +52,9 @@
     background: #64c7d0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     min-height: 650px;
+
 }
 
 .titulo-vertical span {
@@ -63,6 +63,15 @@
     color: white;
     font-size: 2rem;
     font-weight: 700;
+    margin-top:73px;
+    display: flex;
+    gap: 12px;
+}
+.texto-subregion {
+    font-style: italic;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 /* ======================
@@ -128,11 +137,16 @@
    IMAGEN PRINCIPAL
 ====================== */
 
-.imagen-principal{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+.imagen-principal {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    min-height: 100%;
+
+    gap: 20px;
 }
 
 .imagen-principal img {
@@ -142,22 +156,28 @@
 }
 
 .img-destacada {
+    flex: 4;
+
     width: 100%;
-    height: 580px;
+    min-height: 0;
 
     object-fit: cover;
 
-    border-radius: 30px;
+    border-radius: 25px;
 
-    box-shadow:
-        0 20px 40px rgba(0,0,0,.15);
+    box-shadow: 0 15px 30px rgba(0,0,0,.15);
 }
-.img-secundaria{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:0 10px 20px rgba(0,0,0,.10);
+.img-secundaria {
+    flex: 3;
+
+    width: 100%;
+    min-height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,.10);
 }
 
 .unesco-badge {
@@ -182,29 +202,65 @@
    GALERIA
 ====================== */
 
-.galeria-pacifico {
-    max-width: 1400px;
-    margin: 50px;
+/* ======================
+   GALERIA SWIPER
+====================== */
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+.galeria-section {
+    margin-top: 80px;
+    margin-bottom: 40px;
 }
 
-.galeria-item img {
+.galeria-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.galeria-header h3 {
+    color: #12344d;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.galeria-header p {
+    color: #6c757d;
+}
+
+.galeriaSwiper {
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+
+.swiper-img {
     width: 100%;
-    height: 280px;
+    height: 350px;
+
     object-fit: cover;
 
     border-radius: 20px;
 
-    transition: .4s ease;
+    transition: .5s ease;
 
-    box-shadow: 0 10px 25px rgba(0,0,0,.10);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.10);
 }
 
-.galeria-item img:hover {
-    transform: scale(1.03);
+.swiper-img:hover {
+    transform: scale(1.05);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #12344d;
+}
+
+.swiper-pagination-bullet-active {
+    background: #12344d;
 }
 
 /* ======================
@@ -237,13 +293,20 @@
     }
 
     .titulo-vertical span{
-        writing-mode:horizontal-tb;
-        transform:none;
+        writing-mode: horizontal-tb;
+        transform: none;
+        justify-content: center;
+
+    }
+        .texto-subregion{
+        margin-right: 8px;
     }
 
-    .contenido-texto{
-        padding-right:0;
-    }
+.contenido-texto {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
     .img-destacada{
         height:500px;
@@ -313,11 +376,15 @@
         <div class="titulo-vertical"
              runat="server"
              id="divTituloVertical">
-            <span> Subregión 
-            <asp:Literal
-                ID="litNombreVertical"
-                runat="server" />
-                </span>
+
+            <span>
+                <em class="texto-subregion">Subregión</em>
+
+                <asp:Literal
+                    ID="litNombreVertical"
+                    runat="server" />
+            </span>
+
         </div>
 
         <!-- DESCRIPCIÓN -->
@@ -390,28 +457,39 @@
 
 <section class="galeria-section">
 
-    <asp:Repeater ID="rptGaleria" runat="server">
+    <div class="galeria-header">
+        <h3>Galería Fotográfica</h3>
+        <p>Descubre los paisajes, la cultura y los atractivos de la subregión.</p>
+    </div>
 
-        <HeaderTemplate>
-            <div class="galeria-pacifico">
-        </HeaderTemplate>
+    <div class="swiper galeriaSwiper">
 
-        <ItemTemplate>
+        <div class="swiper-wrapper">
 
-            <div class="galeria-item" data-aos="zoom-in">
+            <asp:Repeater ID="rptGaleria" runat="server">
 
-                <img src='<%# Container.DataItem %>'
-                    alt="Imagen de la subregión" />
+                <ItemTemplate>
 
-            </div>
+                    <div class="swiper-slide">
 
-        </ItemTemplate>
+                        <img src='<%# Container.DataItem %>'
+                             alt="Imagen de la subregión"
+                             class="swiper-img" />
 
-        <FooterTemplate>
-            </div>
-        </FooterTemplate>
+                    </div>
 
-    </asp:Repeater>
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <div class="swiper-pagination"></div>
+
+    </div>
 
 </section>
 
@@ -426,4 +504,49 @@
         </a>
 
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            new Swiper(".galeriaSwiper", {
+
+                slidesPerView: 1,
+                spaceBetween: 20,
+
+                loop: true,
+
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false
+                },
+
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+
+                breakpoints: {
+
+                    576: {
+                        slidesPerView: 2
+                    },
+
+                    992: {
+                        slidesPerView: 3
+                    },
+
+                    1400: {
+                        slidesPerView: 4
+                    }
+
+                }
+
+            });
+
+        });
+</script>
 </asp:Content>
