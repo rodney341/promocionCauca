@@ -17,11 +17,17 @@ namespace WebAppPromocionCauca.Models
 
         public string contenido { get; set; }
 
-        public string imagen { get; set; }
+
+        public string colorTema { get; set; }
+        public string imagenPrincipal { get; set; }
+        public string imagenSecundaria { get; set; }
+
+        public string reconocimientoUnesco { get; set; }
 
         public int orden { get; set; }
 
         public bool activo { get; set; }
         public List<string> galeria { get; set; }
+        public List<string> destacados { get; set; }
     }
 }

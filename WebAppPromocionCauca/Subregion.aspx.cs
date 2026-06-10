@@ -42,13 +42,33 @@ namespace WebAppPromocionCauca
                 return;
             }
 
-            lblNombre.Text = subregion.nombre;
-            lblDescripcion.Text = subregion.descripcion;
-            litContenido.Text = subregion.contenido;
+            litNombre.Text = subregion.nombre;
+            litNombreVertical.Text = subregion.nombre;
+            divTituloVertical.Style["background-color"] = subregion.colorTema;
+            string contenido =subregion.contenido;
 
-            subHeroBg.Attributes["style"] =
-                $"background-image:url('{subregion.imagen}')";
+            string[] parrafos =
+                    contenido.Split(
+                        new[] { "\r\n\r\n", "\n\n" },
+                        StringSplitOptions.RemoveEmptyEntries);
 
+            litContenido.Text =
+                    string.Join("",
+                    parrafos.Select(p =>
+                    $"<p>{Server.HtmlEncode(p.Trim())}</p>"));
+
+            imgPrincipal.ImageUrl = ResolveUrl(subregion.imagenPrincipal);
+            imgSecundaria.ImageUrl = ResolveUrl(subregion.imagenSecundaria);
+            pnlBadgeUnesco.Visible = !string.IsNullOrWhiteSpace(subregion.reconocimientoUnesco);
+            if (subregion.destacados?.Any() == true)
+            {
+                rptDestacados.DataSource = subregion.destacados;
+                rptDestacados.DataBind();
+            }
+            else
+            {
+                rptDestacados.Visible = false;
+            }
             if (subregion.galeria?.Any() == true)
             {
                 rptGaleria.DataSource = subregion.galeria;

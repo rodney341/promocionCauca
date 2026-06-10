@@ -1,4 +1,5 @@
 ﻿using Google.Cloud.Firestore;
+using Google.Cloud.Firestore.V1;
 using System;
 using System.Collections.Generic;
 using WebAppPromocionCauca.Interfaces;
@@ -31,10 +32,16 @@ namespace WebAppPromocionCauca.Repositories
                         nombre = doc.GetValue<string>("nombre"),
                         descripcion = doc.GetValue<string>("descripcion"),
                         contenido = doc.GetValue<string>("contenido"),
-                        imagen = doc.GetValue<string>("imagen"),
                         slug = doc.GetValue<string>("slug"),
                         orden = doc.GetValue<int>("orden"),
                         activo = doc.GetValue<bool>("activo"),
+                        colorTema = doc.GetValue<string>("colorTema"),
+                        imagenPrincipal = doc.GetValue<string>("imagenPrincipal"),
+                        imagenSecundaria = doc.GetValue<string>("imagenSecundaria"),
+                        reconocimientoUnesco = doc.GetValue<string>("reconocimientoUnesco"),
+                        destacados = doc.ContainsField("destacados")
+                           ? doc.GetValue<List<string>>("destacados")
+                        : new List<string>(),
                         galeria = doc.ContainsField("galeria")
                            ? doc.GetValue<List<string>>("galeria")
                         : new List<string>()

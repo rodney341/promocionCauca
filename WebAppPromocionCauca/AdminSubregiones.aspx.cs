@@ -203,7 +203,7 @@ namespace WebAppPromocionCauca
                     contenido = doc.ContainsField("contenido")
                         ? doc.GetValue<string>("contenido")
                         : "",
-                    imagen = doc.ContainsField("imagen")
+                    imagenPrincipal = doc.ContainsField("imagen")
                         ? doc.GetValue<string>("imagen")
                         : "",
 

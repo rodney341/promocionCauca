@@ -146,7 +146,7 @@
 
                     <div class="card subregion-card h-100">
                         <a href='/Subregion.aspx?id=<%# Eval("slug") %>'>
-                        <img src='<%# Eval("imagen") %>'
+                        <img src='<%# Eval("imagenPrincipal") %>'
                              alt='<%# Eval("nombre") %>'
                              class="card-img-top" />
                                </a>

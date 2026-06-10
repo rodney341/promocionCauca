@@ -7,177 +7,13 @@
 
 <asp:Content ID="ContentStylesSubregion" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
-/* =========================
-   HERO SUBREGIÓN
-========================= */
-
-.subregion-hero {
-    height: 50vh;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
-    position: relative;
-    margin-top: -20px;
-
-}
-.subregion-hero::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)); z-index: 1;
-}
-.subregion-hero-contenido {
-    position: relative; z-index: 2; max-width: 750px; padding: 0 1.5rem;
-}
-
-.subregion-hero h1{
-    text-shadow:
-        0 4px 15px
-        rgba(0,0,0,.4);
-}
-
-.subregion-hero p{
-    max-width:700px;
-}
-
-@media (max-width:768px){
-
-    .subregion-hero{
-        min-height:55vh;
-    }
-
-    .subregion-hero-contenido{
-        padding:100px 30px 80px;
-        text-align:center;
-    }
-
-    .subregion-hero p{
-        margin:auto;
-    }
-        .navegacion-subregion .col-md-4{
-        text-align:center !important;
-        margin-bottom:12px;
-    }
-
-    .navegacion-subregion .btn{
-        width:100%;
-    }
-}
-
-/*contenido subregion*/
-.contenido-subregion{
-    max-width:900px;
-    margin:-18px auto;
-    line-height:1.9;
-    font-size:1.1rem;
-    color:#444;
-}
-
-.contenido-subregion h2{
-    color:var(--verde-paramo);
-    font-weight:700;
-    margin-top:2rem;
-    margin-bottom:1rem;
-}
-
-.contenido-subregion h3{
-    color:var(--terracota);
-    margin-top:1.5rem;
-}
-
-.contenido-subregion p{
-    margin-bottom: 2rem;
-    line-height: 2;
-    text-align: justify;
-}
-
-.contenido-subregion img{
-    width:100%;
-    border-radius:16px;
-    margin:2rem 0;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.contenido-subregion ul{
-    padding-left:1.5rem;
-}
-
-.contenido-subregion li{
-    margin-bottom:.5rem;
-}
-
-
-/* =========================
-   GALERÍA
-========================= */
-
-.galeria-img{
-    width:100%;
-    height:280px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    transition:.4s;
-}
-
-.galeria-img:hover{
-    transform:scale(1.04);
-}
-
-/* =========================
-   LIGHTBOX
-========================= */
-
-.lightbox{
-    display:none;
-
-    position:fixed;
-    inset:0;
-
-    background:
-        rgba(0,0,0,.92);
-
-    z-index:9999;
-}
-
-.lightbox img{
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    max-width:90%;
-    max-height:90%;
-}
-
-.cerrar{
-    position:absolute;
-
-    top:20px;
-    right:30px;
-
-    color:white;
-
-    font-size:45px;
-
-    cursor:pointer;
-}
 
 /*navegacion*/
 .navegacion-subregion{
-    margin-top:1rem;
-    padding-top:1rem;
-    border-top:1px solid #e9ecef;
+    margin-top:3rem;
+    margin-bottom:1rem;
+    margin-right: -3rem;
+
 }
 
 .navegacion-subregion .contenido-subregion{
@@ -190,7 +26,253 @@
     padding:10px 18px;
     font-weight:600;
 }
+/*pacifico*/
+/* ===================================
+   SUBREGIÓN
+=================================== */
 
+.subregion-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.subregion-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 80px 1.2fr 0.9fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ======================
+   TITULO VERTICAL
+====================== */
+
+.titulo-vertical {
+    background: #64c7d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 650px;
+}
+
+.titulo-vertical span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* ======================
+   CONTENIDO
+====================== */
+
+.contenido-texto {
+    padding-right: 20px;
+}
+
+.contenido-texto h2 {
+    font-size: 3rem;
+    color: #12344d;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.contenido-texto p {
+    text-align: justify;
+    color: #555;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+}
+
+/* ======================
+   UNESCO
+====================== */
+
+.unesco-info {
+    background: linear-gradient(135deg,#12344d,#1b557d);
+    color: white;
+
+    padding: 18px 25px;
+    border-radius: 15px;
+
+    margin: 25px 0;
+
+    font-size: .95rem;
+    line-height: 1.7;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ======================
+   DESTACADOS
+====================== */
+
+.destacados {
+    margin-top: 30px;
+    display: grid;
+    gap: 12px;
+}
+
+.destacados div {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+/* ======================
+   IMAGEN PRINCIPAL
+====================== */
+
+.imagen-principal{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.imagen-principal img {
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
+
+.img-destacada {
+    width: 100%;
+    height: 580px;
+
+    object-fit: cover;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.15);
+}
+.img-secundaria{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.10);
+}
+
+.unesco-badge {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    background: white;
+
+    padding: 12px 24px;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+    color: #12344d;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ======================
+   GALERIA
+====================== */
+
+.galeria-pacifico {
+    max-width: 1400px;
+    margin: 50px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    transition: .4s ease;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.10);
+}
+
+.galeria-item img:hover {
+    transform: scale(1.03);
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+
+@media (max-width:1200px){
+
+    .subregion-container{
+        grid-template-columns:
+            70px
+            1fr
+            450px;
+    }
+
+    .img-destacada{
+        height:500px;
+    }
+
+}
+
+@media (max-width:992px){
+
+    .subregion-container{
+        grid-template-columns:1fr;
+    }
+
+    .titulo-vertical{
+        min-height:80px;
+    }
+
+    .titulo-vertical span{
+        writing-mode:horizontal-tb;
+        transform:none;
+    }
+
+    .contenido-texto{
+        padding-right:0;
+    }
+
+    .img-destacada{
+        height:500px;
+    }
+
+    .galeria-pacifico{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media (max-width:768px){
+
+    .contenido-texto h2{
+        font-size:2.2rem;
+    }
+
+    .img-destacada{
+        height:350px;
+    }
+
+    .galeria-pacifico{
+        grid-template-columns:1fr;
+    }
+
+    .galeria-pacifico img{
+        height:250px;
+    }
+}
 
 </style>
 </asp:Content>
@@ -200,121 +282,138 @@
     ContentPlaceHolderID="MainContent"
     runat="server">
 
-    <!-- HERO -->
-    <div runat="server"
-         id="subHeroBg"
-         class="subregion-hero shadow-sm">
+    <section class="navegacion-subregion">
 
-        <div class="subregion-hero-contenido">
+        <div class="contenido-subregion">
 
-            <span class="badge bg-warning text-dark mb-3 px-3 py-2 text-uppercase fw-bold">
-                Corredor Territorial
-            </span>
+            <div class="d-flex justify-content-end gap-2">
 
-            <h1 class="display-4 fw-bold text-white mb-3">
+                <asp:HyperLink
+                    ID="lnkAnterior"
+                    runat="server"
+                    CssClass="btn btn-outline-success"
+                    Visible="false" />
 
-                <asp:Label ID="lblNombre"
-                    runat="server" />
+                <asp:HyperLink
+                    ID="lnkSiguiente"
+                    runat="server"
+                    CssClass="btn btn-cauca-principal"
+                    Visible="false" />
 
-            </h1>
-
-            <p class="fs-5 text-white opacity-75 m-0">
-
-                <asp:Label ID="lblDescripcion"
-                    runat="server" />
-
-            </p>
-
-        </div>
-
-    </div>
-
-  
-
-   <section class="navegacion-subregion">
-
-<div class="contenido-subregion">
-
-    <div class="d-flex justify-content-end gap-2">
-
-        <asp:HyperLink
-            ID="lnkAnterior"
-            runat="server"
-            CssClass="btn btn-outline-success"
-            Visible="false" />
-
-        <asp:HyperLink
-            ID="lnkSiguiente"
-            runat="server"
-            CssClass="btn btn-cauca-principal"
-            Visible="false" />
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-    <!-- CONTENIDO -->
-<section class="container py-5">
-
-    <div class="contenido-subregion">
-
-        <asp:Literal
-            ID="litContenido"
-            runat="server" />
-
-    </div>
-
-</section>
-
-
-    <!-- GALERÍA -->
-    <section class="container pb-5">
-
-        <div class="text-center mb-5">
-
-            <h2 class="fw-bold"
-                style="color:var(--verde-paramo);">
-
-                Galería Fotográfica
-
-            </h2>
-
-            <div style="
-                width:80px;
-                height:4px;
-                background:var(--terracota);
-                margin:auto;">
             </div>
 
         </div>
 
-        <div class="row g-4 justify-content-center" >
+    </section>
 
-            <asp:Repeater
-                ID="rptGaleria"
-                runat="server">
+    <div class="subregion-container">
 
-                <ItemTemplate>
-    
-                    <div class="col-lg-4 col-md-6">
+        <!-- BARRA VERTICAL -->
 
-                        <img src='<%# Container.DataItem %>'
-                             class="galeria-img img-fluid shadow-sm"
-                             alt="Imagen de la subregión" />
+        <div class="titulo-vertical"
+             runat="server"
+             id="divTituloVertical">
+            <span> Subregión 
+            <asp:Literal
+                ID="litNombreVertical"
+                runat="server" />
+                </span>
+        </div>
 
-                    </div>
+        <!-- DESCRIPCIÓN -->
 
-                </ItemTemplate>
+            <div class="contenido-texto"
+                data-aos="fade-right">
 
-            </asp:Repeater>
+                <h2>Subregión 
+                <asp:Literal
+                    ID="litNombre"
+                    runat="server" />
+                </h2>
+
+                <p>
+                    <asp:Literal
+                        ID="litContenido"
+                        runat="server" />
+                </p>
+
+                <asp:Repeater
+                    ID="rptDestacados"
+                    runat="server">
+
+                    <HeaderTemplate>
+                        <div class="destacados">
+                    </HeaderTemplate>
+
+                    <ItemTemplate>
+
+                        <div>
+                            <%# Container.DataItem %>
+                        </div>
+
+                    </ItemTemplate>
+
+                    <FooterTemplate>
+                        </div>
+                    </FooterTemplate>
+
+                </asp:Repeater>
+            </div>
+
+            <!-- IMAGEN PRINCIPAL -->
+            <div class="imagen-principal" data-aos="fade-left">
+
+                <asp:Image
+                    ID="imgPrincipal"
+                    runat="server"
+                    CssClass="img-destacada" />
+
+                <asp:Panel
+                    ID="pnlBadgeUnesco"
+                    runat="server"
+                    CssClass="unesco-badge">
+                    UNESCO
+
+           
+                </asp:Panel>
+
+                <asp:Image
+                    ID="imgSecundaria"
+                    runat="server"
+                    CssClass="img-secundaria" />
+
+            </div>
 
         </div>
 
-    </section>
+
+
+<section class="galeria-section">
+
+    <asp:Repeater ID="rptGaleria" runat="server">
+
+        <HeaderTemplate>
+            <div class="galeria-pacifico">
+        </HeaderTemplate>
+
+        <ItemTemplate>
+
+            <div class="galeria-item" data-aos="zoom-in">
+
+                <img src='<%# Container.DataItem %>'
+                    alt="Imagen de la subregión" />
+
+            </div>
+
+        </ItemTemplate>
+
+        <FooterTemplate>
+            </div>
+        </FooterTemplate>
+
+    </asp:Repeater>
+
+</section>
 
     <!-- VOLVER -->
     <div class="container text-center pb-5">
@@ -327,49 +426,4 @@
         </a>
 
     </div>
-
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox">
-
-        <span class="cerrar">&times;</span>
-
-        <img id="lightbox-img" />
-
-    </div>
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const imagenes =
-                document.querySelectorAll(".galeria-img");
-
-            const lightbox =
-                document.getElementById("lightbox");
-
-            const imagenGrande =
-                document.getElementById("lightbox-img");
-
-            imagenes.forEach(function (img) {
-
-                img.addEventListener("click", function () {
-
-                    lightbox.style.display = "block";
-
-                    imagenGrande.src = this.src;
-
-                });
-
-            });
-
-            document.querySelector(".cerrar")
-                .addEventListener("click", function () {
-
-                    lightbox.style.display = "none";
-
-                });
-
-        });
-
-</script>
 </asp:Content>
