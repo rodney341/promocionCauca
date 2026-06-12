@@ -1,0 +1,204 @@
+﻿:root {
+    --text-dark: #1a1d20;
+    --text-muted: #5f666d;
+    --border-light: #e9ecef;
+    /* Colores Temáticos por Categoría */
+    --c-mundial: #b08200; /* Dorado */
+    --c-inmaterial: #e05624; /* Terracota */
+    --c-creativa: #17a2b8; /* Cyan */
+    --c-biosfera: #28a745; /* Verde */
+    --c-agua: #007bff; /* Azul */
+}
+
+.tipos-reconocimiento {
+    background-color: transparent;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.titulo-reconocimientos {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.descripcion-reconocimientos {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* Tarjeta Base Vertical */
+.tipo-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-top: 4px solid var(--border-light);
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%; /* Mantiene tarjetas alineadas en la misma fila */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+    .tipo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Tarjeta de Gastronomía Destacada */
+    .tipo-card.destacado {
+        background: #fffdf9;
+    }
+
+    /* Tarjeta Horizontal (Fila Inferior) */
+    .tipo-card.horizontal {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+/* Contenedor del Icono/Emoji */
+.tipo-icono {
+    font-size: 2.2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* Ajuste del icono para la tarjeta horizontal */
+.tipo-card.horizontal .tipo-icono {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* Fondos de Iconos muy sutiles */
+.icono-mundial {
+    background-color: rgba(176, 130, 0, 0.08);
+}
+
+.icono-inmaterial {
+    background-color: rgba(224, 86, 24, 0.08);
+}
+
+.icono-creativa {
+    background-color: rgba(23, 162, 184, 0.08);
+}
+
+.icono-biosfera {
+    background-color: rgba(40, 167, 69, 0.08);
+}
+
+.icono-agua {
+    background-color: rgba(0, 123, 255, 0.08);
+}
+
+/* Asignación de Bordes Superiores */
+.border-mundial {
+    border-top-color: var(--c-mundial);
+}
+
+.border-inmaterial {
+    border-top-color: var(--c-inmaterial);
+}
+
+.border-creativa {
+    border-top-color: var(--c-creativa);
+}
+
+.border-biosfera {
+    border-top-color: var(--c-biosfera);
+}
+
+.border-agua {
+    border-top-color: var(--c-agua);
+}
+
+/* Estilos de Textos Interiores */
+.tipo-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+/* Estilos de las Listas de Elementos */
+.tipo-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+    .tipo-card ul li {
+        font-size: 0.95rem;
+        color: #495057;
+        position: relative;
+        padding-left: 20px;
+        line-height: 1.6;
+    }
+
+        .tipo-card ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        /* Viñeta personalizada con un guion estético */
+        .tipo-card ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+/* --- Adaptabilidad Móvil --- */
+@media (max-width: 767px) {
+    .tipo-card.horizontal {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .tipo-card {
+        padding: 24px;
+    }
+
+    .titulo-reconocimientos {
+        font-size: 2rem;
+    }
+}
+
+/* --- SISTEMA DE ANIMACIÓN AL HACER SCROLL --- */
+
+/* Estado inicial: oculto y desplazado 30px hacia abajo */
+.animar-entrada {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+    will-change: transform, opacity;
+}
+
+    /* Estado activo: se revela en su posición original */
+    .animar-entrada.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Efecto Hover extra para los iconos de las tarjetas (Micro-interacción) */
+.tipo-card:hover .tipo-icono {
+    animation: flotarIcono 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes flotarIcono {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-4px);
+    }
+}
+

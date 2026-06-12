@@ -22,6 +22,8 @@
 </style>
 <link href="/estilos/StyleSheetHero.css" rel="stylesheet" />
 <link href="/estilos/StyleSheetSubregiones.css" rel="stylesheet" />
+<link href="/estilos/StyleSheetReconocimientos.css" rel="stylesheet" />
+<link href="/estilos/StyleSheetMapa.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="BodyContent"
@@ -184,6 +186,156 @@
 
 </section>
 
+
+<section class="tipos-reconocimiento py-5">
+    <div class="container">
+
+        <!-- Cabecera Animada -->
+        <div class="text-center mb-5 animar-entrada">
+            <span class="badge bg-success mb-3 px-3 py-2 text-uppercase tracking-wider">
+                RECONOCIMIENTOS INTERNACIONALES
+            </span>
+            <h2 class="titulo-reconocimientos">El Cauca ante el mundo</h2>
+            <p class="descripcion-reconocimientos">
+                Organismos internacionales han reconocido el patrimonio
+                cultural, arqueológico, gastronómico y natural del departamento.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Tarjeta 1 -->
+            <div class="col-lg-6 animar-entrada">
+                <div class="tipo-card border-mundial">
+                    <div class="tipo-icono icono-mundial">🏛️</div>
+                    <h3>Patrimonio Mundial UNESCO</h3>
+                    <ul>
+                        <li>Parque Arqueológico Nacional de Tierradentro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="col-lg-6 animar-entrada">
+                <div class="tipo-card border-inmaterial">
+                    <div class="tipo-icono icono-inmaterial">✨</div>
+                    <h3>Patrimonio Cultural Inmaterial</h3>
+                    <ul>
+                        <li>Procesiones de Semana Santa de Popayán</li>
+                        <li>Música de Marimba y Cantos Tradicionales del Pacífico Sur</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="col-lg-6 animar-entrada">
+                <div class="tipo-card destacado border-creativa">
+                    <div class="tipo-icono icono-creativa">🍽️</div>
+                    <h3>Red de Ciudades Creativas UNESCO</h3>
+                    <ul>
+                        <li>Popayán - Ciudad Creativa de la Gastronomía</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4 -->
+            <div class="col-lg-6 animar-entrada">
+                <div class="tipo-card border-biosfera">
+                    <div class="tipo-icono icono-biosfera">🌿</div>
+                    <h3>Reservas de la Biosfera UNESCO</h3>
+                    <ul>
+                        <li>Macizo Colombiano - Cinturón Andino</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tarjeta 5 (Ancho completo) -->
+            <div class="col-lg-12 animar-entrada">
+                <div class="tipo-card horizontal border-agua">
+                    <div class="tipo-icono icono-agua">💧</div>
+                    <div class="flex-grow-1">
+                        <h3>Red Global de Museos del Agua</h3>
+                        <ul>
+                            <li>Museo Vivo del Agua y la Biodiversidad en el Macizo Colombiano</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="mapa-reconocimientos-section py-5 bg-light">
+    <div class="container">
+
+        <div class="text-center mb-5 animar-entrada">
+            <span class="badge bg-success mb-3 px-3 py-2 text-uppercase tracking-wider">
+                Geografía del Patrimonio
+            </span>
+            <h2 class="titulo-reconocimientos">El Cauca en el Mapa</h2>
+            <p class="descripcion-reconocimientos">
+                Explora los epicentros geográficos y culturales que albergan las máximas distinciones internacionales del departamento.
+            </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            
+            <!-- Lista de Puntos de Interés -->
+            <div class="col-lg-5 animar-entrada">
+                <div class="d-flex flex-column gap-3 h-100 justify-content-center">
+                    
+                    <div class="punto-mapa-item active" data-lat="" data-lng="">
+                        <div class="punto-icon icono-creativa">🍽️</div>
+                        <div>
+                            <h4>Popayán</h4>
+                            <p class="mb-0 text-muted">Ciudad Creativa de la Gastronomía y sede de las Procesiones de Semana Santa.</p>
+                        </div>
+                    </div>
+
+                    <div class="punto-mapa-item" data-lat="" data-lng="">
+                        <div class="punto-icon icono-mundial">🏛️</div>
+                        <div>
+                            <h4>Tierradentro (Inzá)</h4>
+                            <p class="mb-0 text-muted">Parque Arqueológico Nacional y Patrimonio Mundial material de la UNESCO.</p>
+                        </div>
+                    </div>
+
+                    <div class="punto-mapa-item" data-lat="" data-lng="">
+                        <div class="punto-icon icono-biosfera">🌿</div>
+                        <div>
+                            <h4>Macizo Colombiano</h4>
+                            <p class="mb-0 text-muted">Reserva de la Biósfera y hogar del Museo Vivo del Agua y la Biodiversidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="punto-mapa-item" data-lat="" data-lng="">
+                        <div class="punto-icon icono-inmaterial">🌊</div>
+                        <div>
+                            <h4>Costa Pacífica Caucana (Guapi)</h4>
+                            <p class="mb-0 text-muted">Epicentro cultural de las Músicas de Marimba y Cantos Tradicionales.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Contenedor del Mapa Interactivo -->
+            <div class="col-lg-7 animar-entrada">
+                <div class="mapa-wrapper">
+                    <div id="mapa-interactivo" class="mapa-placeholder">
+                        <!-- Aquí se renderiza el mapa interactivo -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -228,6 +380,31 @@
             });
 
         });
+
+
+        const elementos = document.querySelectorAll(".animar-entrada");
+
+        const opciones = {
+            root: null, // Usa el viewport del navegador
+            rootMargin: "0px",
+            threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+        };
+
+        const observador = new IntersectionObserver((entradas, observador) => {
+            entradas.forEach((entrada, indice) => {
+                if (entrada.isIntersecting) {
+                    // Añadimos un pequeño retraso secuencial (efecto cascada) si aparecen varios a la vez
+                    setTimeout(() => {
+                        entrada.target.classList.add("visible");
+                    }, indice * 80);
+
+                    // Dejamos de observar el elemento una vez animado
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, opciones);
+
+        elementos.forEach(elemento => observador.observe(elemento));
 
     });
 </script>

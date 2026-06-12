@@ -1,0 +1,79 @@
+﻿.mapa-reconocimientos-section {
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Envoltura estética para el mapa */
+.mapa-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 12px;
+    height: 100%;
+    min-height: 450px;
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.05);
+}
+
+.mapa-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 426px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Ítems interactivos de la lista lateral */
+.punto-mapa-item {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .punto-mapa-item h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--text-dark);
+    }
+
+    .punto-mapa-item p {
+        font-size: 0.88rem;
+    }
+
+    /* Efectos de estado e interacciones */
+    .punto-mapa-item:hover,
+    .punto-mapa-item.active {
+        border-color: var(--c-biosfera);
+        box-shadow: 0 8px 20px -10px rgba(40, 167, 69, 0.15);
+        transform: translateX(5px);
+    }
+
+    .punto-mapa-item.active {
+        background: #f4fbf7;
+    }
+
+.punto-icon {
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+    .mapa-wrapper {
+        min-height: 350px;
+    }
+
+    .mapa-placeholder {
+        min-height: 326px;
+    }
+}

@@ -247,6 +247,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="estilos\StyleSheetMapa.css" />
+    <Content Include="estilos\StyleSheetReconocimientos.css" />
     <Content Include="images\blog\Ceviche-MiguelVarona.jpg" />
     <Content Include="images\blog\Desamargados-MiguelVarona.jpg" />
     <Content Include="images\blog\EMPANADITAS-DE-PIPIAN-Empanaditas-de-Pipian.jpg" />
