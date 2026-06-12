@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web.UI;
@@ -25,6 +26,7 @@ namespace WebAppPromocionCauca
         private void CargarArticulo()
         {
             string slug = Request.QueryString["slug"];
+            pnlGaleria.Visible = false;
 
             if (string.IsNullOrWhiteSpace(slug))
             {
@@ -46,20 +48,23 @@ namespace WebAppPromocionCauca
             lblCategoria.Text = articulo.categoria;
             lblAutor.Text = articulo.autor;
             lblResumen.Text = articulo.resumen;
-            lblFecha.Text = articulo.fecha.ToString("dd MMMM yyyy");
+            lblFecha.Text = articulo.fecha.ToString(
+                "dd 'de' MMMM 'de' yyyy",
+                new CultureInfo("es-CO")
+            );
 
             litContenido.Text = articulo.contenido;
 
-            heroArticulo.Attributes["style"] =
-                $"background-image:url('{articulo.urlImagen}')";
+            imgPrincipal.ImageUrl = ResolveUrl(articulo.urlImagen);
             imgSecundaria.ImageUrl = ResolveUrl(articulo.urlImagen2);
-            //imgSecundaria.ImageUrl = articulo.urlImagen2;
+
             if (articulo.galeria != null &&
                   articulo.galeria.Count > 0)
             {
                 List<string> galeria = articulo.galeria;
                 rptGaleria.DataSource = galeria;
                 rptGaleria.DataBind();
+                pnlGaleria.Visible = true;
             }
 
             Page.Title =

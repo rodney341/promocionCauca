@@ -93,81 +93,99 @@
                 </div>
                 <div class="col-md-5">
                     <select id="ddlFiltrarCategoria" class="form-select">
-                        <option value="TODAS">📁 Todas las categorías</option>
-                        <option value="Gastronomía">Gastronomía</option>
-                        <option value="Ecoturismo">Ecoturismo</option>
-                        <option value="Cultura">Cultura y Saberes</option>
+
+                        <option value="TODAS">📁 Todas las categorías
+                        </option>
+
+                        <asp:Repeater ID="rptCategorias" runat="server">
+
+                            <ItemTemplate>
+                                <option value='<%# Container.DataItem %>'>
+                                    <%# Container.DataItem %>
+                                </option>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+
                     </select>
                 </div>
             </div>
         </div>
 
-        <!-- Mensaje de no resultados (Manejado por JS) -->
+        <!-- Mensaje de no resultados -->
         <div class="alert alert-light text-center py-4 shadow-sm border border-warning" id="alerta-no-resultados" style="display: none; background-color: #FFFFFF;">
             <p class="mb-0 text-muted fs-5">🍂 No encontramos crónicas que coincidan con los filtros aplicados. Intenta con otra combinación.</p>
         </div>
 
-<!-- GRILLA DE ARTÍCULOS -->
-<div class="row g-4">
+        <!-- GRILLA DE ARTÍCULOS -->
+        <div class="row g-4">
 
-    <asp:Repeater ID="rptBlog" runat="server">
-        <ItemTemplate>
+            <asp:Repeater ID="rptBlog" runat="server">
+                <ItemTemplate>
 
-            <div class="col-lg-4 col-md-6 col-12 articulo-blog"
-                 data-categoria='<%# Eval("categoria") %>'
-                 data-titulo='<%# Eval("titulo") %>'>
+                    <div class="col-lg-4 col-md-6 col-12 articulo-blog"
+                        data-categoria='<%# Eval("categoria") %>'
+                        data-titulo='<%# Eval("titulo") %>'>
 
-                <div class="card h-100 shadow-sm border-0 overflow-hidden blog-card">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden blog-card">
 
-                    <img src='<%# Eval("urlImagen") %>'
-                         alt='<%# Eval("titulo") %>'
-                         class="card-img-top"
-                         style="height:250px; object-fit:cover;" />
+                            <img src='<%# Eval("urlImagen") %>'
+                                alt='<%# Eval("titulo") %>'
+                                class="card-img-top"
+                                style="height: 250px; object-fit: cover;" />
 
-                    <div class="card-body d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
 
-                        <span class="badge bg-success mb-2 align-self-start">
-                            <%# Eval("categoria") %>
-                        </span>
+                                <span class="badge bg-success mb-2 align-self-start">
+                                    <%# Eval("categoria") %>
+                                </span>
 
-                        <h5 class="card-title fw-bold">
-                            <%# Eval("titulo") %>
-                        </h5>
+                                <h5 class="card-title fw-bold">
+                                    <%# Eval("titulo") %>
+                                </h5>
 
-                        <p class="card-text text-muted flex-grow-1">
-                            <%# Eval("resumen") %>
-                        </p>
+                                <p class="card-text text-muted flex-grow-1">
+                                    <%# Eval("resumen") %>
+                                </p>
 
-                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="mt-auto">
 
-                            <small class="text-muted">
-                                <%# Convert.ToDateTime(Eval("fecha")).ToString("dd/MM/yyyy") %>
-                            </small>
+                                    <div class="text-muted small mb-2">
+                                        Por: <%# Eval("autor") %>
+                                    </div>
 
-                            <a href='Articulo.aspx?slug=<%# Eval("slug") %>'
-                               class="btn btn-outline-success btn-sm">
-                                Leer más
-                            </a>
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <small class="text-muted">
+                                            <%# Convert.ToDateTime(Eval("fecha"))
+                                            .ToString("dd 'de' MMMM 'de' yyyy",
+                                            new System.Globalization.CultureInfo("es-CO")) %>
+                                        </small>
+
+                                        <a href='Articulo.aspx?slug=<%# Eval("slug") %>'
+                                            class="btn btn-outline-success btn-sm">Leer más
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </ItemTemplate>
+            </asp:Repeater>
 
-            </div>
-
-        </ItemTemplate>
-    </asp:Repeater>
-
-</div>
+        </div>
 
         <!-- BARRA NUMÉRICA DE PAGINACIÓN -->
         <div class="d-flex justify-content-center mt-5">
             <nav aria-label="Navegación del blog">
-<ul class="pagination shadow-sm" id="control-paginas">
-    <%= HtmlPaginacion %>
-</ul>
+                <ul class="pagination shadow-sm" id="control-paginas">
+                    <%= HtmlPaginacion %>
+                </ul>
             </nav>
         </div>
 

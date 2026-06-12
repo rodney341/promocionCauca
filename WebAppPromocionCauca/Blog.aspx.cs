@@ -56,6 +56,15 @@ namespace WebAppPromocionCauca
 
             rptBlog.DataBind();
 
+            var categorias = blogs
+                .Select(x => x.categoria)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+
+            rptCategorias.DataSource = categorias;
+            rptCategorias.DataBind();
+
             GenerarPaginacion(paginaActual, totalPaginas);
         }
 

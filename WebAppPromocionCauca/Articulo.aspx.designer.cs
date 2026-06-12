@@ -15,15 +15,6 @@ namespace WebAppPromocionCauca
     {
 
         /// <summary>
-        /// heroArticulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl heroArticulo;
-
-        /// <summary>
         /// lblCategoria control.
         /// </summary>
         /// <remarks>
@@ -60,6 +51,15 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.Label lblFecha;
 
         /// <summary>
+        /// imgPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPrincipal;
+
+        /// <summary>
         /// lblResumen control.
         /// </summary>
         /// <remarks>
@@ -85,6 +85,15 @@ namespace WebAppPromocionCauca
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litContenido;
+
+        /// <summary>
+        /// pnlGaleria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlGaleria;
 
         /// <summary>
         /// rptGaleria control.

@@ -40,6 +40,7 @@ namespace WebAppPromocionCauca.Repositories
 
                     categoria =
                         doc.GetValue<string>("categoria"),
+                    fecha=doc.GetValue<DateTime>("fecha"),
 
                     autor =
                         doc.GetValue<string>("autor"),
