@@ -452,6 +452,7 @@
     <Compile Include="Repositories\FirebaseHelper.cs" />
     <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Repositories\SubregionFirestoreRepository.cs" />
+    <Compile Include="Repositories\SubregionLocalRepository.cs" />
     <Compile Include="Repositories\SubregionSheetsRepository.cs" />
     <Compile Include="Subregion.aspx.cs">
       <DependentUpon>Subregion.aspx</DependentUpon>

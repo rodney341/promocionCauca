@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using WebAppPromocionCauca.Interfaces;
 using WebAppPromocionCauca.Models;
 using WebAppPromocionCauca.Repositories;
+using System.IO;
 
 
 namespace WebAppPromocionCauca
@@ -74,12 +75,20 @@ namespace WebAppPromocionCauca
             }
             if (subregion.galeria?.Any() == true)
             {
-                rptGaleria.DataSource = subregion.galeria;
+                var imagenesValidas = subregion.galeria
+                    .Where(img =>
+                        !string.IsNullOrWhiteSpace(img) &&
+                        File.Exists(Server.MapPath(img)))
+                    .ToList();
+
+                rptGaleria.DataSource = imagenesValidas;
                 rptGaleria.DataBind();
+
+                galeriaSection.Visible = imagenesValidas.Any();
             }
             else
             {
-                rptGaleria.Visible = false;
+                galeriaSection.Visible = false;
             }
 
             CargarNavegacion(
@@ -131,8 +140,8 @@ namespace WebAppPromocionCauca
         }
 
         protected void rptGaleria_ItemDataBound(
-    object sender,
-    RepeaterItemEventArgs e)
+                        object sender,
+                        RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item ||
                 e.Item.ItemType == ListItemType.AlternatingItem)

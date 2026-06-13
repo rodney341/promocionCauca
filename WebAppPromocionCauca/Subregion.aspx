@@ -36,7 +36,7 @@
 
 .subregion-container {
     max-width: 1400px;
-    margin: 0 auto;
+    margin-bottom: 80px;
     display: grid;
     grid-template-columns: 80px 1.2fr 0.9fr;
     gap: 40px;
@@ -455,7 +455,7 @@
 
 
 
-<section class="galeria-section">
+<section class="galeria-section" id="galeriaSection" runat="server">
 
     <div class="galeria-header">
         <h3>Galería Fotográfica</h3>
@@ -486,7 +486,6 @@
 
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-
         <div class="swiper-pagination"></div>
 
     </div>

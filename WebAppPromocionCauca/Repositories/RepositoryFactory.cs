@@ -16,8 +16,9 @@ namespace WebAppPromocionCauca.Repositories
                     return new BlogFirestoreRepository();
 
                 case "Sheets":
-                default:
                     return new BlogSheetsRepository();
+                default:
+                    return new BlogFirestoreRepository();
             }
         }
 
@@ -30,8 +31,10 @@ namespace WebAppPromocionCauca.Repositories
                     return new SubregionFirestoreRepository();
 
                 case "Sheets":
-                default:
                     return new SubregionSheetsRepository();
+
+                default:
+                    return new SubregionLocalRepository();
             }
         }
     }

@@ -192,9 +192,6 @@
 
         <!-- Cabecera Animada -->
         <div class="text-center mb-5 animar-entrada">
-            <span class="badge bg-success mb-3 px-3 py-2 text-uppercase tracking-wider">
-                RECONOCIMIENTOS INTERNACIONALES
-            </span>
             <h2 class="titulo-reconocimientos">El Cauca ante el mundo</h2>
             <p class="descripcion-reconocimientos">
                 Organismos internacionales han reconocido el patrimonio
@@ -266,13 +263,10 @@
 </section>
 
 
-<section class="mapa-reconocimientos-section py-5 bg-light">
+<section class="mapa-reconocimientos-section py-5">
     <div class="container">
 
         <div class="text-center mb-5 animar-entrada">
-            <span class="badge bg-success mb-3 px-3 py-2 text-uppercase tracking-wider">
-                Geografía del Patrimonio
-            </span>
             <h2 class="titulo-reconocimientos">El Cauca en el Mapa</h2>
             <p class="descripcion-reconocimientos">
                 Explora los epicentros geográficos y culturales que albergan las máximas distinciones internacionales del departamento.
