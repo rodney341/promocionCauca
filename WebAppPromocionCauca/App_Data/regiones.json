@@ -1,0 +1,60 @@
+{
+  "regiones": {
+    "centro": [
+      "cajibio",
+      "el tambo",
+      "morales",
+      "piendamo tunia",
+      "popayan",
+      "purace",
+      "silvia",
+      "sotara",
+      "timbio"
+    ],
+    "norte": [
+      "buenos aires",
+      "caldono",
+      "caloto",
+      "corinto",
+      "guachene",
+      "jambalo",
+      "miranda",
+      "padilla",
+      "puerto tejada",
+      "santander de quilichao",
+      "suarez",
+      "toribio",
+      "villa rica"
+    ],
+    "sur": [
+      "argelia",
+      "balboa",
+      "bolivar",
+      "florencia",
+      "mercaderes",
+      "patia",
+      "sucre"
+    ],
+    "pacifico": [
+      "guapi",
+      "timbiqui",
+      "lopez"
+    ],
+    "oriente": [
+      "inza",
+      "paez",
+      "totoro"
+    ],
+    "macizo": [
+      "almaguer",
+      "la sierra",
+      "la vega",
+      "rosas",
+      "san sebastian",
+      "santa rosa"
+    ],
+    "amazonico": [
+      "piamonte"
+    ]
+  }
+}

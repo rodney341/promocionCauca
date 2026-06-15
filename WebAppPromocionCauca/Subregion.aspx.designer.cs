@@ -69,6 +69,24 @@ namespace WebAppPromocionCauca
         protected global::System.Web.UI.WebControls.Literal litContenido;
 
         /// <summary>
+        /// pnlUnesco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUnesco;
+
+        /// <summary>
+        /// litUnesco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUnesco;
+
+        /// <summary>
         /// rptDestacados control.
         /// </summary>
         /// <remarks>

@@ -102,18 +102,26 @@
 ====================== */
 
 .unesco-info {
-    background: linear-gradient(135deg,#12344d,#1b557d);
-    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #495057;
+    gap: 12px;
+}
 
-    padding: 18px 25px;
-    border-radius: 15px;
+.unesco-info strong {
+    color: #0d6efd;
+}
 
-    margin: 25px 0;
-
-    font-size: .95rem;
-    line-height: 1.7;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+.unesco-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 /* ======================
@@ -403,6 +411,12 @@
                         ID="litContenido"
                         runat="server" />
                 </p>
+
+
+               <asp:Panel ID="pnlUnesco" runat="server" CssClass="unesco-info" Visible="false">
+                    <span class="unesco-icon">🏛️</span>
+                    <asp:Literal ID="litUnesco" runat="server"></asp:Literal>
+               </asp:Panel>
 
                 <asp:Repeater
                     ID="rptDestacados"

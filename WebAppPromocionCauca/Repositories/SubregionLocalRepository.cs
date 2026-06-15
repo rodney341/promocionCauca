@@ -137,7 +137,7 @@ namespace WebAppPromocionCauca.Repositories
                     imagenSecundaria="images/subregiones/macizo/2.jpg",
 
                     reconocimientoUnesco =
-                        "Semana Santa de Popayán y Ciudad Creativa de la Gastronomía UNESCO.",
+                        "Reservas de la Biosfera y Red Global de Museos del Agua.",
 
                     descripcion =
                         "Reserva hídrica y ecológica del país, reconocida por la Unesco como Reserva de la Biosfera, donde nacen importantes ríos y se desarrollan experiencias de turismo de naturaleza, avistamiento de aves y cultura campesina.",

@@ -63,6 +63,15 @@ namespace WebAppPromocionCauca
 
             imgPrincipal.ImageUrl = ResolveUrl(subregion.imagenPrincipal);
             imgSecundaria.ImageUrl = ResolveUrl(subregion.imagenSecundaria);
+            if (!string.IsNullOrWhiteSpace(subregion.reconocimientoUnesco))
+            {
+                litUnesco.Text = subregion.reconocimientoUnesco;
+                pnlUnesco.Visible = true;
+            }
+            else
+            {
+                pnlUnesco.Visible = false;
+            }
             pnlBadgeUnesco.Visible = !string.IsNullOrWhiteSpace(subregion.reconocimientoUnesco);
             if (subregion.destacados?.Any() == true)
             {

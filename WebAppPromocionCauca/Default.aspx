@@ -306,8 +306,6 @@
         scrollWheelZoom: false 
     }).setView(centroCauca, zoomInicial);
 
-    var etiquetasVecinos = L.layerGroup();
-
     // =======================
     // CONTROL ZOOM (labels)
     // =======================
@@ -429,103 +427,14 @@
             .replace(/>/g, "&gt;");
     }
 
-    // =======================
-    // LEYENDA
-    // =======================
-
-    var legend = L.control({ position: 'bottomleft' });
-
-    legend.onAdd = function () {
-
-        var div = L.DomUtil.create('div', 'info leyenda');
-
-        div.innerHTML = "<h4>Subregiones</h4>";
-
-        Object.entries(nombresRegiones).forEach(([key, nombre]) => {
-
-            div.innerHTML += `
-            <div onclick="zoomToRegion('${key}')" class="leyenda-item-btn">
-             <span class="subregion-color" style="background:${getRegionColor(key)};"></span>
-             <span class="leyenda-texto">${nombre}</span>
-
-            </div>`;
-        });
-
-        return div;
-    };
-
-    legend.addTo(map);
-
-    // ================= AGREGAR LEYENDA DEL PATRIMONIO INTERACTIVA =================
-    const leyenda = L.control({ position: 'bottomright' });
-
-    leyenda.onAdd = function (map) {
-        const div = L.DomUtil.create('div', 'info leyenda');
-
-        // Estructura HTML con coordenadas específicas para cada tipo de patrimonio
-        div.innerHTML = `
-                <h4>Reconocimiento UNESCO 🏛️</h4>
-                <div class="leyenda-item-btn" data-lat="2.5828" data-lng="-76.0414" data-zoom="11">
-                    <span class="leyenda-emoji">🏛️</span>
-                    <span class="leyenda-texto">Patrimonio Mundial Material</span>
-                </div>
-                <div class="leyenda-item-btn" data-lat="2.4448" data-lng="-76.6147" data-zoom="12">
-                    <span class="leyenda-emoji">✨</span>
-                    <span class="leyenda-texto">Patrimonio Inmaterial</span>
-                </div>
-                <div class="leyenda-item-btn" data-lat="2.4448" data-lng="-76.6147" data-zoom="12">
-                    <span class="leyenda-emoji">🍽️</span>
-                    <span class="leyenda-texto">Ciudades Creativas (Gastronomía)</span>
-                </div>
-                <div class="leyenda-item-btn" data-lat="1.9167" data-lng="-76.5833" data-zoom="10">
-                    <span class="leyenda-emoji">🌿</span>
-                    <span class="leyenda-texto">Reservas de la Biosfera</span>
-                </div>
-                <div class="leyenda-item-btn" data-lat="2.1500" data-lng="-77.1000" data-zoom="9">
-                    <span class="leyenda-emoji">🌊</span> / <span class="leyenda-emoji">💧</span>
-                    <span class="leyenda-texto">Cultura y Museos del Agua</span>
-                </div>
-            `;
-
-        // Evitar que el mapa se mueva o haga zoom al interactuar con el contenedor de la leyenda
-        L.DomEvent.disableClickPropagation(div);
-        L.DomEvent.disableScrollPropagation(div);
-
-        // Añadir el evento de clic a cada fila de la leyenda
-        setTimeout(() => {
-            const botonesLeyenda = div.querySelectorAll('.leyenda-item-btn');
-            botonesLeyenda.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const lat = parseFloat(btn.getAttribute('data-lat'));
-                    const lng = parseFloat(btn.getAttribute('data-lng'));
-                    const zoom = parseInt(btn.getAttribute('data-zoom'));
-
-                    if (!isNaN(lat) && !isNaN(lng)) {
-                        // Viajar suavemente a la zona de interés patrimonial
-                        map.flyTo([lat, lng], zoom, {
-                            animate: true,
-                            duration: 1.5
-                        });
-                    }
-                });
-            });
-        }, 100);
-
-        return div;
-    };
-
-    leyenda.addTo(map);
     // ==================================================================
-
-
-
 
     document.getElementById('map-loader').classList.remove('map-loader-hidden');
 
     Promise.all([
-        fetch('/jsonFiles/regiones.json').then(res => res.json()),
-        fetch('/jsonFiles/cauca.json').then(res => res.json()),
-        fetch('/jsonFiles/limites_aledanos.json').then(res => res.json()),
+        fetch('/App_Data/regiones.json').then(res => res.json()),
+        fetch('/App_Data/cauca.json').then(res => res.json()),
+        fetch('/App_Data/limites_aledanos.json').then(res => res.json()),
     ])
         .then(([dataRegiones, dataMapa, dataAledanos]) => {
 
@@ -635,7 +544,7 @@
                 }
             }).addTo(map);
 
-            // 3. CAPA DE DEPARTAMENTOS VECINOS (Sin bordes)
+            // CAPA DE DEPARTAMENTOS VECINOS
             var vecinosLayer = L.geoJSON(dataAledanos, {
                 pane: 'vecinosPane',
                 style: {
@@ -646,7 +555,7 @@
                 },
             }).addTo(map);
 
-            // 4. POLÍGONO DEL OCÉANO PACÍFICO (Izquierda, Sin bordes)
+            // POLÍGONO DEL OCÉANO PACÍFICO
             const coordenadasOceano = [
                 [4.00, -84.00], [4.00, -72.35], [2.61, -77.91], [1.40, -78.80], [1.00, -84.00]
             ];
@@ -658,22 +567,20 @@
                 interactive: false
             }).addTo(map);
 
-            // NUEVO: Letrero flotante del Océano Pacífico alineado al flanco izquierdo
             const textoOceanoIcon = L.divIcon({
                 html: '<div class="mapa-texto-maritimo">OCÉANO PACÍFICO</div>',
                 className: 'custom-ocean-label',
                 iconSize: [200, 30]
             });
 
-            // Coordenada marítima estratégica alejada de la costa para no tapar los municipios
             L.marker([2.50, -79.20], {
                 icon: textoOceanoIcon,
-                pane: 'oceanoPane', // Mantiene las letras debajo de capas superiores interactivos
+                pane: 'oceanoPane', 
                 interactive: false
             }).addTo(map);
             // =================================================
 
-            // 5. POLÍGONO DE LA TIERRA CONTINENTAL (Derecha, Sin bordes)
+            // POLÍGONO DE LA TIERRA CONTINENTAL
             const coordenadasTierraMasa = [
                 [3.80, -76.35], [3.80, -72.00], [0.70, -72.00], [0.70, -78.80], [1.40, -78.80], [2.61, -77.91], [3.80, -76.35]
             ];
@@ -684,6 +591,7 @@
                 fillOpacity: 1,
                 interactive: false
             }).addTo(map);
+
             // CONFIGURACIÓN DE ETIQUETAS CONTINENTALES FRONTERIZAS
             const departamentosVecinos = [
                 { nombre: "HUILA", coor: [2.2, -76.1] },
@@ -694,7 +602,6 @@
                 { nombre: "CAQUETÁ", coor: [1.30, -76.1] }
             ];
 
-            // Crear e inyectar cada etiqueta de manera automática
             departamentosVecinos.forEach(dept => {
                 const labelIcon = L.divIcon({
                     html: `<div class="mapa-texto-continental">${dept.nombre}</div>`,
@@ -704,60 +611,171 @@
 
                 L.marker(dept.coor, {
                     icon: labelIcon,
-                    pane: 'patrimonioPane', // Forzado al fondo por debajo del Cauca
+                    pane: 'patrimonioPane', 
                     interactive: false
                 }).addTo(map);
             });
-            // ================= AGREGAR PUNTOS PATRIMONIO (MARCADORES AL FRENTE) =================
+
+
+            // =======================
+            // LEYENDAS
+            // =======================
+
+            var legend = L.control({ position: 'bottomleft' });
+
+            legend.onAdd = function () {
+
+                var div = L.DomUtil.create('div', 'info leyenda');
+
+                div.innerHTML = "<h4>Subregiones</h4>";
+
+                Object.entries(nombresRegiones).forEach(([key, nombre]) => {
+
+                    div.innerHTML += `
+                        <div onclick="zoomToRegion('${key}')" class="leyenda-item-btn">
+                         <span class="subregion-color" style="background:${getRegionColor(key)};"></span>
+                         <span class="leyenda-texto">${nombre}</span>
+
+                        </div>`;
+                });
+
+                return div;
+            };
+
+            legend.addTo(map);
+
             const puntosPatrimonio = [
                 {
                     nombre: "Popayán",
+                    tituloLeyenda: "Patrimonio Cultural Inmaterial",
                     coor: [2.4448, -76.6147],
-                    emoji: "🍽️",
-                    desc: "Ciudad Creativa de la Gastronomía y sede de las Procesiones de Semana Santa de Popayán."
+                    emoji: "✨",
+                    zoom: 12,
+                    desc: "Sede de las Procesiones de Semana Santa de Popayán, declaradas Patrimonio de la Humanidad."
                 },
                 {
-                    nombre: "Parque Arqueológico de Tierradentro",
+                    nombre: "Popayán",
+                    tituloLeyenda: "Ciudades Creativas (Gastronomía)",
+                    coor: [2.5, -76.69],
+                    emoji: "🍽️",
+                    zoom: 12,
+                    desc: "Primera ciudad de Latinoamérica declarada Ciudad Creativa de la Gastronomía por la UNESCO."
+                },
+                {
+                    nombre: "Parque Arqueológico nacional de Tierradentro",
+                    tituloLeyenda: "Parque Arqueológico nacional de Tierradentro",
                     coor: [2.5828, -76.0414],
                     emoji: "🏛️",
+                    zoom: 11,
                     desc: "Inscrito en la lista de Patrimonio Mundial material de la UNESCO (Inzá)."
                 },
                 {
                     nombre: "Macizo Colombiano",
+                    tituloLeyenda: "Masizo Colombiano Reservas de la Biosfera Mundial",
                     coor: [1.9167, -76.5833],
                     emoji: "🌿",
-                    desc: "Reserva de la Biósfera de la UNESCO y hogar del Museo Vivo del Agua."
+                    zoom: 10,
+                    desc: "Reserva de la Biósfera Mundial."
                 },
                 {
-                    nombre: "Costa Pacífica Caucana (Guapi)",
+                    nombre: "Costa Pacífica",
+                    tituloLeyenda: "Música de marimba, cantos y bailes tradicionales de la región colombiana del Pacífico Sur",
                     coor: [2.5694, -77.8856],
                     emoji: "🌊",
-                    desc: "Epicentro cultural de las Músicas de Marimba y Cantos Tradicionales del Pacífico."
+                    zoom: 10,
+                    desc: "Música de marimba, cantos y bailes tradicionales de la región colombiana del Pacífico Sur e integración al Museo Vivo del Agua."
                 }
             ];
 
-            puntosPatrimonio.forEach(punto => {
-                const customIcon = L.divIcon({
-                    html: `<div style="font-size: 28px; text-shadow: 0 2px 6px rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; cursor: pointer;">${punto.emoji}</div>`,
-                    className: 'custom-marker-icon'
+            const mapaMarcadores = {};
+
+            puntosPatrimonio.forEach((punto, index) => {
+
+                const llaveCoordenada = `${punto.coor[0]},${punto.coor[1]}`;
+
+                if (!mapaMarcadores[llaveCoordenada]) {
+                    const customIcon = L.divIcon({
+                        html: `<div style="font-size: 28px; text-shadow: 0 2px 6px rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; cursor: pointer;">${punto.emoji}</div>`,
+                        className: 'custom-marker-icon'
+                    });
+
+                    const marker = L.marker(punto.coor, {
+                        icon: customIcon,
+                        pane: 'patrimonioPane'
+                    }).addTo(map);
+
+                    let descripcionPopup = `
+                           <div style="font-family: system-ui, sans-serif; padding: 2px; min-width: 200px;">
+                               <h5 style="margin: 0 0 6px 0; font-size: 14px; font-weight: 700; color: #1a1d20;">${punto.nombre}</h5>
+                               <p style="margin: 0; font-size: 12px; color: #5f666d; line-height: 1.4;">${punto.desc}</p>
+                           </div>
+                       `;
+
+                    marker.bindPopup(descripcionPopup);
+                    mapaMarcadores[llaveCoordenada] = marker;
+                } else {
+                    const markerExistente = mapaMarcadores[llaveCoordenada];
+                    const popupContenidoAnterior = markerExistente.getPopup().getContent();
+
+                    markerExistente.setPopupContent(
+                        popupContenidoAnterior + `
+                       <div style="font-family: system-ui, sans-serif; padding: 2px; min-width: 200px; border-top: 1px dashed #dee2e6; margin-top: 8px; padding-top: 8px;">
+                           <p style="margin: 0; font-size: 12px; color: #5f666d; line-height: 1.4;">${punto.desc}</p>
+                       </div>`
+                            );
+                        }
+                mapaMarcadores[`index_${index}`] = mapaMarcadores[llaveCoordenada];
+            });
+
+            const leyenda = L.control({ position: 'bottomright' });
+
+            leyenda.onAdd = function (map) {
+                const div = L.DomUtil.create('div', 'info leyenda');
+
+                let htmlContenido = `<h4>Reconocimientos UNESCO 🏛️</h4>`;
+
+                puntosPatrimonio.forEach((punto, index) => {
+                    htmlContenido += `
+                       <div class="leyenda-item-btn" data-index="index_${index}" data-lat="${punto.coor[0]}" data-lng="${punto.coor[1]}" data-zoom="${punto.zoom}">
+                           <span class="leyenda-emoji">${punto.emoji}</span>
+                           <span class="leyenda-texto">${punto.tituloLeyenda}</span>
+                       </div>
+                   `;
                 });
 
-                // Se fuerza el marcador dentro de 'patrimonioPane' para asegurar que flote arriba
-                const marker = L.marker(punto.coor, {
-                    icon: customIcon,
-                    pane: 'patrimonioPane'
-                }).addTo(map);
+                div.innerHTML = htmlContenido;
+                L.DomEvent.disableClickPropagation(div);
+                L.DomEvent.disableScrollPropagation(div);
 
-                marker.bindPopup(`
-                <div style="font-family: system-ui, sans-serif; padding: 2px; min-width: 200px;">
-                    <h5 style="margin: 0 0 6px 0; font-size: 14px; font-weight: 700; color: #1a1d20;">${punto.nombre}</h5>
-                    <p style="margin: 0; font-size: 12px; color: #5f666d; line-height: 1.4;">${punto.desc}</p>
-                </div>
-            `);
-            });
-            // ===================================================================================
+                setTimeout(() => {
+                    const botonesLeyenda = div.querySelectorAll('.leyenda-item-btn');
+                    botonesLeyenda.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const lat = parseFloat(btn.getAttribute('data-lat'));
+                            const lng = parseFloat(btn.getAttribute('data-lng'));
+                            const zoom = parseInt(btn.getAttribute('data-zoom'));
+                            const indexAsociado = btn.getAttribute('data-index');
 
-            etiquetasVecinos.addTo(map);
+                            if (!isNaN(lat) && !isNaN(lng)) {
+                                map.flyTo([lat, lng], zoom, {
+                                    animate: true,
+                                    duration: 1.5
+                                });
+
+                                map.once('moveend', () => {
+                                    if (mapaMarcadores[indexAsociado]) {
+                                        mapaMarcadores[indexAsociado].openPopup();
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }, 100);
+
+                return div;
+            };
+
+            leyenda.addTo(map);
 
             map.fitBounds(caucaLayer.getBounds());
             var northEast = L.latLng(3.5, -75);
@@ -820,34 +838,26 @@
 
         });
 
-
         const elementos = document.querySelectorAll(".animar-entrada");
 
         const opciones = {
-            root: null, // Usa el viewport del navegador
+            root: null, 
             rootMargin: "0px",
-            threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+            threshold: 0.15 
         };
 
         const observador = new IntersectionObserver((entradas, observador) => {
             entradas.forEach((entrada, indice) => {
                 if (entrada.isIntersecting) {
-                    // Añadimos un pequeño retraso secuencial (efecto cascada) si aparecen varios a la vez
                     setTimeout(() => {
                         entrada.target.classList.add("visible");
                     }, indice * 80);
-
-                    // Dejamos de observar el elemento una vez animado
                     observador.unobserve(entrada.target);
                 }
             });
         }, opciones);
 
         elementos.forEach(elemento => observador.observe(elemento));
-
-
-        /**mapa---------------------------*************** */
-
 
     });
 </script>
