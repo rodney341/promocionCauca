@@ -187,11 +187,11 @@
 </section>
 
 
-<section class="tipos-reconocimiento py-5">
+<section class="tipos-reconocimiento py-5 animar-entrada">
     <div class="container">
 
         <!-- Cabecera Animada -->
-        <div class="text-center mb-5 animar-entrada">
+        <div class="text-center mb-5 ">
             <h2 class="titulo-reconocimientos">El Cauca ante el mundo</h2>
             <p class="descripcion-reconocimientos">
                 Organismos internacionales han reconocido el patrimonio
@@ -201,7 +201,7 @@
 
         <div class="row g-4">
             <!-- Tarjeta 1 -->
-            <div class="col-lg-6 animar-entrada">
+            <div class="col-lg-6 ">
                 <div class="tipo-card border-mundial">
                     <div class="tipo-icono icono-mundial">🏛️</div>
                     <h3>Patrimonio Mundial UNESCO</h3>
@@ -212,7 +212,7 @@
             </div>
 
             <!-- Tarjeta 2 -->
-            <div class="col-lg-6 animar-entrada">
+            <div class="col-lg-6 ">
                 <div class="tipo-card border-inmaterial">
                     <div class="tipo-icono icono-inmaterial">✨</div>
                     <h3>Patrimonio Cultural Inmaterial</h3>
@@ -224,7 +224,7 @@
             </div>
 
             <!-- Tarjeta 3 -->
-            <div class="col-lg-6 animar-entrada">
+            <div class="col-lg-6 ">
                 <div class="tipo-card destacado border-creativa">
                     <div class="tipo-icono icono-creativa">🍽️</div>
                     <h3>Red de Ciudades Creativas UNESCO</h3>
@@ -235,7 +235,7 @@
             </div>
 
             <!-- Tarjeta 4 -->
-            <div class="col-lg-6 animar-entrada">
+            <div class="col-lg-6 ">
                 <div class="tipo-card border-biosfera">
                     <div class="tipo-icono icono-biosfera">🌿</div>
                     <h3>Reservas de la Biosfera UNESCO</h3>
@@ -246,7 +246,7 @@
             </div>
 
             <!-- Tarjeta 5 (Ancho completo) -->
-            <div class="col-lg-12 animar-entrada">
+            <div class="col-lg-12 ">
                 <div class="tipo-card horizontal border-agua">
                     <div class="tipo-icono icono-agua">💧</div>
                     <div class="flex-grow-1">
@@ -263,10 +263,10 @@
 </section>
 
 
-<section class="mapa-reconocimientos-section py-5">
+<section class="mapa-reconocimientos-section py-5 animar-entrada">
     <div class="container">
 
-        <div class="text-center mb-5 animar-entrada">
+        <div class="text-center mb-5 ">
             <h2 class="titulo-reconocimientos">El Cauca en el Mapa</h2>
             <p class="descripcion-reconocimientos">
                 Explora los epicentros geográficos y culturales que albergan las máximas distinciones internacionales del departamento.
@@ -274,7 +274,7 @@
         </div>
 
         <!-- Contenedor del Mapa Interactivo de Ancho Completo -->
-        <div class="mapa-wrapper animar-entrada">
+        <div class="mapa-wrapper ">
             <div id="map">
                 <div id="map-loader" class="map-loader-overlay">
                     <div class="spinner"></div>
@@ -431,12 +431,25 @@
 
     document.getElementById('map-loader').classList.remove('map-loader-hidden');
 
-    Promise.all([
-        fetch('/App_Data/regiones.json').then(res => res.json()),
-        fetch('/App_Data/cauca.json').then(res => res.json()),
-        fetch('/App_Data/limites_aledanos.json').then(res => res.json()),
-    ])
-        .then(([dataRegiones, dataMapa, dataAledanos]) => {
+    fetch('Default.aspx/ObtenerDatosJson', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json'
+        }
+    }).then(res => res.json())
+        .then(data => {
+
+            const datosServidor = JSON.parse(data.d);
+
+            if (datosServidor.error) {
+                console.error("❌ Error reportado por el servidor C#:", datosServidor.error);
+                alert("Error del servidor: " + datosServidor.error);
+                return;
+            }
+            const dataRegiones = datosServidor.regiones;
+            const dataMapa = datosServidor.cauca;
+            const dataAledanos = datosServidor.limites;
 
             // 1. CONFIGURACIÓN DE PANES (Z-INDEX ESTRICTO)
             map.createPane('oceanoPane');

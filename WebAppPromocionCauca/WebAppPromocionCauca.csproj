@@ -327,9 +327,6 @@
     <Content Include="jsonFiles\limites_aledanos.json" />
     <Content Include="jsonFiles\panamericana.json" />
     <Content Include="jsonFiles\regiones.json" />
-    <Content Include="App_Data\cauca.json" />
-    <Content Include="App_Data\limites_aledanos.json" />
-    <Content Include="App_Data\regiones.json" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\promocionCauca - Web Deploy.pubxml" />
