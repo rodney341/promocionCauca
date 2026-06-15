@@ -1,79 +1,301 @@
-﻿.mapa-reconocimientos-section {
+﻿
+.mapa-reconocimientos-section {
     font-family: system-ui, -apple-system, sans-serif;
 }
-
-/* Envoltura estética para el mapa */
 .mapa-wrapper {
-    background: #ffffff;
-    border: 1px solid var(--border-light);
+    background: #dcdcdc;
+    border: 1px solid #e9ecef;
     border-radius: 16px;
     padding: 12px;
-    height: 100%;
-    min-height: 450px;
     box-shadow: 0 10px 30px -15px rgba(0,0,0,0.05);
 }
+#map {
+    height: 500px;
+    width: 100%;
+    background: #dcdcdc;
+}
 
-.mapa-placeholder {
+.leaflet-interactive {
+    transition: fill-opacity 0.4s ease, opacity 0.4s ease, stroke-width 0.4s ease;
+    filter: drop-shadow(0 0 1px rgba(255,255,255,0.5));
+}
+
+/* Labels */
+
+.leaflet-tooltip.label-municipio {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-weight: 500;
+    color: #222;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: calc(8px + var(--dot-size));
+}
+
+/* Punto dinámico */
+.leaflet-tooltip.label-municipio::before {
+    content: '';
+    width: var(--dot-size, 6px);
+    height: var(--dot-size, 6px);
+    background: #ff8c00;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: width 0.2s, height 0.2s;
+}
+
+/* Ocultar labels*/
+.labels-hidden .leaflet-tooltip.label-municipio {
+    display: none !important;
+}
+
+#contenido {
+    margin-top: 15px;
+    padding-right: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    color: #555;
+    line-height: 1.6;
+}
+
+#contenido::-webkit-scrollbar {
+    width: 6px;
+}
+
+#contenido::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#contenido::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+    #contenido::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-color);
+    }
+
+
+/*cargando mapa animacion*/
+
+/* Contenedor que cubre el mapa */
+.map-loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    min-height: 426px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* Ítems interactivos de la lista lateral */
-.punto-mapa-item {
-    background: #ffffff;
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 16px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 2000; /* Por encima de Leaflet */
     display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-    .punto-mapa-item h4 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 4px;
-        color: var(--text-dark);
-    }
-
-    .punto-mapa-item p {
-        font-size: 0.88rem;
-    }
-
-    /* Efectos de estado e interacciones */
-    .punto-mapa-item:hover,
-    .punto-mapa-item.active {
-        border-color: var(--c-biosfera);
-        box-shadow: 0 8px 20px -10px rgba(40, 167, 69, 0.15);
-        transform: translateX(5px);
-    }
-
-    .punto-mapa-item.active {
-        background: #f4fbf7;
-    }
-
-.punto-icon {
-    font-size: 1.5rem;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    border-radius: 10px;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    gap: 15px;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+/* El círculo giratorio */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #d32f2f; /* Rojo Panamericana */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Clase para ocultar suavemente el cargador */
+.map-loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* label municipio*/
+.tooltip-municipio {
+    text-align: center;
+    line-height: 1.2;
+}
+
+.tooltip-municipio strong {
+    font-size: 11px;
+}
+
+.tooltip-municipio small {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* label departamentos*/
+.label-departamento div {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    text-shadow: 1px 1px 2px white, -1px -1px 2px white;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+}
+
+/*leyendas----patrimonio----------------------------------------------*/
+/* --- ESTILOS DE LA LEYENDA DEL MAPA --- */
+.leyenda {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 260px;
+    backdrop-filter: blur(4px); /* Efecto esmerilado moderno */
+}
+
+    .leyenda h4 {
+        margin: 0 0 10px 0;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #1a1d20;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #198754; /* Verde Bootstrap */
+        padding-bottom: 5px;
+    }
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .leyenda-item:not(:last-child) {
+        margin-bottom: 8px;
+    }
+
+.leyenda-emoji {
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.leyenda-texto {
+    font-size: 0.82rem;
+    color: #495057;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+
+/* Modificación para los ítems cliqueables de la leyenda */
+.leyenda-item-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Cambia el cursor a la mano de selección */
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+    /* Efecto visual al pasar el mouse por encima */
+    .leyenda-item-btn:hover {
+        background-color: rgba(25, 135, 84, 0.08); /* Fondo verde muy sutil */
+        transform: translateX(3px); /* Desplazamiento leve hacia la derecha */
+    }
+
+    .leyenda-item-btn active {
+        background-color: rgba(25, 135, 84, 0.15);
+    }
+
+.subregion-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px; /* Pequeño cubo redondeado moderno */
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
     flex-shrink: 0;
 }
 
-@media (max-width: 991px) {
-    .mapa-wrapper {
-        min-height: 350px;
+
+/* --- TEXTO CARTOGRÁFICO PARA EL CONTINENTE --- */
+.mapa-texto-continental {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #adb5bd; /* Gris medio integrado suavemente sobre el fondo #f1f3f5 */
+    letter-spacing: 4px; /* Espaciado de estilo geográfico */
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* Evita distorsiones del contenedor nativo de Leaflet */
+.custom-land-label {
+    background: none !important;
+    border: none !important;
+}
+
+/* --- TEXTO CARTOGRÁFICO PARA EL OCÉANO --- */
+.mapa-texto-maritimo {
+    font-family: 'Georgia', serif, system-ui; /* Tipografía clásica de atlas */
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4a75a0; /* Azul marino apagado integrado al tono del agua */
+    letter-spacing: 6px; /* Espaciado amplio de estilo geográfico */
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5); /* Sutil relieve blanco */
+    transform: rotate(-25deg); /* Inclinación paralela a la línea de la costa caucana */
+    white-space: nowrap;
+    opacity: 0.7; /* Suavizado para que se integre orgánicamente al fondo */
+    text-align: center;
+}
+
+/* Evita distorsiones del contenedor nativo de Leaflet */
+.custom-ocean-label {
+    background: none !important;
+    border: none !important;
+}
+
+
+
+/* Ajuste responsivo para pantallas pequeñas */
+@media (max-width: 767px) {
+    .leyenda {
+        padding: 10px;
+        max-width: 142px;
     }
 
-    .mapa-placeholder {
-        min-height: 326px;
+        .leyenda h4 {
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+
+    .leyenda-texto {
+        font-size: 0.75rem;
     }
+
+    .mapa-texto-continental {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+    .mapa-texto-maritimo {
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+    }
+
 }
