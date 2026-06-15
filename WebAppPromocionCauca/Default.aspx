@@ -790,11 +790,12 @@
 
             leyenda.addTo(map);
 
-            map.fitBounds(caucaLayer.getBounds());
-            var northEast = L.latLng(3.5, -75);
-            var southWest = L.latLng(0.6, -79);
-            var bounds = L.latLngBounds(southWest, northEast);
-            map.setMaxBounds(bounds);
+            const caucaBounds = L.latLngBounds(
+                [0.7, -80.0], // SW
+                [3.8, -74.0]); // NE
+            console.log("bonund:", caucaBounds);
+
+            map.setMaxBounds(caucaBounds);
 
             document.getElementById('map-loader').classList.add('map-loader-hidden');
         })
