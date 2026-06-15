@@ -187,7 +187,7 @@
 </section>
 
 
-<section class="tipos-reconocimiento py-5 animar-entrada">
+<section id="reconocimientos" class="tipos-reconocimiento py-5 animar-entrada">
     <div class="container">
 
         <!-- Cabecera Animada -->
@@ -263,15 +263,8 @@
 </section>
 
 
-<section class="mapa-reconocimientos-section py-5 animar-entrada">
+<section id="mapaDesktop" class="mapa-reconocimientos-section animar-entrada">
     <div class="container">
-
-        <div class="text-center mb-5 ">
-            <h2 class="titulo-reconocimientos">El Cauca en el Mapa</h2>
-            <p class="descripcion-reconocimientos">
-                Explora los epicentros geográficos y culturales que albergan las máximas distinciones internacionales del departamento.
-            </p>
-        </div>
 
         <!-- Contenedor del Mapa Interactivo de Ancho Completo -->
         <div class="mapa-wrapper ">
@@ -285,11 +278,21 @@
 
     </div>
 </section>
+    <div id="mensajeMovil" style="display:none;">
+    <p>🗺️ El mapa interactivo está disponible en tabletas y computadores para una mejor experiencia.</p>
+</div>
 
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
+    const esMovil =
+        window.innerWidth <= 768 ||
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (esMovil) {
+        document.getElementById("mapaDesktop").style.display = "none";
+        document.getElementById("mensajeMovil").style.display = "block";
+    } else {
     const centroCauca = [2.35, -76.80];
     const zoomInicial = 8;
     const map = L.map('map', {
@@ -525,15 +528,6 @@
                                     weight: 2,
                                     color: "#222"
                                 });
-                            });
-
-                            const colorOriginal = getColor(layerHover.feature.properties.MpNombre);
-                            layerHover.setStyle({
-                                fillColor: aclararColor(colorOriginal, 50),
-                                fillOpacity: 1,
-                                opacity: 1,
-                                weight: 3,
-                                color: "#111"
                             });
 
                             layerHover.bringToFront();
@@ -806,7 +800,7 @@
          `;
         });
 
-
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
 

@@ -15,9 +15,9 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
     /* PALETA DE COLORES DEL CAUCA */
     :root {
@@ -120,45 +120,74 @@
         </div>
 
         <!-- 🏔️ PIE DE PÁGINA EXPANDIDO CON LA IDENTIDAD DEL CAUCA -->
-        <footer style="background-color: var(--verde-paramo); color: #FFFFFF; padding: 3rem 0; margin-top: 4rem;">
-            <div class="container">
-                <div class="row g-4 text-center text-md-start">
-                    <!-- Columna 1: Branding -->
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-uppercase" style="letter-spacing: 1px;">Vive Cauca</h5>
-                        <p class="small text-white-50 mt-2" style="max-width: 400px;">
-                            Portal oficial de promoción turística. Descubre la Ciudad Blanca, la majestuosidad del Macizo Colombiano y los saberes ancestrales de nuestro territorio.
-                        </p>
-                    </div>
-                    <!-- Columna 2: Enlaces Rápidos -->
-                    <div class="col-md-3">
-                        <h6 class="fw-bold text-uppercase text-white-50">Explorar</h6>
-                        <ul class="list-unstyled mt-2 lh-lg">
-                            <li><a href="/Default.aspx" class="text-white text-decoration-none small opacity-75">Inicio</a></li>
-                            <li><a href="/Rutas.aspx" class="text-white text-decoration-none small opacity-75">Rutas Oficiales</a></li>
-                            <li><a href="/Default.aspx#destinos" class="text-white text-decoration-none small opacity-75">Destinos Imperdibles</a></li>
-                        </ul>
-                    </div>
-                    <!-- Columna 3: Información Legal o Soporte -->
-                    <div class="col-md-3">
-                        <h6 class="fw-bold text-uppercase text-white-50">Contacto</h6>
-                        <p class="small text-white-50 mt-2 mb-0">Popayán, Cauca - Colombia</p>
-                        <p class="small text-white-50">Gobernación del Cauca</p>
-                    </div>
-                </div>
-                
-                <hr style="border-color: rgba(255,255,255,0.15); margin: 2rem 0;" />
-                
-                <!-- Créditos de cierre -->
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <p class="mb-0 small text-white-50">
-                            &copy; <%: DateTime.Now.Year %> - Portal Turístico del Departamento del Cauca. Todos los derechos reservados.
-                        </p>
-                    </div>
+<footer style="background-color: var(--verde-paramo); color: #FFFFFF; padding: 3rem 0; margin-top: 4rem;">
+    <div class="container">
+        <div class="row g-4 text-center text-md-start">
+            <!-- Columna 1: Branding -->
+            <div class="col-md-6">
+                <h5 class="fw-bold text-uppercase" style="letter-spacing: 1px;">Vive Cauca</h5>
+                <p class="small text-white-50 mt-2" style="max-width: 400px;">
+                    Portal oficial de promoción turística. Descubre la Ciudad Blanca, la majestuosidad del Macizo Colombiano y los saberes ancestrales de nuestro territorio.
+                </p>
+            </div>
+            <!-- Columna 2: Enlaces Rápidos -->
+            <div class="col-md-3">
+                <h6 class="fw-bold text-uppercase text-white-50">Explorar</h6>
+                <ul class="list-unstyled mt-2 lh-lg">
+                    <li><a href="/Default.aspx" class="text-white text-decoration-none small opacity-75">Inicio</a></li>
+                    <li><a href="/Rutas.aspx" class="text-white text-decoration-none small opacity-75">Rutas Oficiales</a></li>
+                    <li><a href="/Default.aspx#subregiones" class="text-white text-decoration-none small opacity-75">Subregiones</a></li>
+                    <li><a href="/Default.aspx#reconocimientos" class="text-white text-decoration-none small opacity-75">Reconocimientos</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Información Legal o Soporte -->
+            <div class="col-md-3">
+                <h6 class="fw-bold text-uppercase text-white-50">Conéctate</h6>
+                <p class="small mb-2">
+                    <a href="https://cauca.gov.co/" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none opacity-75 d-block" title="Sitio web oficial de la Gobernación del Cauca">
+                        <i class="bi bi-globe me-2"></i>Gobernación del Cauca
+                    </a>
+                </p>
+                <p class="small text-white-50 mb-1">
+                    <i class="bi bi-geo-alt me-2"></i>Popayán, Cauca - Colombia
+                </p>
+                <p class="small mb-1">
+                    <a href="tel:018000919748" class="text-white text-decoration-none opacity-75 d-block" title="Llamar a la Línea de Atención al Ciudadano">
+                        <i class="bi bi-telephone me-2"></i>01 8000 919748
+                    </a>
+                </p>
+                <p class="small mb-3">
+                    <a href="mailto:contactenos@cauca.gov.co" class="text-white text-decoration-none opacity-75 d-block" title="Enviar correo electrónico institucional">
+                        <i class="bi bi-envelope me-2"></i>contactenos@cauca.gov.co
+                    </a>
+                </p>
+
+                <!-- Redes Sociales Oficiales -->
+                <div class="d-flex justify-content-center justify-content-md-start gap-3 text-white-50 fs-5">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Facebook Gobernación del Cauca">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Instagram Gobernación del Cauca">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="X (Twitter) Gobernación del Cauca">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
                 </div>
             </div>
-        </footer>
+
+        </div>
+        <!-- Derechos de Autor -->
+        <hr class="mt-4 border-secondary opacity-25">
+        <div class="row">
+            <div class="col text-center text-white-50">
+                <p class="small mb-0">&copy; 2026 Vive Cauca. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
     </form>
     <asp:PlaceHolder runat="server">
