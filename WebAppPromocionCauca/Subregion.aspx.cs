@@ -31,14 +31,11 @@ namespace WebAppPromocionCauca
                 return;
             }
 
-            ISubregionRepository repo =
-                RepositoryFactory.CrearSubregionRepository();
+            ISubregionRepository repo = new SubregionLocalRepository();
 
-            List<SubregionModel> subregiones =
-                repo.ObtenerSubregiones();
+            List<SubregionModel> subregiones = repo.ObtenerSubregiones();
 
-            SubregionModel subregion =
-                subregiones.FirstOrDefault(x => x.slug == slug);
+            SubregionModel subregion = subregiones.FirstOrDefault(x => x.slug == slug);
 
             if (subregion == null)
             {

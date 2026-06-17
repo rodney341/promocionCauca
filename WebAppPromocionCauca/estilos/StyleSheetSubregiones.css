@@ -8,41 +8,40 @@
     transition: transform .3s ease, box-shadow .3s ease;
 }
 
-    .subregion-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0,0,0,.15);
-    }
+.subregion-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
 
-    .subregion-card img {
-        height: 240px;
-        object-fit: cover;
-        cursor: pointer;
-    }
+.subregion-card img {
+    height: 240px;
+    object-fit: cover;
+    cursor: pointer;
+}
 
-    .subregion-card .card-title {
-        font-weight: 700;
-    }
+.subregion-card .card-title {
+    font-weight: 700;
+}
 
-    .subregion-card .card-text {
-        color: #666;
-        min-height: 80px;
-    }
-    .subregion-card .card-body {
-        display: flex;
-        flex-direction: column;
-    }
+.subregion-card .card-text {
+    color: #666;
+    min-height: 80px;
+}
+.subregion-card .card-body {
+    display: flex;
+    flex-direction: column;
+}
 
-    .subregion-card .btn {
-        margin-top: auto;
-    }
+.subregion-card .btn {
+    margin-top: auto;
+}
 
-    .subregion-card a {
-        text-decoration: none;
-    }
+.subregion-card a {
+    text-decoration: none;
+}
 #subregiones {
     scroll-margin-top: 100px;
 }
-
 
 .titulo-subregion {
     color: var(--verde-paramo);
@@ -51,10 +50,10 @@
     cursor: pointer;
 }
 
-    .titulo-subregion:hover {
-        color: var(--terracota);
-        letter-spacing: .5px;
-    }
+.titulo-subregion:hover {
+    color: var(--terracota);
+    letter-spacing: .5px;
+}
 
 .card-img-top {
     transition: transform .4s ease;

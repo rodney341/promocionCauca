@@ -2,12 +2,12 @@
     --text-dark: #1a1d20;
     --text-muted: #5f666d;
     --border-light: #e9ecef;
-    /* Colores Temáticos por Categoría */
-    --c-mundial: #b08200; /* Dorado */
-    --c-inmaterial: #e05624; /* Terracota */
-    --c-creativa: #17a2b8; /* Cyan */
-    --c-biosfera: #28a745; /* Verde */
-    --c-agua: #007bff; /* Azul */
+
+    --c-mundial: #b08200;
+    --c-inmaterial: #e05624; 
+    --c-creativa: #17a2b8;
+    --c-biosfera: #28a745; 
+    --c-agua: #007bff; 
 }
 
 .tipos-reconocimiento {
@@ -36,29 +36,29 @@
     border-top: 4px solid var(--border-light);
     border-radius: 12px;
     padding: 30px;
-    height: 100%; /* Mantiene tarjetas alineadas en la misma fila */
+    height: 100%; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
-    .tipo-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08);
-    }
+.tipo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08);
+}
 
-    /* Tarjeta de Gastronomía Destacada */
-    .tipo-card.destacado {
-        background: #fffdf9;
-    }
 
-    /* Tarjeta Horizontal (Fila Inferior) */
-    .tipo-card.horizontal {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-    }
+.tipo-card.destacado {
+    background: #fffdf9;
+}
 
-/* Contenedor del Icono/Emoji */
+
+.tipo-card.horizontal {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
 .tipo-icono {
     font-size: 2.2rem;
     width: 60px;
@@ -70,13 +70,13 @@
     margin-bottom: 20px;
 }
 
-/* Ajuste del icono para la tarjeta horizontal */
+
 .tipo-card.horizontal .tipo-icono {
     margin-bottom: 0;
     flex-shrink: 0;
 }
 
-/* Fondos de Iconos muy sutiles */
+
 .icono-mundial {
     background-color: rgba(176, 130, 0, 0.08);
 }
@@ -97,7 +97,6 @@
     background-color: rgba(0, 123, 255, 0.08);
 }
 
-/* Asignación de Bordes Superiores */
 .border-mundial {
     border-top-color: var(--c-mundial);
 }
@@ -118,7 +117,7 @@
     border-top-color: var(--c-agua);
 }
 
-/* Estilos de Textos Interiores */
+
 .tipo-card h3 {
     font-size: 1.3rem;
     font-weight: 700;
@@ -126,35 +125,35 @@
     margin-bottom: 15px;
 }
 
-/* Estilos de las Listas de Elementos */
+
 .tipo-card ul {
     list-style: none;
     padding-left: 0;
     margin-bottom: 0;
 }
 
-    .tipo-card ul li {
-        font-size: 0.95rem;
-        color: #495057;
-        position: relative;
-        padding-left: 20px;
-        line-height: 1.6;
-    }
+.tipo-card ul li {
+    font-size: 0.95rem;
+    color: #495057;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.6;
+}
 
-        .tipo-card ul li:not(:last-child) {
-            margin-bottom: 10px;
-        }
+.tipo-card ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
 
-        /* Viñeta personalizada con un guion estético */
-        .tipo-card ul li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
-            font-weight: bold;
-        }
 
-/* --- Adaptabilidad Móvil --- */
+.tipo-card ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+
 @media (max-width: 767px) {
     .tipo-card.horizontal {
         flex-direction: column;
@@ -173,7 +172,7 @@
 
 /* --- SISTEMA DE ANIMACIÓN AL HACER SCROLL --- */
 
-/* Estado inicial: oculto y desplazado 30px hacia abajo */
+
 .animar-entrada {
     opacity: 0;
     transform: translateY(30px);
@@ -181,13 +180,13 @@
     will-change: transform, opacity;
 }
 
-    /* Estado activo: se revela en su posición original */
-    .animar-entrada.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
 
-/* Efecto Hover extra para los iconos de las tarjetas (Micro-interacción) */
+.animar-entrada.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 .tipo-card:hover .tipo-icono {
     animation: flotarIcono 0.6s ease-in-out infinite alternate;
 }

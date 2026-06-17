@@ -31,7 +31,7 @@ namespace WebAppPromocionCauca
 
         private void CargarSubregiones()
         {
-            ISubregionRepository repo = RepositoryFactory.CrearSubregionRepository();
+            ISubregionRepository repo = new SubregionLocalRepository();
             rptSubregiones.DataSource = repo.ObtenerSubregiones();
             rptSubregiones.DataBind();
         }

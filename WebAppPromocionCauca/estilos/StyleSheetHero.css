@@ -13,17 +13,17 @@
     margin-top: 0 !important;
 }
 
-    .hero-slider::after {
-        content: "";
-        position: absolute;
-        left: -5%;
-        bottom: -35px;
-        width: 110%;
-        height: 90px;
-        background: #F5F5F5;
-        border-radius: 50% 50% 0 0;
-        z-index: 4;
-    }
+.hero-slider::after {
+    content: "";
+    position: absolute;
+    left: -5%;
+    bottom: -35px;
+    width: 110%;
+    height: 90px;
+    background: #F5F5F5;
+    border-radius: 50% 50% 0 0;
+    z-index: 4;
+}
 
 /* =========================
    SLIDES
@@ -44,10 +44,10 @@
     color: white;
 }
 
-    .slide.active {
-        opacity: 1;
-        z-index: 1;
-    }
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
 
 /* =========================
    CONTENIDO HERO
@@ -69,21 +69,21 @@
     z-index: 2;
 }
 
-    .hero-content h1 {
-        max-width: 700px;
-        font-size: clamp(2.5rem, 6vw, 5rem);
-        font-weight: 800;
-        margin-bottom: 20px;
-        text-shadow: 0 3px 12px rgba(0,0,0,.4);
-        margin-top: 0;
-    }
+.hero-content h1 {
+    max-width: 700px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 3px 12px rgba(0,0,0,.4);
+    margin-top: 0;
+}
 
-    .hero-content p {
-        max-width: 600px;
-        font-size: clamp(1rem, 2vw, 1.5rem);
-        line-height: 1.7;
-        text-shadow: 0 2px 8px rgba(0,0,0,.4);
-    }
+.hero-content p {
+    max-width: 600px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.7;
+    text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
 
 /* =========================
    ESTADÍSTICAS
@@ -110,25 +110,25 @@
     text-align: center;
 }
 
-    .stat:not(:last-child) {
-        border-right: 1px solid rgba(255,255,255,.2);
-    }
+.stat:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,.2);
+}
 
-    .stat h2 {
-        margin: 0;
-        font-size: 2rem;
-        font-weight: 700;
-        color: #fff;
-    }
+.stat h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
 
-    .stat span {
-        display: block;
-        margin-top: 5px;
-        font-size: .95rem;
-        color: rgba(255,255,255,.9);
-        text-transform: uppercase;
-        letter-spacing: .5px;
-    }
+.stat span {
+    display: block;
+    margin-top: 5px;
+    font-size: .95rem;
+    color: rgba(255,255,255,.9);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
 
 /* =========================
    INDICADORES
@@ -155,17 +155,17 @@
     transition: .3s;
 }
 
-    .dot:hover {
-        background: rgba(255,255,255,.8);
-        transform: scale(1.1);
-    }
+.dot:hover {
+    background: rgba(255,255,255,.8);
+    transform: scale(1.1);
+}
 
-    .dot.active {
-        background: var(--terracota);
-        border-color: var(--terracota);
-        transform: scale(1.2);
-        box-shadow: 0 0 12px rgba(201,107,59,.5);
-    }
+.dot.active {
+    background: var(--terracota);
+    border-color: var(--terracota);
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(201,107,59,.5);
+}
 
 /* =========================
    EFECTOS

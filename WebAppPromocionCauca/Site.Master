@@ -35,25 +35,23 @@
     width:100%;
     overflow-x:hidden;
     }
-.body-content{
-    width:100%;
-    min-height:60vh;
-    margin:0 !important;
-    padding-top:45px;
-}
-.navbar{
-    min-height:70px;
-    padding:0.8rem 0;
-    background:rgba(20,40,30,.95)!important;
-    backdrop-filter:blur(8px);
-    z-index:9999;
-}
-
+    .body-content{
+        width:100%;
+        min-height:60vh;
+        margin:0 !important;
+        padding-top:45px;
+    }
+    .navbar{
+        min-height:70px;
+        padding:0.8rem 0;
+        background:rgba(20,40,30,.95)!important;
+        backdrop-filter:blur(8px);
+        z-index:9999;
+    }
 
     html {
     scroll-behavior: smooth;
     }
-
 
     /* Personalización de botones con la identidad visual */
     .btn-cauca-principal {
@@ -107,7 +105,6 @@
                         <li class="nav-item"><a class="nav-link" href="/Default.aspx">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Default.aspx#subregiones">Subregiones</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Rutas.aspx">Rutas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Blog.aspx">Blog</a></li>
                     </ul>
 
                 </div>
@@ -165,13 +162,13 @@
 
                 <!-- Redes Sociales Oficiales -->
                 <div class="d-flex justify-content-center justify-content-md-start gap-3 text-white-50 fs-5">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Facebook Gobernación del Cauca">
+                    <a href="https://www.facebook.com/share/1cRDX19A6C/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Facebook Gobernación del Cauca">
                         <i class="bi bi-facebook"></i>
                     </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Instagram Gobernación del Cauca">
+                    <a href="https://www.instagram.com/secdesarrollocauca?igsh=MXZ0eThvNXZvbXYzcQ==" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="Instagram Gobernación del Cauca">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="X (Twitter) Gobernación del Cauca">
+                    <a href="https://x.com/SDEC_CAUCA" target="_blank" rel="noopener noreferrer" class="text-white opacity-75" title="X (Twitter) Gobernación del Cauca">
                         <i class="bi bi-twitter-x"></i>
                     </a>
                 </div>
