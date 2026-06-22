@@ -315,6 +315,7 @@
     <Content Include="images\rutas\guardianes_de_puracé_AR.webp" />
     <Content Include="images\rutas\Patrimonio-MiguelVarona.webp" />
     <Content Include="images\rutas\tierradentro-FotoMiguelVarona-3.webp" />
+    <Content Include="jsonFiles\gorgona.json" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\promocionCauca - Web Deploy.pubxml" />
