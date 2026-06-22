@@ -38,7 +38,7 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/Macizo-AdrianaCollazos.jpg')">
+         url('/images/Macizo-AdrianaCollazos.webp')">
 
             <div class="hero-content">
 
@@ -57,7 +57,7 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/EL_ORIGEN_PERVIVENCIA_NASA.jpg')">
+         url('/images/EL_ORIGEN_PERVIVENCIA_NASA.webp')">
 
             <div class="hero-content">
 
@@ -76,7 +76,7 @@
          135deg,
          rgba(0,0,0,0.55),
          rgba(16,74,44,0.45)),
-         url('/images/Colibri-AdrianaCollazos.jpg')">
+         url('/images/Colibri-AdrianaCollazos.webp')">
 
             <div class="hero-content">
 
@@ -453,6 +453,7 @@
             const dataRegiones = datosServidor.regiones;
             const dataMapa = datosServidor.cauca;
             const dataAledanos = datosServidor.limites;
+            const islaGorgona = datosServidor.islaGorgona;
 
             // 1. CONFIGURACIÓN DE PANES (Z-INDEX ESTRICTO)
             map.createPane('oceanoPane');
@@ -550,6 +551,32 @@
                     });
                 }
             }).addTo(map);
+
+            const capaGorgona = L.geoJSON(islaGorgona, {
+                style: {
+                    color: '#ffffff',
+                    weight: 2,
+                    fillColor: '#2ecc71',
+                    fillOpacity: 0.8
+                }
+            }).addTo(map);
+
+            const centroGorgona = capaGorgona.getBounds().getCenter();
+
+            L.marker(centroGorgona, {
+                opacity: 0
+            })
+                .bindTooltip(
+                    `<div class="tooltip-municipio">
+                        <strong>🏝️ Isla Gorgona</strong>
+                        </div>`,
+                    {
+                        permanent: true,
+                        direction: "center",
+                        className: "label-municipio"
+                    }
+                )
+                .addTo(map);
 
             // CAPA DE DEPARTAMENTOS VECINOS
             var vecinosLayer = L.geoJSON(dataAledanos, {
@@ -655,7 +682,7 @@
                 {
                     nombre: "Popayán",
                     tituloLeyenda: "Patrimonio Cultural Inmaterial",
-                    coor: [2.4448, -76.6147],
+                    coor: [2.51, -76.6147],
                     emoji: "✨",
                     zoom: 12,
                     desc: "Sede de las Procesiones de Semana Santa de Popayán, declaradas Patrimonio de la Humanidad."
@@ -663,10 +690,18 @@
                 {
                     nombre: "Popayán",
                     tituloLeyenda: "Ciudades Creativas (Gastronomía)",
-                    coor: [2.5, -76.69],
+                    coor: [2.54, -76.69],
                     emoji: "🍽️",
                     zoom: 12,
                     desc: "Primera ciudad de Latinoamérica declarada Ciudad Creativa de la Gastronomía por la UNESCO."
+                },
+                {
+                    nombre: "Isla Gorgona",
+                    tituloLeyenda: "Isla Gorgona, Patrimonio de la Humanidad",
+                    coor: [2.97, -78.18],
+                    emoji: "🏝️",
+                    zoom: 12,
+                    desc: "Isla Gorgona, Patrimonio de la Humanidad."
                 },
                 {
                     nombre: "Parque Arqueológico nacional de Tierradentro",

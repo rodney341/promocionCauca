@@ -15,7 +15,7 @@ namespace WebAppPromocionCauca
         {
             var ogImage = new System.Web.UI.HtmlControls.HtmlMeta();
             ogImage.Attributes.Add("property", "og:image");
-            ogImage.Content = "/images/Colibri-AdrianaCollazos.jpg";
+            ogImage.Content = "/images/Colibri-AdrianaCollazos.webp";
             Page.Header.Controls.Add(ogImage);
 
             if (!IsPostBack)
@@ -46,6 +46,9 @@ namespace WebAppPromocionCauca
                 string rutaRegiones = HttpContext.Current.Server.MapPath("~/jsonFiles/regiones.json");
                 string rutaCauca = HttpContext.Current.Server.MapPath("~/jsonFiles/cauca.json");
                 string rutaLimites = HttpContext.Current.Server.MapPath("~/jsonFiles/limites_aledanos.json");
+                string islaGorgona = HttpContext.Current.Server.MapPath("~/jsonFiles/gorgona.json");
+
+
 
                 if (!File.Exists(rutaRegiones))
                     return $"{{\"error\": \"No se encontró el archivo regiones.json en la ruta: {rutaRegiones.Replace("\\", "\\\\")}\"}}";
@@ -59,8 +62,9 @@ namespace WebAppPromocionCauca
                 string regiones = File.ReadAllText(rutaRegiones);
                 string cauca = File.ReadAllText(rutaCauca);
                 string limites = File.ReadAllText(rutaLimites);
+                string gorgona = File.ReadAllText(islaGorgona);
 
-                return $"{{\"regiones\": {regiones}, \"cauca\": {cauca}, \"limites\": {limites}}}";
+                return $"{{\"regiones\": {regiones}, \"cauca\": {cauca}, \"limites\": {limites}, \"islaGorgona\": {gorgona}}}";
             }
             catch (Exception ex)
             {

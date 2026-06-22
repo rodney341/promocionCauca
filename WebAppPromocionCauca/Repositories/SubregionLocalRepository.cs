@@ -22,8 +22,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#64C7D0",
                     orden=1,
 
-                    imagenPrincipal ="images/subregiones/pacifico/1.jpg",
-                    imagenSecundaria="images/subregiones/pacifico/2.jpg",
+                    imagenPrincipal ="images/subregiones/pacifico/1.webp",
+                    imagenSecundaria="images/subregiones/pacifico/2.webp",
 
                     reconocimientoUnesco =
                         "Músicas de Marimba y Cantos Tradicionales del Pacífico Sur Colombiano.",
@@ -44,10 +44,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/pacifico/3.jpg",
-                        "images/subregiones/pacifico/4.jpg",
-                        "images/subregiones/pacifico/5.jpg",
-                        "images/subregiones/pacifico/6.jpg"
+                        "images/subregiones/pacifico/3.webp",
+                        "images/subregiones/pacifico/4.webp",
+                        "images/subregiones/pacifico/5.webp",
+                        "images/subregiones/pacifico/6.webp"
                     }
                 },
 
@@ -60,8 +60,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#0D6EFD",
                     orden=2,
 
-                    imagenPrincipal ="images/subregiones/centro/1.jpg",
-                    imagenSecundaria="images/subregiones/centro/2.jpg",
+                    imagenPrincipal ="images/subregiones/centro/1.webp",
+                    imagenSecundaria="images/subregiones/centro/2.webp",
 
                     reconocimientoUnesco =
                         "Semana Santa de Popayán y Ciudad Creativa de la Gastronomía UNESCO.",
@@ -82,10 +82,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/centro/3.jpg",
-                        "images/subregiones/centro/4.jpg",
-                        "images/subregiones/centro/5.jpg",
-                        "images/subregiones/centro/6.jpg"
+                        "images/subregiones/centro/3.webp",
+                        "images/subregiones/centro/4.webp",
+                        "images/subregiones/centro/5.webp",
+                        "images/subregiones/centro/6.webp"
                     }
                 },
 
@@ -98,8 +98,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#488000",
                     orden=3,
 
-                    imagenPrincipal ="images/subregiones/amazonico/1.jpg",
-                    imagenSecundaria="images/subregiones/amazonico/2.jpg",
+                    imagenPrincipal ="images/subregiones/amazonico/1.webp",
+                    imagenSecundaria="images/subregiones/amazonico/2.webp",
 
                     reconocimientoUnesco =
                         "",
@@ -117,10 +117,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/amazonico/3.jpg",
-                        "images/subregiones/amazonico/4.jpg",
-                        "images/subregiones/amazonico/5.jpg",
-                        "images/subregiones/amazonico/6.jpg"
+                        "images/subregiones/amazonico/3.webp",
+                        "images/subregiones/amazonico/4.webp",
+                        "images/subregiones/amazonico/5.webp",
+                        "images/subregiones/amazonico/6.webp"
                     }
                 },
 
@@ -133,8 +133,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#FF7043",
                     orden=4,
 
-                    imagenPrincipal ="images/subregiones/macizo/1.jpg",
-                    imagenSecundaria="images/subregiones/macizo/2.jpg",
+                    imagenPrincipal ="images/subregiones/macizo/1.webp",
+                    imagenSecundaria="images/subregiones/macizo/2.webp",
 
                     reconocimientoUnesco =
                         "Reservas de la Biosfera y Red Global de Museos del Agua.",
@@ -154,10 +154,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/macizo/3.jpg",
-                        "images/subregiones/macizo/4.jpg",
-                        "images/subregiones/macizo/5.jpg",
-                        "images/subregiones/macizo/6.jpg"
+                        "images/subregiones/macizo/3.webp",
+                        "images/subregiones/macizo/4.webp",
+                        "images/subregiones/macizo/5.webp",
+                        "images/subregiones/macizo/6.webp"
                     }
                 },
 
@@ -171,8 +171,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#9C27B0",
                     orden=5,
 
-                    imagenPrincipal ="images/subregiones/norte/1.jpg",
-                    imagenSecundaria="images/subregiones/norte/2.jpg",
+                    imagenPrincipal ="images/subregiones/norte/1.webp",
+                    imagenSecundaria="images/subregiones/norte/2.webp",
 
                     reconocimientoUnesco =
                         "",
@@ -192,10 +192,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/norte/3.jpg",
-                        "images/subregiones/norte/4.jpg",
-                        "images/subregiones/norte/5.jpg",
-                        "images/subregiones/norte/6.jpg"
+                        "images/subregiones/norte/3.webp",
+                        "images/subregiones/norte/4.webp",
+                        "images/subregiones/norte/5.webp",
+                        "images/subregiones/norte/6.webp"
                     }
                 },
 
@@ -209,8 +209,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#0D6EFD",
                     orden=6,
 
-                    imagenPrincipal ="images/subregiones/oriente/1.jpg",
-                    imagenSecundaria="images/subregiones/oriente/2.jpg",
+                    imagenPrincipal ="images/subregiones/oriente/1.webp",
+                    imagenSecundaria="images/subregiones/oriente/2.webp",
 
                     reconocimientoUnesco ="",
 
@@ -229,10 +229,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/oriente/3.jpg",
-                        "images/subregiones/oriente/4.jpg",
-                        "images/subregiones/oriente/5.jpg",
-                        "images/subregiones/oriente/6.jpg"
+                        "images/subregiones/oriente/3.webp",
+                        "images/subregiones/oriente/4.webp",
+                        "images/subregiones/oriente/5.webp",
+                        "images/subregiones/oriente/6.webp"
                     }
                 },
 
@@ -245,8 +245,8 @@ namespace WebAppPromocionCauca.Repositories
                     colorTema = "#4CAF50",
                     orden=7,
 
-                    imagenPrincipal ="images/subregiones/sur/1.jpg",
-                    imagenSecundaria="images/subregiones/sur/2.jpg",
+                    imagenPrincipal ="images/subregiones/sur/1.webp",
+                    imagenSecundaria="images/subregiones/sur/2.webp",
 
                     reconocimientoUnesco =
                         "",
@@ -267,10 +267,10 @@ namespace WebAppPromocionCauca.Repositories
 
                     galeria = new List<string>
                     {
-                        "images/subregiones/sur/3.jpg",
-                        "images/subregiones/sur/4.jpg",
-                        "images/subregiones/sur/5.jpg",
-                        "images/subregiones/sur/6.jpg"
+                        "images/subregiones/sur/3.webp",
+                        "images/subregiones/sur/4.webp",
+                        "images/subregiones/sur/5.webp",
+                        "images/subregiones/sur/6.webp"
                     }
                 }
             };
