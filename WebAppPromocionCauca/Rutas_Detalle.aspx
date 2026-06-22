@@ -163,12 +163,19 @@
                     const layerColor = colors[index % colors.length];
                     
                     let tramoName = fileNamesList && fileNamesList[index] 
-                        ? fileNamesList[index].replace('.geojson', '').replace('_', ' ') 
+                        ? fileNamesList[index].replace('.json', '').replace('_', ' ') 
                         : `Etapa ${index + 1}`;
 
                     const subLayer = L.geoJSON(geoJsonObject, {
-                        style: () => ({ color: layerColor, weight: 5, opacity: 0.88 }),
-                        pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 7, fillColor: layerColor, color: '#FFF', weight: 2 }),
+                        style: () => ({ color: layerColor, weight: 5, opacity: 0.88, lineCap: 'round', lineJoin: 'round', dashArray: null }),
+                        pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: layerColor,
+                            color: '#FFFFFF',
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }),
                         onEachFeature: (feature, layer) => {
                             if (feature.properties && feature.properties.name) {
                                 layer.bindPopup(`<strong>${feature.properties.name}</strong><br>${feature.properties.description || ''}`);

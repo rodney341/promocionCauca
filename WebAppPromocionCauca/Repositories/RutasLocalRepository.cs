@@ -12,6 +12,51 @@ namespace WebAppPromocionCauca.Repositories
         {
             new RutaModel
             {
+                Id = 4, // Asegúrate de asignar el ID consecutivo que corresponda en tu catálogo
+                Name = "Ruta de la Salud: Ascenso al Cerro de las Tres Cruces",
+                Category = "naturaleza aventura",
+                Duration = "1 Día (Media Jornada)",
+                Distance = "2.8 km",
+                Municipios = "Popayán",
+                ShortDesc = "El principal desafío deportivo y mirador natural de Popayán. Un sendero ecológico que premia el esfuerzo con la mejor panorámica de la Ciudad Blanca y tradiciones locales.",
+                LongDesc = "Inicie el día como lo hacen los payaneses. Este recorrido es el epicentro de la actividad física y el ecoturismo urbano en Popayán; un ascenso exigente que serpentea por un sendero natural hasta la cima del cerro, cruzando estaciones de avistamiento de aves y bosque andino. Al llegar a la cumbre, junto a las tres imponentes estructuras monumentales, disfrutará de una vista de 360 grados sobre el valle de Pubenza y la recompensa gastronómica tradicional de la región.",
+                Image = "images/rutas/tres_cruces_popayan.jpg", // Asegúrate de tener la imagen en tu servidor
+                Atractivos = "Mirador Panorámico de Popayán, Monumento de las Tres Cruces, Avistamiento de avifauna andina, Sector gastronómico de la cima.",
+                Servicios = "Puntos de hidratación autorizados, guianza e interpretación ambiental local, acompañamiento de seguridad en horarios deportivos establecidos.",
+                // Archivos GeoJSON con el trazo suavizado del ascenso
+                GeoJsonFiles = new List<string> { "tres_cruces_ascenso.geojson" },
+                Tags = new List<string> { "Senderismo", "Deporte", "Mirador" },
+                Gallery = new string[] {
+                    "images/galeria/tres_cruces_vista.jpg",
+                    "images/galeria/tres_cruces_cima.jpg"
+                },
+                /*// Operadores turísticos locales que prestan acompañamiento o actividades integradas
+                Operadores = new List<OperadorModel>
+                {
+                    new OperadorModel {
+                        Id = 104,
+                        Nombre = "Pubenza Outdoor & Trekking",
+                        Telefono = "+57 318 555 1234",
+                        Correo = "info@pubenzaoutdoor.com",
+                        SitioWeb = "https://example.com",
+                        RegistroTurismo = "RNT 55102",
+                        CertificadoSostenibilidad = true
+                    },
+                    new OperadorModel {
+                        Id = 105,
+                        Nombre = "Guías de Alta Montaña del Cauca",
+                        Telefono = "+57 301 444 5678",
+                        Correo = "guias@montanacauca.org",
+                        SitioWeb = "https://example.com",
+                        RegistroTurismo = "RNT 31044",
+                        CertificadoSostenibilidad = false
+                    }
+                }*/
+            },
+
+
+            new RutaModel
+            {
                 Id = 1,
                 Name = "Ruta de la \"Ciudad Blanca\" y los Saberes Gastronómicos",
                 Category = "cultura gastronomia",
@@ -23,7 +68,7 @@ namespace WebAppPromocionCauca.Repositories
                 Image = "images/rutas/Patrimonio-MiguelVarona.webp",
                 Atractivos = "Catedral Basílica, Puente del Humilladero, Panteón de los Próceres, El Morro de Tulcán.",
                 Servicios = "Seguro de asistencia médica, guías profesionales bilingües certificados, entradas a museos, menús de degustación de la cocina tradicional indexada por la UNESCO.",
-                GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json" },
+                GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json","tres_cruces/3.json","tres_cruces/4.json" },
                 Tags = new List<string> { "Popayán", "Gastronomía", "Cultura" },
                 Gallery = new string[] { "images/galeria/popayan1.webp", "images/galeria/popayan2.webp" }
             },
