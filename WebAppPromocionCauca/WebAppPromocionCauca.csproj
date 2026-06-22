@@ -316,6 +316,9 @@
     <Content Include="images\rutas\Patrimonio-MiguelVarona.webp" />
     <Content Include="images\rutas\tierradentro-FotoMiguelVarona-3.webp" />
     <Content Include="jsonFiles\gorgona.json" />
+    <Content Include="jsonFiles\tres_cruces\1.json" />
+    <Content Include="jsonFiles\tres_cruces\2.json" />
+    <Content Include="jsonFiles\tres_cruces\3.json" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\promocionCauca - Web Deploy.pubxml" />
@@ -465,7 +468,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="jsonFiles\tres_cruces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
