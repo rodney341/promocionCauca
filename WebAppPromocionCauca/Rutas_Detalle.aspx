@@ -10,7 +10,7 @@
             --beige-suave: #F9F6F0;
         }
         #map-detalle {
-            height: 450px;
+            height: 550px;
             border-radius: 12px;
             z-index: 1;
         }
@@ -145,7 +145,7 @@
             if (!geoJsonDataList || geoJsonDataList.length === 0) return;
 
             // Inicializar mapa enfocado por defecto en el Cauca
-            const map = L.map('map-detalle').setView([2.4419, -76.6063], 9);
+            const map = L.map('map-detalle').setView([2.4419, -76.6063], 15);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
@@ -162,9 +162,13 @@
                     const colors = ['#C85A32', '#1E4620', '#2B579A', '#744210'];
                     const layerColor = colors[index % colors.length];
                     
-                    let tramoName = fileNamesList && fileNamesList[index] 
-                        ? fileNamesList[index].replace('.json', '').replace('_', ' ') 
-                        : `Etapa ${index + 1}`;
+                    let tramoName = `Tramo ${index + 1}`;
+                    if (geoJsonObject.features && geoJsonObject.features[0]?.properties?.name) {
+                        tramoName = geoJsonObject.features[0].properties.name;
+                    } else if (route.geoJsonFiles && route.geoJsonFiles[index]) {
+                        // Alternativa: Usar el nombre del archivo sin la extensión .geojson
+                        tramoName = route.geoJsonFiles[index].replace('.json', '').replace('_', ' ');
+                    }
 
                     const subLayer = L.geoJSON(geoJsonObject, {
                         style: () => ({ color: layerColor, weight: 5, opacity: 0.88, lineCap: 'round', lineJoin: 'round', dashArray: null }),
@@ -195,7 +199,7 @@
 
             // Ajustar el zoom automático para encuadrar los archivos físicos cargados
             if (geoJsonGroup.getLayers().length > 0) {
-                map.fitBounds(geoJsonGroup.getBounds(), { padding: [30, 30] });
+                map.fitBounds(geoJsonGroup.getBounds(), { padding: [70, 70] });
             }
         });
     </script>

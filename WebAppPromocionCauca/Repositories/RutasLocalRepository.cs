@@ -20,15 +20,17 @@ namespace WebAppPromocionCauca.Repositories
                 Municipios = "Popayán",
                 ShortDesc = "El principal desafío deportivo y mirador natural de Popayán. Un sendero ecológico que premia el esfuerzo con la mejor panorámica de la Ciudad Blanca y tradiciones locales.",
                 LongDesc = "Inicie el día como lo hacen los payaneses. Este recorrido es el epicentro de la actividad física y el ecoturismo urbano en Popayán; un ascenso exigente que serpentea por un sendero natural hasta la cima del cerro, cruzando estaciones de avistamiento de aves y bosque andino. Al llegar a la cumbre, junto a las tres imponentes estructuras monumentales, disfrutará de una vista de 360 grados sobre el valle de Pubenza y la recompensa gastronómica tradicional de la región.",
-                Image = "images/rutas/tres_cruces_popayan.jpg", // Asegúrate de tener la imagen en tu servidor
+                Image = "images/rutas/tres_cruces/1.webp", // Asegúrate de tener la imagen en tu servidor
                 Atractivos = "Mirador Panorámico de Popayán, Monumento de las Tres Cruces, Avistamiento de avifauna andina, Sector gastronómico de la cima.",
                 Servicios = "Puntos de hidratación autorizados, guianza e interpretación ambiental local, acompañamiento de seguridad en horarios deportivos establecidos.",
                 // Archivos GeoJSON con el trazo suavizado del ascenso
-                GeoJsonFiles = new List<string> { "tres_cruces_ascenso.geojson" },
+                GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json","tres_cruces/3.json","tres_cruces/4.json" },
                 Tags = new List<string> { "Senderismo", "Deporte", "Mirador" },
                 Gallery = new string[] {
-                    "images/galeria/tres_cruces_vista.jpg",
-                    "images/galeria/tres_cruces_cima.jpg"
+                    "images/rutas/tres_cruces/2.webp",
+                    "images/rutas/tres_cruces/3.webp",
+                    "images/rutas/tres_cruces/4.webp",
+                    "images/rutas/tres_cruces/5.webp",
                 },
                 /*// Operadores turísticos locales que prestan acompañamiento o actividades integradas
                 Operadores = new List<OperadorModel>

@@ -320,6 +320,11 @@
     <Content Include="jsonFiles\tres_cruces\1.json" />
     <Content Include="jsonFiles\tres_cruces\2.json" />
     <Content Include="jsonFiles\tres_cruces\3.json" />
+    <Content Include="images\rutas\tres_cruces\1.webp" />
+    <Content Include="images\rutas\tres_cruces\2.webp" />
+    <Content Include="images\rutas\tres_cruces\3.webp" />
+    <Content Include="images\rutas\tres_cruces\4.webp" />
+    <Content Include="images\rutas\tres_cruces\5.webp" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\lanzarCauca - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\promocionCauca - Web Deploy.pubxml" />

@@ -15,6 +15,51 @@ namespace WebAppPromocionCauca
     {
 
         /// <summary>
+        /// btnFiltroAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltroAll;
+
+        /// <summary>
+        /// btnFiltroNaturaleza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltroNaturaleza;
+
+        /// <summary>
+        /// btnFiltroCultura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltroCultura;
+
+        /// <summary>
+        /// btnFiltroGastronomia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltroGastronomia;
+
+        /// <summary>
+        /// btnFiltroArqueologia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltroArqueologia;
+
+        /// <summary>
         /// rptRutas control.
         /// </summary>
         /// <remarks>
@@ -22,6 +67,15 @@ namespace WebAppPromocionCauca
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptRutas;
+
+        /// <summary>
+        /// rptPaginacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPaginacion;
 
         /// <summary>
         /// lnkRegresarInicio control.
