@@ -430,6 +430,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ISubregionRepository.cs" />
+    <Compile Include="Models\OperadorModel.cs" />
     <Compile Include="Models\RutaModel.cs" />
     <Compile Include="Repositories\RutasLocalRepository.cs" />
     <Compile Include="Repositories\SubregionLocalRepository.cs" />

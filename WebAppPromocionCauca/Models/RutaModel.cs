@@ -27,6 +27,8 @@ namespace WebAppPromocionCauca.Models
         public List<string> GeoJsonDataList { get; set; } = new List<string>();
         public List<string> Tags { get; set; } = new List<string>();
         public string[] Gallery { get; set; }
+        public List<OperadorModel> Operadores { get; set; } = new List<OperadorModel>();
+
 
         // Constructor básico para evitar errores de referencias nulas
         public RutaModel()

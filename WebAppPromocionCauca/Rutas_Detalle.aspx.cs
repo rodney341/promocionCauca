@@ -54,13 +54,23 @@ namespace WebAppPromocionCauca
             litAtractivos.Text = rutaSeleccionada.Atractivos;
             litServicios.Text = rutaSeleccionada.Servicios;
             imgPrincipal.Src = rutaSeleccionada.Image;
-            btnReservar.HRef = $"Contacto.aspx?ruta={rutaSeleccionada.Id}";
+          //  btnReservar.HRef = $"Contacto.aspx?ruta={rutaSeleccionada.Id}";
 
             if (rutaSeleccionada.Gallery != null && rutaSeleccionada.Gallery.Length > 0)
             {
                 rptGaleria.DataSource = rutaSeleccionada.Gallery;
                 rptGaleria.DataBind();
             }
+
+
+            // Añade esta línea al final del método CargarDatosCircuito(), justo debajo del enlace de la galería:
+            if (rutaSeleccionada.Operadores != null)
+            {
+                rptOperadores.DataSource = rutaSeleccionada.Operadores;
+                rptOperadores.DataBind();
+            }
+
+
 
             // Procesamiento físico de los tramos GeoJSON mapeados en el repositorio
             string rootPath = HttpRuntime.AppDomainAppPath;

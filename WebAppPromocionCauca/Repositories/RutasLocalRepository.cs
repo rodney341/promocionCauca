@@ -24,7 +24,7 @@ namespace WebAppPromocionCauca.Repositories
                 Atractivos = "Mirador Panorámico de Popayán, Monumento de las Tres Cruces, Avistamiento de avifauna andina, Sector gastronómico de la cima.",
                 Servicios = "Puntos de hidratación autorizados, guianza e interpretación ambiental local, acompañamiento de seguridad en horarios deportivos establecidos.",
                 // Archivos GeoJSON con el trazo suavizado del ascenso
-                GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json","tres_cruces/3.json","tres_cruces/4.json" },
+                GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json","tres_cruces/3.json","tres_cruces/4.json","tres_cruces/5.json","tres_cruces/6.json" },
                 Tags = new List<string> { "Senderismo", "Deporte", "Mirador" },
                 Gallery = new string[] {
                     "images/rutas/tres_cruces/2.webp",
@@ -32,7 +32,7 @@ namespace WebAppPromocionCauca.Repositories
                     "images/rutas/tres_cruces/4.webp",
                     "images/rutas/tres_cruces/5.webp",
                 },
-                /*// Operadores turísticos locales que prestan acompañamiento o actividades integradas
+                // Operadores turísticos locales que prestan acompañamiento o actividades integradas
                 Operadores = new List<OperadorModel>
                 {
                     new OperadorModel {
@@ -53,7 +53,7 @@ namespace WebAppPromocionCauca.Repositories
                         RegistroTurismo = "RNT 31044",
                         CertificadoSostenibilidad = false
                     }
-                }*/
+                }
             },
 
 
@@ -72,7 +72,11 @@ namespace WebAppPromocionCauca.Repositories
                 Servicios = "Seguro de asistencia médica, guías profesionales bilingües certificados, entradas a museos, menús de degustación de la cocina tradicional indexada por la UNESCO.",
                 GeoJsonFiles = new List<string> { "tres_cruces/1.json", "tres_cruces/2.json","tres_cruces/3.json","tres_cruces/4.json" },
                 Tags = new List<string> { "Popayán", "Gastronomía", "Cultura" },
-                Gallery = new string[] { "images/galeria/popayan1.webp", "images/galeria/popayan2.webp" }
+                Gallery = new string[] { "images/galeria/popayan1.webp", "images/galeria/popayan2.webp" },
+                Operadores = new List<OperadorModel>
+                {
+                    new OperadorModel { Id = 103, Nombre = "Puracé Aventuras Indígenas", Telefono = "+57 312 456 7890", Correo = "reservas@puraceaventura.com", SitioWeb = "https://example.com", RegistroTurismo = "RNT 19455", CertificadoSostenibilidad = true }
+                }
             },
             new RutaModel
             {
@@ -89,7 +93,11 @@ namespace WebAppPromocionCauca.Repositories
                 Servicios = "Permisos de ingreso al Parque Nacional, baquianos de la comunidad indígena local, alimentación balanceada de alta montaña, transporte de aproximación en vehículos 4x4.",
                 GeoJsonFiles = new List<string> { "purace_sendero1.geojson" },
                 Tags = new List<string> { "Ecoturismo", "PNN Puracé", "Termales" },
-                Gallery = new string[] { "images/galeria/purace1.webp" }
+                Gallery = new string[] { "images/galeria/purace1.webp" },
+                Operadores = new List<OperadorModel>
+                {
+                    new OperadorModel { Id = 103, Nombre = "Puracé Aventuras Indígenas", Telefono = "+57 312 456 7890", Correo = "reservas@puraceaventura.com", SitioWeb = "https://example.com", RegistroTurismo = "RNT 19455", CertificadoSostenibilidad = true }
+                }
             },
             new RutaModel
             {
@@ -106,7 +114,11 @@ namespace WebAppPromocionCauca.Repositories
                 Servicios = "Entradas al parque arqueológico, guías locales nativos, alojamiento en posadas rurales, talleres de tejido tradicional.",
                 GeoJsonFiles = new List<string> { "tierradentro_etapa1.geojson" },
                 Tags = new List<string> { "Silvia", "Tierradentro", "Etnoturismo" },
-                Gallery = new string[] { "images/galeria/tierradentro1.webp" }
+                Gallery = new string[] { "images/galeria/tierradentro1.webp" },
+                Operadores = new List<OperadorModel>
+                {
+                    new OperadorModel { Id = 103, Nombre = "Puracé Aventuras Indígenas", Telefono = "+57 312 456 7890", Correo = "reservas@puraceaventura.com", SitioWeb = "https://example.com", RegistroTurismo = "RNT 19455", CertificadoSostenibilidad = true }
+                }
             }
         };
 

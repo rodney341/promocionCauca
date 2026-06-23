@@ -28,6 +28,11 @@
         .gallery-thumb:hover {
             transform: scale(1.02);
         }
+
+        #seccion-operadores {
+            scroll-margin-top: 100px; 
+        }
+
     </style>
 
     <div class="container my-5">
@@ -97,8 +102,8 @@
                             <span class="text-muted"><asp:Literal ID="litServicios" runat="server" /></span>
                         </p>
                         <div>
-                            <a id="btnReservar" runat="server" class="btn text-white px-5 py-2 shadow-sm" style="background-color: var(--terracota);">
-                                Iniciar Solicitud de Reserva
+                            <a href="#seccion-operadores" class="btn text-white px-5 py-2 shadow-sm fw-bold" style="background-color: var(--verde-paramo);">
+                                🔍 Ver Operadores Autorizados
                             </a>
                         </div>
                     </div>
@@ -117,6 +122,57 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- SECCIÓN NUEVA: OPERADORES TURÍSTICOS AUTORIZADOS -->
+            <div id="seccion-operadores" class="card border-0 shadow-sm p-4 mb-5 bg-white">
+                <div class="d-flex align-items-center mb-4">
+                    <div style="width: 4px; height: 24px; background-color: var(--terracota); class='me-2 d-inline-block'"></div>
+                    <h4 class="fw-bold mb-0 ps-2" style="color: var(--verde-paramo);">Operadores y Agencias Locales Autorizadas</h4>
+                </div>
+    
+                <p class="text-muted small mb-4">Para tu seguridad y la preservación del patrimonio del Cauca, contrata servicios únicamente con empresas registradas ante el Viceministerio de Turismo.</p>
+
+                <div class="row g-3">
+                    <asp:Repeater ID="rptOperadores" runat="server">
+                        <ItemTemplate>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card h-100 border border-light shadow-sm p-3 position-relative">
+                                    <!-- Badge de Sostenibilidad -->
+                                    <%# Convert.ToBoolean(Eval("CertificadoSostenibilidad")) ? "<span class='badge bg-success position-absolute top-0 end-0 m-2 small'><i class='bi bi-shield-check'></i> Sostenible</span>" : "" %>
+                        
+                                    <div class="card-body p-2 d-flex flex-column justify-content-between">
+                                        <div>
+                                            <h5 class="fw-bold card-title mb-1" style="color: var(--verde-paramo);"><%# Eval("Nombre") %></h5>
+                                            <span class="text-muted d-block small mb-3 fw-mono"><%# Eval("RegistroTurismo") %></span>
+                                
+                                            <div class="small text-muted mb-2">
+                                                <strong>Teléfono:</strong> <br /><%# Eval("Telefono") %>
+                                            </div>
+                                            <div class="small text-muted mb-3">
+                                                <strong>E-mail:</strong> <br /><%# Eval("Correo") %>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="pt-2 border-top">
+                                            <a href='<%# Eval("SitioWeb") %>' target="_blank" class="btn btn-outline-secondary btn-sm w-100 fw-bold">
+                                                Visitar Sitio Web →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:Label ID="lblNoData" runat="server" Visible='<%# rptOperadores.Items.Count == 0 %>' 
+                                       CssClass="text-center text-muted py-4 d-block small" 
+                                       Text="No hay agencias registradas para este trayecto específico en este momento." />
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+
+
 
             <!-- Galería de Fotos del Corredor -->
             <div class="card border-0 shadow-sm p-4">
@@ -145,11 +201,19 @@
             if (!geoJsonDataList || geoJsonDataList.length === 0) return;
 
             // Inicializar mapa enfocado por defecto en el Cauca
-            const map = L.map('map-detalle').setView([2.4419, -76.6063], 15);
+            const map = L.map('map-detalle', {
+                scrollWheelZoom: false
+            }).setView([2.4419, -76.6063], 9);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
+            // Activa el scroll de zoom al hacer clic en el mapa
+            map.on('focus', () => { map.scrollWheelZoom.enable(); });
+
+            // Vuelve a bloquearlo cuando el usuario saca el cursor del mapa
+            map.on('blur', () => { map.scrollWheelZoom.disable(); });
+
 
             const geoJsonGroup = L.featureGroup().addTo(map);
             const overlayMaps = {};
