@@ -45,20 +45,20 @@ namespace WebAppPromocionCauca
             }
 
             // Asignación de literales a los controles del servidor
-            litNombreRuta.Text = rutaSeleccionada.Name;
-            litDuracionHeader.Text = rutaSeleccionada.Duration;
-            litDuracionFicha.Text = rutaSeleccionada.Duration;
-            litDescripcionLarga.Text = rutaSeleccionada.LongDesc;
-            litDistancia.Text = rutaSeleccionada.Distance;
+            litNombreRuta.Text = rutaSeleccionada.Nombre;
+            litDuracionHeader.Text = rutaSeleccionada.Duracion;
+            litDuracionFicha.Text = rutaSeleccionada.Duracion;
+            litDescripcionLarga.Text = rutaSeleccionada.Descripcion;
+            litDistancia.Text = rutaSeleccionada.Distancia;
             litMunicipios.Text = rutaSeleccionada.Municipios;
             litAtractivos.Text = rutaSeleccionada.Atractivos;
             litServicios.Text = rutaSeleccionada.Servicios;
-            imgPrincipal.Src = rutaSeleccionada.Image;
+            imgPrincipal.Src = rutaSeleccionada.Imagen;
           //  btnReservar.HRef = $"Contacto.aspx?ruta={rutaSeleccionada.Id}";
 
-            if (rutaSeleccionada.Gallery != null && rutaSeleccionada.Gallery.Length > 0)
+            if (rutaSeleccionada.Galeria != null && rutaSeleccionada.Galeria.Length > 0)
             {
-                rptGaleria.DataSource = rutaSeleccionada.Gallery;
+                rptGaleria.DataSource = rutaSeleccionada.Galeria;
                 rptGaleria.DataBind();
             }
 

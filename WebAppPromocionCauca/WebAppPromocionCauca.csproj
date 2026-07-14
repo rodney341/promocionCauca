@@ -484,6 +484,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="jsonFiles\ciudad_blanca\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

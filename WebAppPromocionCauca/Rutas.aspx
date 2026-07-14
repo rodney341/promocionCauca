@@ -31,16 +31,16 @@
                         <div class="card border-0 shadow-sm overflow-hidden mb-4" style="background-color: #FFFFFF;">
                             <div class="row g-0">
                                 <div class='<%# (Container.ItemIndex % 2 == 1) ? "col-md-4 order-md-last" : "col-md-4" %>' 
-                                     style='background: url(<%# Eval("Image") %>) center/cover; min-height: 220px;'>
+                                     style='background: url(<%# Eval("Imagen") %>) center/cover; min-height: 220px;'>
                                 </div>
                                 <div class="col-md-8 p-4 d-flex flex-column justify-content-center">
                                     <div class="d-flex justify-content-between align-items-start mb-1">
-                                        <span class="text-uppercase fw-bold small" style="color: var(--terracota);"><%# Eval("Duration") %></span>
+                                        <span class="text-uppercase fw-bold small" style="color: var(--terracota);"><%# Eval("Duracion") %></span>
                                     </div>
                                     <h3 class="fw-bold h4 mb-2" style="color: var(--verde-paramo);">
-                                        <%# Eval("Name") %>
+                                        <%# Eval("Nombre") %>
                                     </h3>
-                                    <p class="text-muted small"><%# Eval("shortDesc") %></p>
+                                    <p class="text-muted small"><%# Eval("Descripcion") %></p>
                                     
                                     <div class="mt-2 d-flex flex-wrap justify-content-between align-items-center gap-3">
                                         <div>

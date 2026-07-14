@@ -13,7 +13,7 @@ namespace WebAppPromocionCauca.Models
         public string Correo { get; set; }
         public string SitioWeb { get; set; }
         public string LogoUrl { get; set; }
-        public string RegistroTurismo { get; set; } // RNT (Registro Nacional de Turismo)
+        public string RegistroTurismo { get; set; }
         public bool CertificadoSostenibilidad { get; set; }
     }
 }
