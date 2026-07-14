@@ -5,7 +5,7 @@ using System.IO;
 using System.Security.Principal;
 using System.Web;
 using WebAppPromocionCauca.Models;
-using WebAppPromocionCauca.Repositories; // ◄ Importar el nuevo repositorio
+using WebAppPromocionCauca.Repositories;
 
 namespace WebAppPromocionCauca
 {
@@ -35,7 +35,7 @@ namespace WebAppPromocionCauca
                 return;
             }
 
-            // Consultar directamente al repositorio centralizado por ID
+         
             RutaModel rutaSeleccionada = _repository.ObtenerPorId(idRuta);
 
             if (rutaSeleccionada == null)
@@ -44,7 +44,7 @@ namespace WebAppPromocionCauca
                 return;
             }
 
-            // Asignación de literales a los controles del servidor
+     
             litNombreRuta.Text = rutaSeleccionada.nombre;
             litDuracionHeader.Text = rutaSeleccionada.duracion;
             litDuracionFicha.Text = rutaSeleccionada.duracion;
@@ -54,7 +54,7 @@ namespace WebAppPromocionCauca
             litAtractivos.Text = rutaSeleccionada.atractivos;
             litServicios.Text = rutaSeleccionada.servicios;
             imgPrincipal.Src = rutaSeleccionada.imagen;
-          //  btnReservar.HRef = $"Contacto.aspx?ruta={rutaSeleccionada.Id}";
+        
 
             if (rutaSeleccionada.galeria != null && rutaSeleccionada.galeria.Length > 0)
             {
@@ -63,7 +63,7 @@ namespace WebAppPromocionCauca
             }
 
 
-            // Añade esta línea al final del método CargarDatosCircuito(), justo debajo del enlace de la galería:
+         
             if (rutaSeleccionada.operadores != null)
             {
                 rptOperadores.DataSource = rutaSeleccionada.operadores;
@@ -72,7 +72,7 @@ namespace WebAppPromocionCauca
 
 
 
-            // Procesamiento físico de los tramos GeoJSON mapeados en el repositorio
+           
             string rootPath = HttpRuntime.AppDomainAppPath;
             GeoJsonFilesOutput = rutaSeleccionada.geoJsonFiles ?? new List<string>();
 

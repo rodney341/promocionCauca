@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebAppPromocionCauca.Models; // Asegúrate de que coincida con tu espacio de nombres del modelo
+using WebAppPromocionCauca.Models; 
 
 namespace WebAppPromocionCauca.Repositories
 {
