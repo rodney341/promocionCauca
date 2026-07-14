@@ -45,28 +45,28 @@ namespace WebAppPromocionCauca
             }
 
             // Asignación de literales a los controles del servidor
-            litNombreRuta.Text = rutaSeleccionada.Nombre;
-            litDuracionHeader.Text = rutaSeleccionada.Duracion;
-            litDuracionFicha.Text = rutaSeleccionada.Duracion;
-            litDescripcionLarga.Text = rutaSeleccionada.Descripcion;
-            litDistancia.Text = rutaSeleccionada.Distancia;
-            litMunicipios.Text = rutaSeleccionada.Municipios;
-            litAtractivos.Text = rutaSeleccionada.Atractivos;
-            litServicios.Text = rutaSeleccionada.Servicios;
-            imgPrincipal.Src = rutaSeleccionada.Imagen;
+            litNombreRuta.Text = rutaSeleccionada.nombre;
+            litDuracionHeader.Text = rutaSeleccionada.duracion;
+            litDuracionFicha.Text = rutaSeleccionada.duracion;
+            litDescripcionLarga.Text = rutaSeleccionada.descripcion;
+            litDistancia.Text = rutaSeleccionada.distancia;
+            litMunicipios.Text = rutaSeleccionada.municipios;
+            litAtractivos.Text = rutaSeleccionada.atractivos;
+            litServicios.Text = rutaSeleccionada.servicios;
+            imgPrincipal.Src = rutaSeleccionada.imagen;
           //  btnReservar.HRef = $"Contacto.aspx?ruta={rutaSeleccionada.Id}";
 
-            if (rutaSeleccionada.Galeria != null && rutaSeleccionada.Galeria.Length > 0)
+            if (rutaSeleccionada.galeria != null && rutaSeleccionada.galeria.Length > 0)
             {
-                rptGaleria.DataSource = rutaSeleccionada.Galeria;
+                rptGaleria.DataSource = rutaSeleccionada.galeria;
                 rptGaleria.DataBind();
             }
 
 
             // Añade esta línea al final del método CargarDatosCircuito(), justo debajo del enlace de la galería:
-            if (rutaSeleccionada.Operadores != null)
+            if (rutaSeleccionada.operadores != null)
             {
-                rptOperadores.DataSource = rutaSeleccionada.Operadores;
+                rptOperadores.DataSource = rutaSeleccionada.operadores;
                 rptOperadores.DataBind();
             }
 
@@ -74,7 +74,7 @@ namespace WebAppPromocionCauca
 
             // Procesamiento físico de los tramos GeoJSON mapeados en el repositorio
             string rootPath = HttpRuntime.AppDomainAppPath;
-            GeoJsonFilesOutput = rutaSeleccionada.GeoJsonFiles ?? new List<string>();
+            GeoJsonFilesOutput = rutaSeleccionada.geoJsonFiles ?? new List<string>();
 
             foreach (var file in GeoJsonFilesOutput)
             {

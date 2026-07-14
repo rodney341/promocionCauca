@@ -7,13 +7,13 @@ namespace WebAppPromocionCauca.Models
 {
     public class OperadorModel
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Telefono { get; set; }
-        public string Correo { get; set; }
-        public string SitioWeb { get; set; }
-        public string LogoUrl { get; set; }
-        public string RegistroTurismo { get; set; }
-        public bool CertificadoSostenibilidad { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string telefono { get; set; }
+        public string correo { get; set; }
+        public string sitioWeb { get; set; }
+        public string logoUrl { get; set; }
+        public string registroTurismo { get; set; }
+        public bool certificadoSostenibilidad { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace WebAppPromocionCauca
             // 2. Aplicar Filtro lógico por categoría
             var rutasFiltradas = CategoriaActiva == "all"
                 ? todasLasRutas
-                : todasLasRutas.Where(r => r.Categoria.Contains(CategoriaActiva)).ToList();
+                : todasLasRutas.Where(r => r.categoria.Contains(CategoriaActiva)).ToList();
 
             // 3. Calcular métricas de paginación
             int totalElementos = rutasFiltradas.Count;
