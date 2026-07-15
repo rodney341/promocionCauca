@@ -9,7 +9,9 @@ namespace WebAppPromocionCauca
 {
     public partial class Rutas : System.Web.UI.Page
     {
-        private readonly RutasLocalRepository _repository = new RutasLocalRepository();
+//        private readonly RutasLocalRepository _repository = new RutasLocalRepository();
+        private readonly RutasSheetsRepository _repository = new RutasSheetsRepository();
+
         private const int ELEMENTOS_POR_PAGINA = 2; 
 
 

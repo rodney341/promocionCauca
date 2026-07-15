@@ -11,7 +11,8 @@ namespace WebAppPromocionCauca
 {
     public partial class Rutas_Detalle : System.Web.UI.Page
     {
-        private readonly RutasLocalRepository _repository = new RutasLocalRepository();
+      //  private readonly RutasLocalRepository _repository = new RutasLocalRepository();
+        private readonly RutasSheetsRepository _repository = new RutasSheetsRepository();
 
         protected List<string> GeoJsonDataOutput = new List<string>();
         protected List<string> GeoJsonFilesOutput = new List<string>();

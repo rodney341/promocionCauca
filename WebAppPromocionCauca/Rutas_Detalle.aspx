@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Detalle del Circuito" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Rutas_Detalle.aspx.cs" Inherits="WebAppPromocionCauca.Rutas_Detalle" %>
 
 <asp:Content ID="ContentDetalle" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Hojas de estilo para el mapa interactivo específico de la ruta -->
-
     <style>
         :root {
             --verde-paramo: #1E4620;
@@ -70,7 +68,6 @@
 
             <!-- Ficha Técnica Avanzada -->
             <div class="row g-4 mb-5">
-                <!-- Tarjeta de Datos Técnicos -->
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm p-4 h-100 meta-box">
                         <h5 class="fw-bold mb-3" style="color: var(--verde-paramo);">Especificaciones</h5>
@@ -124,7 +121,7 @@
             </div>
 
 
-            <!-- SECCIÓN NUEVA: OPERADORES TURÍSTICOS AUTORIZADOS -->
+            <!-- OPERADORES TURÍSTICOS AUTORIZADOS -->
             <div id="seccion-operadores" class="card border-0 shadow-sm p-4 mb-5 bg-white">
                 <div class="d-flex align-items-center mb-4">
                     <div style="width: 4px; height: 24px; background-color: var(--terracota); class='me-2 d-inline-block'"></div>
@@ -190,17 +187,14 @@
         </asp:Panel>
     </div>
 
-    <!-- Scripts de Control de Mapas Integrados -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Declaración segura de las variables embebidas desde C#
         const geoJsonDataList = <%= GetGeoJsonDataListAsJson() %>;
         const fileNamesList = <%= GetGeoJsonFileNamesAsJson() %>;
 
         document.addEventListener("DOMContentLoaded", () => {
             if (!geoJsonDataList || geoJsonDataList.length === 0) return;
 
-            // Inicializar mapa enfocado por defecto en el Cauca
             const map = L.map('map-detalle', {
                 scrollWheelZoom: false
             }).setView([2.4419, -76.6063], 9);
@@ -208,15 +202,13 @@
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-            // Activa el scroll de zoom al hacer clic en el mapa
             map.on('focus', () => { map.scrollWheelZoom.enable(); });
-
-            // Vuelve a bloquearlo cuando el usuario saca el cursor del mapa
             map.on('blur', () => { map.scrollWheelZoom.disable(); });
 
 
             const geoJsonGroup = L.featureGroup().addTo(map);
             const overlayMaps = {};
+            const routeLayers = [];
 
             geoJsonDataList.forEach((geoJsonString, index) => {
                 try {
@@ -230,7 +222,6 @@
                     if (geoJsonObject.features && geoJsonObject.features[0]?.properties?.name) {
                         tramoName = geoJsonObject.features[0].properties.name;
                     } else if (route.geoJsonFiles && route.geoJsonFiles[index]) {
-                        // Alternativa: Usar el nombre del archivo sin la extensión .geojson
                         tramoName = route.geoJsonFiles[index].replace('.json', '').replace('_', ' ');
                     }
 
@@ -248,6 +239,39 @@
                             if (feature.properties && feature.properties.name) {
                                 layer.bindPopup(`<strong>${feature.properties.name}</strong><br>${feature.properties.description || ''}`);
                             }
+
+                            layer.on({
+
+                                mouseover: function (e) {
+                                    const l = e.target;
+                                    if (layer.setStyle) {
+                                        layer.setStyle({
+                                            weight: 8,
+                                            opacity: 1,
+                                            color: '#FF9800'
+                                        });
+                                    }
+                                    l.openPopup();
+
+                                },
+
+                                mouseout: function (e) {
+                                    const l = e.target;
+                                    if (layer.setStyle) {
+                                        layer.setStyle({
+                                            weight: 5,
+                                            opacity: 0.88,
+                                            color: layerColor
+                                        });
+                                    }
+                                    l.closePopup();
+
+                                }
+
+                            });
+
+
+
                         }
                     });
 
@@ -258,10 +282,8 @@
                 }
             });
 
-            // Añadir selector interactivo de tramos de la leyenda
             L.control.layers(null, overlayMaps, { collapsed: false, position: 'topright' }).addTo(map);
 
-            // Ajustar el zoom automático para encuadrar los archivos físicos cargados
             if (geoJsonGroup.getLayers().length > 0) {
                 map.fitBounds(geoJsonGroup.getBounds(), { padding: [70, 70] });
             }
