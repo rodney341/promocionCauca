@@ -1,48 +1,56 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Articulo.aspx.cs" Inherits="WebAppPromocionCauca.Articulo" %>
+<%-- 1. CONTENEDOR DE ESTILOS (Apunta a la cabecera) --%>
 <asp:Content ID="ContentStylesArticulo" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
-.hero-articulo{
-    position:relative;
-    height:60vh;
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
+.titulo-articulo {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #1f2937;
 }
 
-.hero-articulo .overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.45);
+.meta-articulo {
+    color: #6b7280;
+    font-size: .95rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
 }
 
-.hero-contenido{
-    position:relative;
-    z-index:2;
-    color:white;
-    max-width:800px;
-    margin:auto;
-    padding:0 20px;
+.imagen-principal-articulo {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
 }
 
-.hero-contenido h1{
-    font-size:clamp(2rem,5vw,4rem);
-    font-weight:800;
+.imagen-secundaria-articulo {
+    width: 85%;
+    max-width: 900px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
 }
 
-.contenido-blog{
-    font-size:1.1rem;
-    line-height:1.9;
+.resumen-articulo {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: #374151;
+    font-weight: 300;
+    border-left: 5px solid #198754;
+    padding-left: 1.5rem;
 }
 
-.contenido-blog p{
-    margin-bottom:1.5rem;
+.contenido-blog {
+    font-size: 1.12rem;
+    line-height: 2;
+    color: #374151;
 }
-.imagen-articulo{
-    width:100%;
-    max-height:500px;
-    object-fit:cover;
-    border-radius:20px;
+
+.contenido-blog p {
+    margin-bottom: 1.8rem;
 }
 
 .galeria-card {
@@ -62,53 +70,68 @@
 .galeria-card:hover .galeria-img {
     transform: scale(1.08);
 }
+.btn-regresar { color: var(--terracota); text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 2rem; }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <!-- HERO -->
-    <section id="heroArticulo" runat="server" class="hero-articulo">
-        <div class="overlay"></div>
+    <!-- VOLVER -->
+    <div class="container my-5">
+        <a href="Blog.aspx" class="btn btn-outline-secondary">
+            ← Volver al Blog Turístico
+        </a>
+    </div>
 
-        <div class="hero-contenido">
-
-            <span class="badge bg-success mb-3">
-                <asp:Label ID="lblCategoria" runat="server" />
-            </span>
-
-            <h1>
-                <asp:Label ID="lblTitulo" runat="server" />
-            </h1>
-
-            <p class="meta-articulo">
-                Por
-                <strong>
-                    <asp:Label ID="lblAutor" runat="server" />
-                </strong>
-                ·
-                <asp:Label ID="lblFecha" runat="server" />
-            </p>
-
-        </div>
-    </section>
-
-    <!-- CONTENIDO -->
-    <div class="container py-5">
+    <!-- ARTÍCULO -->
+    <div class="container">
 
         <div class="row justify-content-center">
 
-            <div class="col-lg-8">
+            <div class="col-lg-9">
 
-                <p class="lead mb-4">
+                <div class="mb-3">
+                    <span class="badge bg-success">
+                        <asp:Label ID="lblCategoria" runat="server" />
+                    </span>
+                </div>
+
+                <h1 class="titulo-articulo mb-3">
+                    <asp:Label ID="lblTitulo" runat="server" />
+                </h1>
+
+                <div class="meta-articulo mb-4">
+                    <span>
+                        Por <strong>
+                            <asp:Label ID="lblAutor" runat="server" />
+                        </strong>
+                    </span>
+
+                    <span class="mx-2">•</span>
+
+                    <span>
+                        <asp:Label ID="lblFecha" runat="server" />
+                    </span>
+                </div>
+
+                <div class="mb-5">
+                    <asp:Image ID="imgPrincipal"
+                        runat="server"
+                        CssClass="imagen-principal-articulo"
+                        AlternateText="Imagen principal" />
+                </div>
+
+                <div class="resumen-articulo mb-5">
                     <asp:Label ID="lblResumen" runat="server" />
-                </p>
-                        <div class="text-center mb-5">
-                            <asp:Image ID="imgSecundaria"
-                                runat="server"
-                                CssClass="img-fluid rounded shadow-sm imagen-articulo"
-                                AlternateText="Imagen del artículo" />
-                        </div>
+                </div>
+
+                <div class="text-center mb-5">
+                    <asp:Image ID="imgSecundaria"
+                        runat="server"
+                        CssClass="imagen-secundaria-articulo"
+                        AlternateText="Imagen complementaria" />
+                </div>
+
                 <div class="contenido-blog">
                     <asp:Literal ID="litContenido" runat="server" />
                 </div>
@@ -117,50 +140,41 @@
 
         </div>
 
-        <!-- GALERÍA -->
-        <div class="text-center mb-4 mt-5">
-            <h2 class="fw-bold">Galería fotográfica</h2>
-            <p class="text-muted">
-                Imágenes que complementan esta experiencia en el Cauca.
-            </p>
-        </div>
-        <div class="row g-4 mt-5">
+    </div>
 
-            <asp:Repeater ID="rptGaleria" runat="server">
+    <!-- GALERÍA -->
+<div id="pnlGaleria" runat="server" class="container py-5">
 
-                <ItemTemplate>
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Galería fotográfica</h2>
+        <p class="text-muted">
+            Imágenes que complementan esta experiencia en el Cauca.
+        </p>
+    </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+    <div class="row g-4">
 
-                        <div class="galeria-card">
+        <asp:Repeater ID="rptGaleria" runat="server">
 
-                            <img src='<%# Container.DataItem %>'
-                                 class="galeria-img"
-                                 loading="lazy"
-                                 alt="Galería del artículo" />
+            <ItemTemplate>
 
-                        </div>
-
+                <div class="col-lg-4 col-md-6">
+                    <div class="galeria-card">
+                        <img src='<%# Container.DataItem %>'
+                             class="galeria-img"
+                             loading="lazy"
+                             alt="Galería del artículo" />
                     </div>
+                </div>
 
-                </ItemTemplate>
+            </ItemTemplate>
 
-            </asp:Repeater>
-
-        </div>
-
-    </div>
-        <!-- VOLVER -->
-    <div class="container text-center pb-5">
-
-        <a href="/Blog.aspx"
-           class="btn btn-outline-secondary">
-
-            ← Volver a los Blogs
-
-        </a>
+        </asp:Repeater>
 
     </div>
+
+</div>
 
 </asp:Content>
+
 
