@@ -247,6 +247,7 @@
     <Content Include="estilos\StyleSheetMapa.css" />
     <Content Include="estilos\StyleSheetReconocimientos.css" />
     <Content Include="Rutas_Detalle.aspx" />
+    <Content Include="SeguridadTuristica.aspx" />
     <Content Include="Subregion.aspx" />
     <Content Include="estilos\StyleSheetHero.css" />
     <Content Include="estilos\StyleSheetSubregiones.css" />
@@ -442,6 +443,13 @@
     </Compile>
     <Compile Include="Rutas_Detalle.aspx.designer.cs">
       <DependentUpon>Rutas_Detalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeguridadTuristica.aspx.cs">
+      <DependentUpon>SeguridadTuristica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeguridadTuristica.aspx.designer.cs">
+      <DependentUpon>SeguridadTuristica.aspx</DependentUpon>
     </Compile>
     <Compile Include="Subregion.aspx.cs">
       <DependentUpon>Subregion.aspx</DependentUpon>
