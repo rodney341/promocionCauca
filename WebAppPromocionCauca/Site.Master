@@ -136,6 +136,7 @@
                     <li><a href="/Default.aspx#subregiones" class="text-white text-decoration-none small opacity-75">Subregiones</a></li>
                     <li><a href="/Default.aspx#reconocimientos" class="text-white text-decoration-none small opacity-75">Reconocimientos</a></li>
                     <li><a href="/SeguridadTuristica.aspx" class="text-white text-decoration-none small opacity-75">Seguridad Turistica</a></li>
+                    <li><a href="/Blog.aspx" class="text-white text-decoration-none small opacity-75">Blog</a></li>
                 </ul>
             </div>
 

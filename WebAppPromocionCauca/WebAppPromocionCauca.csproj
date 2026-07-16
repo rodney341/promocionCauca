@@ -226,6 +226,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Articulo.aspx" />
+    <Content Include="Blog.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -423,6 +425,20 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Articulo.aspx.cs">
+      <DependentUpon>Articulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Articulo.aspx.designer.cs">
+      <DependentUpon>Articulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blog.aspx.cs">
+      <DependentUpon>Blog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blog.aspx.designer.cs">
+      <DependentUpon>Blog.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -430,10 +446,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBlogRepository.cs" />
     <Compile Include="Interfaces\IRutasRepository.cs" />
     <Compile Include="Interfaces\ISubregionRepository.cs" />
+    <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Models\OperadorModel.cs" />
     <Compile Include="Models\RutaModel.cs" />
+    <Compile Include="Repositories\BlogSheetsRepository.cs" />
     <Compile Include="Repositories\RutasLocalRepository.cs" />
     <Compile Include="Repositories\RutasSheetsRepository.cs" />
     <Compile Include="Repositories\SubregionLocalRepository.cs" />
